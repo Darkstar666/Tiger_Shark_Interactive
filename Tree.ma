@@ -1,6 +1,6 @@
 //Maya ASCII 2013 scene
 //Name: Tree.ma
-//Last modified: Tue, Oct 01, 2013 04:35:19 PM
+//Last modified: Tue, Oct 01, 2013 04:39:16 PM
 //Codeset: 1252
 requires maya "2013";
 currentUnit -l centimeter -a degree -t film;
@@ -13,8 +13,9 @@ fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
 	setAttr ".t" -type "double3" 10.697982420401249 32.377524597536777 22.073079629328188 ;
-	setAttr ".r" -type "double3" -41.39999999993222 25.999999999999794 -1.7693456551918749e-015 ;
-	setAttr ".rpt" -type "double3" -1.0971711952652139e-015 2.112549479710182e-015 3.3631751602011663e-016 ;
+	setAttr ".r" -type "double3" -41.399999999932227 25.999999999999794 -1.7693456551918749e-015 ;
+	setAttr ".rpt" -type "double3" -1.0971711952652139e-015 2.1125494797101817e-015 
+		3.3631751602011663e-016 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
