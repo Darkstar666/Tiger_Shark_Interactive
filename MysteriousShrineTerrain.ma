@@ -1,6 +1,6 @@
 //Maya ASCII 2013 scene
 //Name: MysteriousShrineTerrain.ma
-//Last modified: Wed, Oct 02, 2013 12:12:36 PM
+//Last modified: Wed, Oct 02, 2013 01:09:01 PM
 //Codeset: 1252
 requires maya "2013";
 requires "Mayatomr" "2013.0 - 3.10.1.4 ";
@@ -14,13 +14,13 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 57.81181658737335 50.866046440318954 1.4291881700010758 ;
+	setAttr ".t" -type "double3" 68.592571144065502 65.070062464623931 11.504761764520625 ;
 	setAttr ".r" -type "double3" -40.799999999996665 -284.39999999999583 -2.5578480232741018e-014 ;
 	setAttr ".rpt" -type "double3" 3.8799760567296711e-016 1.9995989220686148e-016 2.216923473535833e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 73.783666433451941;
+	setAttr ".coi" 92.866246340230433;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -2834,22 +2834,6 @@ createNode mesh -n "TexturedPavillionTerrain:Group20365Shape" -p "TexturedPavill
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Testing:Orb";
-	setAttr ".t" -type "double3" 3 -8.3762157785064932 96 ;
-	setAttr ".s" -type "double3" 0.38335445818289343 0.38335445818289343 0.38335445818289343 ;
-	setAttr ".rp" -type "double3" 0 16 -100 ;
-	setAttr ".sp" -type "double3" 0 16 -100 ;
-createNode transform -n "Testing:Largerdevice" -p "Testing:Orb";
-createNode mesh -n "Testing:LargerdeviceShape" -p "Testing:Largerdevice";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.50000005960464478 0.50564795732498169 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "Testing:Skysphere";
 	setAttr ".t" -type "double3" 6.887958173125142 -244 -1.144206088569284 ;
 	setAttr ".s" -type "double3" 0.59501546732355981 0.59501546732355981 0.59501546732355981 ;
@@ -5550,6 +5534,7 @@ createNode camera -n "FlameCamShape" -p "FlameCam";
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 	setAttr ".dr" yes;
 createNode transform -n "defaultLight";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".r" -type "double3" -30.925596252592179 -6.4052287681489277 1.7735552059425919 ;
 createNode directionalLight -n "defaultLightShape" -p "defaultLight";
 	addAttr -ci true -sn "phy" -ln "physical" -min 0 -max 1 -at "bool";
@@ -5586,7 +5571,7 @@ createNode transform -n "FireCTRL";
 	addAttr -ci true -sn "SparkSize" -ln "SparkSize" -dv 1 -min 1 -at "long";
 	addAttr -ci true -sn "SparkTailSize" -ln "SparkTailSize" -dv 1 -min 0.01 -at "double";
 	setAttr -k off ".v";
-	setAttr ".t" -type "double3" 0.11627906976744207 1.5116279069767442 0.23255813953488413 ;
+	setAttr ".t" -type "double3" 0.11627906976744207 20.645792302696307 0.23255813953488413 ;
 	setAttr -k off ".tx";
 	setAttr -k off ".ty";
 	setAttr -k off ".tz";
@@ -5620,11 +5605,6 @@ createNode transform -n "FireCTRL";
 	setAttr -k on ".SparkTailSize" 2;
 createNode locator -n "FireCTRLShape" -p "FireCTRL";
 	setAttr -k off ".v";
-createNode transform -n "annotation1" -p "FireCTRL";
-	setAttr ".t" -type "double3" 9.9999999999999982 16.279069767441857 9.6511627906976738 ;
-createNode annotationShape -n "annotationShape1" -p "annotation1";
-	setAttr -k off ".v";
-	setAttr ".txt" -type "string" "Surface Fire";
 createNode transform -n "Sparks";
 	addAttr -ci true -sn "SparkSize" -ln "SparkSize" -dv 1 -min 1 -at "long";
 	setAttr -k on ".SparkSize";
@@ -5661,7 +5641,7 @@ createNode nParticle -n "SparksParticleShape" -p "Sparks";
 	setAttr ".irbx" -type "string" "";
 	setAttr ".irax" -type "string" "";
 	setAttr ".icx" -type "string" "";
-	setAttr ".cts" 74;
+	setAttr ".cts" 98;
 	setAttr ".chw" 200;
 	setAttr ".prt" 6;
 	setAttr -s 2 ".ppfd";
@@ -5710,22 +5690,26 @@ createNode nParticle -n "SparksParticleShape" -p "Sparks";
 	setAttr -k on ".normalDir";
 	setAttr ".incandescencePP0" -type "vectorArray" 0 ;
 createNode turbulenceField -n "SparksTurbulenceField";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".att" 1;
 	setAttr ".fc[0]"  0 1 1;
 	setAttr ".amag[0]"  0 1 1;
 	setAttr ".crad[0]"  0 1 1;
 createNode vortexField -n "fireVortex";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".fc[0]"  0 1 1;
 	setAttr ".amag[0]"  0 1 1;
 	setAttr ".crad[0]"  0 1 1;
 	setAttr ".axy" 1;
 createNode pointEmitter -n "SparksEmitter";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".s" -type "double3" 29.266235264014323 29.266235264014323 29.266235264014323 ;
 	setAttr ".emt" 2;
 	setAttr ".sro" no;
 	setAttr -l on ".urpp";
 	setAttr ".spd" 3;
 createNode fluidEmitter -n "fireEmitter";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".s" -type "double3" 13.027759792463632 13.027759792463632 13.027759792463632 ;
 	setAttr ".emt" 2;
 	setAttr -k off ".rat";
@@ -5753,6 +5737,7 @@ createNode fluidEmitter -n "fireEmitter";
 	setAttr ".fhe" 1;
 	setAttr ".ffe" 1;
 createNode nucleus -n "FireNucleus";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr ".grty" 37.254901885986328;
 	setAttr ".nupl" yes;
 	setAttr ".npor" -type "float3" 0 -1.5 0 ;
@@ -5760,7 +5745,7 @@ createNode nucleus -n "FireNucleus";
 	setAttr ".sstp" 20;
 	setAttr ".mcit" 20;
 createNode transform -n "Fire";
-	setAttr ".t" -type "double3" 5 7.4506266009808773 -3 ;
+	setAttr ".t" -type "double3" 20.514860217019642 22.165511338657691 -3 ;
 	setAttr ".rp" -type "double3" -4 -10.450626600980877 -1 ;
 	setAttr ".sp" -type "double3" -4 -10.450626600980877 -1 ;
 createNode fluidShape -n "FireShape" -p "Fire";
@@ -5810,6 +5795,7 @@ createNode fluidShape -n "FireShape" -p "Fire";
 	setAttr ".dos" 1;
 	setAttr ".edr" 0.43999999761581421;
 createNode fluidEmitter -n "fluidEmitter1" -p "Fire";
+	setAttr ".t" -type "double3" 0 19.134164395719566 0 ;
 	setAttr -k off ".sro";
 	setAttr -l on -k off ".urpp";
 	setAttr -k off ".npuv";
@@ -5826,7 +5812,7 @@ createNode fluidEmitter -n "fluidEmitter1" -p "Fire";
 	setAttr ".fhe" 2;
 	setAttr ".ffe" 4;
 createNode transform -n "pCylinder1";
-	setAttr ".t" -type "double3" 2.6060065414005376 15 9 ;
+	setAttr ".t" -type "double3" -26.618653276465793 15 9 ;
 createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
@@ -5836,76 +5822,8 @@ createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "Violet";
-	setAttr ".t" -type "double3" 5 7.4506266009808773 15.970135190988586 ;
-	setAttr ".rp" -type "double3" -4 -10.450626600980877 -1 ;
-	setAttr ".sp" -type "double3" -4 -10.450626600980877 -1 ;
-createNode fluidShape -n "VioletShape" -p "Violet";
-	setAttr -k off ".v";
-	setAttr ".rt" 1;
-	setAttr ".vf" 0;
-	setAttr ".iss" yes;
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr ".sqvx" yes;
-	setAttr ".rw" 8;
-	setAttr ".rd" 8;
-	setAttr ".dw" 10;
-	setAttr ".dh" 12;
-	setAttr ".dd" 10;
-	setAttr ".bndy" 2;
-	setAttr ".dds" 0.182;
-	setAttr ".dsb" 9;
-	setAttr ".vsw" 10;
-	setAttr ".tst" 0.0099999997764825821;
-	setAttr ".tmet" 2;
-	setAttr ".tmsc" 1.9299999475479126;
-	setAttr ".buo" 9;
-	setAttr ".fmet" 2;
-	setAttr ".fesc" 1.9600000381469727;
-	setAttr ".resp" 0.97000002861022949;
-	setAttr ".cl[0].clp" 0;
-	setAttr ".cl[0].clc" -type "float3" 0 0 0 ;
-	setAttr ".cl[0].cli" 1;
-	setAttr -s 3 ".opa[0:2]"  0.11 0.5 3 0.76521736 0.12 1 0.060869563
-		 0.02 3;
-	setAttr ".oib" 0.10499999672174454;
-	setAttr ".t" -type "float3" 0.56075382 0.56075382 0.56075382 ;
-	setAttr -s 3 ".i";
-	setAttr ".i[1].ip" 0.54782611131668091;
-	setAttr ".i[1].ic" -type "float3" 15 5.8000002 2.7 ;
-	setAttr ".i[1].ii" 1;
-	setAttr ".i[2].ip" 0.86956518888473511;
-	setAttr ".i[2].ic" -type "float3" 1.5 1 0 ;
-	setAttr ".i[2].ii" 1;
-	setAttr ".i[3].ip" 0.98260897397994995;
-	setAttr ".i[3].ic" -type "float3" 0 0 0 ;
-	setAttr ".i[3].ii" 1;
-	setAttr ".env[0].envp" 0;
-	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
-	setAttr ".env[0].envi" 1;
-	setAttr ".dos" 1;
-	setAttr ".edr" 0.43999999761581421;
-createNode fluidEmitter -n "fluidEmitter1" -p "Violet";
-	setAttr -k off ".sro";
-	setAttr -l on -k off ".urpp";
-	setAttr -k off ".npuv";
-	setAttr ".max" 1;
-	setAttr -k off ".spr";
-	setAttr -k off ".spd";
-	setAttr -k off ".srnd";
-	setAttr -k off ".afc";
-	setAttr -k off ".afa";
-	setAttr -k off ".rnd";
-	setAttr -k off ".ssz";
-	setAttr -k off ".dss";
-	setAttr ".trb" 1.15;
-	setAttr ".fhe" 2;
-	setAttr ".ffe" 4;
 createNode transform -n "Air";
-	setAttr ".t" -type "double3" 5 7.4506266009808773 -21.959591027605747 ;
-	setAttr ".rp" -type "double3" -4 -10.450626600980877 -1 ;
-	setAttr ".sp" -type "double3" -4 -10.450626600980877 -1 ;
+	setAttr ".t" -type "double3" 3.001891870517623 7.1114952997605752 11.766210140086281 ;
 createNode fluidShape -n "AirShape" -p "Air";
 	setAttr -k off ".v";
 	setAttr ".rt" 1;
@@ -5924,35 +5842,31 @@ createNode fluidShape -n "AirShape" -p "Air";
 	setAttr ".dsb" 9;
 	setAttr ".vsw" 10;
 	setAttr ".tst" 0.0099999997764825821;
-	setAttr ".tmet" 2;
-	setAttr ".tmsc" 1.9299999475479126;
-	setAttr ".buo" 9;
 	setAttr ".fmet" 2;
 	setAttr ".fesc" 1.9600000381469727;
 	setAttr ".resp" 0.97000002861022949;
 	setAttr ".cl[0].clp" 0;
-	setAttr ".cl[0].clc" -type "float3" 0 0 0 ;
+	setAttr ".cl[0].clc" -type "float3" 1 1 1 ;
 	setAttr ".cl[0].cli" 1;
-	setAttr -s 3 ".opa[0:2]"  0.11 0.5 3 0.76521736 0.12 1 0.060869563
-		 0.02 3;
-	setAttr ".oib" 0.10499999672174454;
-	setAttr ".t" -type "float3" 0.56075382 0.56075382 0.56075382 ;
+	setAttr -s 2 ".opa[0:1]"  0 0 1 1 1 1;
+	setAttr ".oib" 0.22200000286102295;
+	setAttr ".t" -type "float3" 0.13084611 0.13084611 0.13084611 ;
 	setAttr -s 3 ".i";
-	setAttr ".i[1].ip" 0.54782611131668091;
-	setAttr ".i[1].ic" -type "float3" 15 5.8000002 2.7 ;
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".i[1].ip" 0.80000001192092896;
+	setAttr ".i[1].ic" -type "float3" 0.89999998 0.2 0 ;
 	setAttr ".i[1].ii" 1;
-	setAttr ".i[2].ip" 0.86956518888473511;
+	setAttr ".i[2].ip" 1;
 	setAttr ".i[2].ic" -type "float3" 1.5 1 0 ;
 	setAttr ".i[2].ii" 1;
-	setAttr ".i[3].ip" 0.98260897397994995;
-	setAttr ".i[3].ic" -type "float3" 0 0 0 ;
-	setAttr ".i[3].ii" 1;
+	setAttr ".ili" 7;
 	setAttr ".env[0].envp" 0;
 	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
 	setAttr ".env[0].envi" 1;
-	setAttr ".dos" 1;
-	setAttr ".edr" 0.43999999761581421;
-createNode fluidEmitter -n "fluidEmitter1" -p "Air";
+	setAttr ".dos" 2;
+createNode fluidEmitter -n "fluidEmitter2" -p "Air";
 	setAttr -k off ".sro";
 	setAttr -l on -k off ".urpp";
 	setAttr -k off ".npuv";
@@ -5968,9 +5882,103 @@ createNode fluidEmitter -n "fluidEmitter1" -p "Air";
 	setAttr ".trb" 1.15;
 	setAttr ".fhe" 2;
 	setAttr ".ffe" 4;
+createNode transform -n "fluid1";
+	setAttr ".t" -type "double3" 3.3531356762545217 7.4916904009563865 -18.535051048447123 ;
+createNode fluidShape -n "fluidShape5" -p "fluid1";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".iss" yes;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".sqvx" yes;
+	setAttr ".rw" 8;
+	setAttr ".rd" 8;
+	setAttr ".dw" 10;
+	setAttr ".dh" 12;
+	setAttr ".dd" 10;
+	setAttr ".bndy" 2;
+	setAttr ".tmet" 2;
+	setAttr ".fmet" 2;
+	setAttr ".cl[0].clp" 0.017391303554177284;
+	setAttr ".cl[0].clc" -type "float3" 0.35856643 0.24226886 0.4556962 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr -s 2 ".opa[0:1]"  0 0 1 1 1 1;
+	setAttr -s 3 ".i";
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".i[1].ip" 0.80000001192092896;
+	setAttr ".i[1].ic" -type "float3" 0.89999998 0.2 0 ;
+	setAttr ".i[1].ii" 1;
+	setAttr ".i[2].ip" 1;
+	setAttr ".i[2].ic" -type "float3" 1.5 1 0 ;
+	setAttr ".i[2].ii" 1;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 2;
+createNode fluidEmitter -n "fluidEmitter3" -p "fluid1";
+	setAttr -k off ".sro";
+	setAttr -l on -k off ".urpp";
+	setAttr -k off ".npuv";
+	setAttr ".max" 1;
+	setAttr -k off ".spr";
+	setAttr -k off ".spd";
+	setAttr -k off ".srnd";
+	setAttr -k off ".afc";
+	setAttr -k off ".afa";
+	setAttr -k off ".rnd";
+	setAttr -k off ".ssz";
+	setAttr -k off ".dss";
+	setAttr ".fhe" 1;
+	setAttr ".ffe" 2;
+createNode transform -n "Orb";
+	setAttr ".rp" -type "double3" 3.9968028886505635e-015 6.8389738316909643e-014 -3.7481129311345285e-013 ;
+	setAttr ".spt" -type "double3" 3.9968028886505635e-015 6.8389738316909643e-014 -3.7481129311345285e-013 ;
+createNode mesh -n "OrbShape" -p "Orb";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.50000005960464478 0.50564795732498169 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode transform -n "motionTrail1Handle";
+	setAttr -l on ".t";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -l on ".r";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -l on ".s";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+createNode motionTrailShape -n "motionTrail1HandleShape" -p "motionTrail1Handle";
+	setAttr -k off ".v";
+	setAttr ".sf" yes;
+instanceable -a 0;
+createNode transform -n "pCylinder2";
+	setAttr ".t" -type "double3" 16.597673596516046 0.46748953939407384 -65.649473264145428 ;
+	setAttr ".s" -type "double3" 1 0.52583555501563306 1 ;
+createNode mesh -n "pCylinderShape2" -p "pCylinder2";
+	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".fbda" no;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
 createNode lightLinker -s -n "lightLinker1";
-	setAttr -s 17 ".lnk";
-	setAttr -s 17 ".slnk";
+	setAttr -s 21 ".lnk";
+	setAttr -s 21 ".slnk";
 createNode displayLayerManager -n "layerManager";
 createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
@@ -6063,9 +6071,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n"
 		+ "                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n"
 		+ "                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -shadows 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                $editorName;\nstereoCameraView -e -viewSelected 0 $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n"
-		+ "\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"vertical2\\\" -ps 1 20 100 -ps 2 80 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Outliner\")) \n\t\t\t\t\t\"outlinerPanel\"\n\t\t\t\t\t\"$panelName = `outlinerPanel -unParent -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -showShapes 1\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 0\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"outlinerPanel -edit -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -showShapes 1\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 0\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
-		+ "\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
@@ -6080,147 +6086,10 @@ createNode materialInfo -n "Testing:Hero_Body:stickFigure_Hero:materialInfo1";
 createNode lambert -n "Testing:Hero_Body:stickFigure_Hero:defaultMat1";
 	setAttr ".c" -type "float3" 0.80000001 0.80000001 0.80000001 ;
 	setAttr ".ambc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
-createNode lambert -n "orb";
 createNode shadingEngine -n "Testing:lambert2SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "Testing:materialInfo1";
-createNode animCurveTU -n "Testing:pSphere1_scaleZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_scaleY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_scaleX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_visibility";
-	setAttr ".tan" 5;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 1 10 1 40 1 50 1 90 1 100 1 130 1 140 1
-		 175 1 180 1 200 1;
-	setAttr -s 11 ".kit[0:10]"  9 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTA -n "Testing:pSphere1_rotateZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTA -n "Testing:pSphere1_rotateY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTA -n "Testing:pSphere1_rotateX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 -100 10 -100 40 -100 50 -100 90 -100 100 -100
-		 130 -100 140 -100 175 -100 180 -100 200 -100;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 9.675757667589167 10 9.675757667589167
-		 40 18.033732617501578 50 18.033732617501578 90 9.675757667589167 100 9.675757667589167
-		 130 18.033732617501578 140 18.033732617501578 175 9.675757667589167 180 9.675757667589167
-		 198 19;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode polySphere -n "Testing:polySphere1";
-	setAttr ".r" 4.0225448977429075;
 createNode lambert -n "sky";
 	setAttr ".ambc" -type "float3" 1 1 1 ;
 createNode shadingEngine -n "Testing:lambert3SG";
@@ -6403,7 +6272,7 @@ createNode container -n "FireAsset";
 	addAttr -ci true -sn "nts" -ln "notes" -dt "string";
 	setAttr ".isc" yes;
 	setAttr -s 24 ".boc";
-	setAttr -s 5 ".pni";
+	setAttr -s 4 ".pni";
 	setAttr ".ctor" -type "string" "";
 	setAttr ".cdat" -type "string" "2010/06/19 15:09:53";
 	setAttr ".ctyp" -type "string" "effects";
@@ -6690,19 +6559,13 @@ createNode shadingEngine -n "Fire_fluidShape1SG";
 createNode materialInfo -n "materialInfo3";
 createNode hyperLayout -n "Fire_hyperLayout1";
 	setAttr ".ihi" 0;
-	setAttr -s 49 ".hyp";
+	setAttr -s 12 ".hyp";
 	setAttr ".hyp[0].x" 316;
 	setAttr ".hyp[0].y" 424;
 	setAttr ".hyp[0].isf" yes;
 	setAttr ".hyp[5].x" 323;
 	setAttr ".hyp[5].y" 68;
 	setAttr ".hyp[5].isf" yes;
-	setAttr ".hyp[6].x" 130;
-	setAttr ".hyp[6].y" 80;
-	setAttr ".hyp[6].isf" yes;
-	setAttr ".hyp[7].x" 544;
-	setAttr ".hyp[7].y" 106;
-	setAttr ".hyp[7].isf" yes;
 	setAttr ".anf" yes;
 createNode shadingEngine -n "nParticleCloudSE";
 	setAttr ".ihi" 0;
@@ -6736,6 +6599,217 @@ createNode hsvToRgb -n "hsvToRgb2";
 	setAttr ".arp" 2;
 createNode hsvToRgb -n "hsvToRgb3";
 	setAttr ".arp" 2;
+createNode shadingEngine -n "fluidShape2SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo5";
+createNode polyCylinder -n "polyCylinder1";
+	setAttr ".r" 2.435946493462219;
+	setAttr ".h" 10.619929335076645;
+	setAttr ".sc" 1;
+	setAttr ".cuv" 3;
+createNode blinn -n "aircrystal";
+	setAttr ".rfi" 1.5199999809265137;
+	setAttr ".rfc" yes;
+	setAttr ".dc" 0.098999999463558197;
+	setAttr ".c" -type "float3" 0.060746167 0.060746167 0.060746167 ;
+	setAttr ".fll" 2;
+	setAttr ".sc" -type "float3" 0.38785383 0.38785383 0.38785383 ;
+	setAttr ".ec" 0.057999998331069946;
+	setAttr ".sro" 0.92599999904632568;
+createNode shadingEngine -n "blinn1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo6";
+createNode ramp -n "ramp1";
+	setAttr -s 2 ".cel";
+	setAttr ".cel[0].ep" 0.014999999664723873;
+	setAttr ".cel[0].ec" -type "float3" 0.54400003 0.54400003 0.54400003 ;
+	setAttr ".cel[2].ep" 0.33500000834465027;
+	setAttr ".cel[2].ec" -type "float3" 1 1 1 ;
+createNode place2dTexture -n "place2dTexture3";
+createNode shadingEngine -n "fluidShape2SG1";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo7";
+createNode shadingEngine -n "fluidShape3SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo8";
+createNode oceanShader -n "water";
+	setAttr ".dc" 0;
+	setAttr -s 3 ".env";
+	setAttr ".env[0].envp" 0.20000000298023224;
+	setAttr ".env[0].envc" -type "float3" 0.015 0.13 0.145 ;
+	setAttr ".env[0].envi" 2;
+	setAttr ".env[1].envp" 0.55000001192092896;
+	setAttr ".env[1].envc" -type "float3" 0.47999999 0.55000001 0.69999999 ;
+	setAttr ".env[1].envi" 2;
+	setAttr ".env[2].envp" 1;
+	setAttr ".env[2].envc" -type "float3" 0 0.1 0.44999999 ;
+	setAttr ".env[2].envi" 2;
+	setAttr ".scl" 7;
+	setAttr ".wi" -type "float2" 0 0 ;
+	setAttr ".wh[0]"  0 0.16 1;
+	setAttr ".wtb[0]"  0 1 1;
+	setAttr -s 2 ".wp[0:1]"  0 0.30000001 1 1 0.5 1;
+	setAttr ".fc" -type "float3" 0.68224615 0.68224615 0.68224615 ;
+	setAttr ".d" 0.00011198781430721283;
+	setAttr ".wvs" 0.05000000074505806;
+createNode shadingEngine -n "oceanShader1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo9";
+createNode shadingEngine -n "fluidShape4SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo10";
+createNode shadingEngine -n "Air1ShapeSG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo11";
+createNode shadingEngine -n "fluidShape5SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo12";
+createNode animCurveTA -n "Testing:pSphere1_rotateX";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
+		 175 0 180 0 200 0;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTA -n "Testing:pSphere1_rotateZ";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
+		 175 0 180 0 200 0;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTA -n "Testing:pSphere1_rotateY";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
+		 175 0 180 0 200 0;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTL -n "Testing:pSphere1_translateY";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 9.675757667589167 10 9.675757667589167
+		 40 18.033732617501578 50 18.033732617501578 90 9.675757667589167 100 9.675757667589167
+		 130 18.033732617501578 140 18.033732617501578 175 9.675757667589167 180 9.675757667589167
+		 198 19;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTL -n "Testing:pSphere1_translateX";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 12 ".ktv[0:11]"  1 -6.7404256014318022 10 -6.7404256014318022
+		 40 -6.7404256014318022 50 -6.7404256014318022 90 -6.7404256014318022 100 -6.7404256014318022
+		 130 -6.7404256014318022 140 -6.7404256014318022 175 -6.7404256014318022 180 -6.7404256014318022
+		 198 -6.7348075323966476 200 -6.7404256014318022;
+	setAttr -s 12 ".kit[0:11]"  18 1 1 1 1 1 1 1 
+		1 1 18 1;
+	setAttr -s 12 ".kot[0:11]"  18 1 1 1 1 1 1 1 
+		1 1 18 1;
+	setAttr -s 12 ".kix[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 12 ".kiy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 12 ".kox[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 12 ".koy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTL -n "Testing:pSphere1_translateZ";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 12 ".ktv[0:11]"  1 -2.8002470786315996 10 -2.8002470786315996
+		 40 -2.8002470786315996 50 -2.8002470786315996 90 -2.8002470786315996 100 -2.8002470786315996
+		 130 -2.8002470786315996 140 -2.8002470786315996 175 -2.8002470786315996 180 -2.8002470786315996
+		 198 -2.7954237995107718 200 -2.8002470786315996;
+	setAttr -s 12 ".kit[0:11]"  18 1 1 1 1 1 1 1 
+		1 1 18 1;
+	setAttr -s 12 ".kot[0:11]"  18 1 1 1 1 1 1 1 
+		1 1 18 1;
+	setAttr -s 12 ".kix[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 12 ".kiy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 12 ".kox[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 12 ".koy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTU -n "Testing:pSphere1_visibility";
+	setAttr ".tan" 5;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 1 10 1 40 1 50 1 90 1 100 1 130 1 140 1
+		 175 1 180 1 200 1;
+	setAttr -s 11 ".kit[0:10]"  9 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTU -n "Testing:pSphere1_scaleX";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
+		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
+		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
+		 200 0.91279181640526785;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTU -n "Testing:pSphere1_scaleY";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
+		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
+		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
+		 200 0.91279181640526785;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+createNode animCurveTU -n "Testing:pSphere1_scaleZ";
+	setAttr ".tan" 1;
+	setAttr ".wgt" no;
+	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
+		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
+		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
+		 200 0.91279181640526785;
+	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
+		1 1 1;
+	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
+	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
+	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
 createNode polyTweakUV -n "polyTweakUV1";
 	setAttr ".uopa" yes;
 	setAttr -s 439 ".uvtk";
@@ -6814,76 +6888,27 @@ createNode polyTweakUV -n "polyTweakUV1";
 		 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867
 		 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867
 		 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867 0 0.0056479867;
-createNode shadingEngine -n "fluidShape2SG";
+createNode polySphere -n "Testing:polySphere1";
+	setAttr ".r" 4.0225448977429075;
+createNode blinn -n "orb";
+createNode motionTrail -n "motionTrail1";
+	setAttr ".s" 1;
+	setAttr ".e" 200;
+createNode shadingEngine -n "oceanShader2SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo5";
-createNode polyCylinder -n "polyCylinder1";
-	setAttr ".r" 2.435946493462219;
-	setAttr ".h" 10.619929335076645;
+createNode materialInfo -n "materialInfo13";
+createNode polyCylinder -n "polyCylinder2";
+	setAttr ".r" 9.0552077134367703;
+	setAttr ".h" 0.93497907878814768;
+	setAttr ".sa" 12;
 	setAttr ".sc" 1;
 	setAttr ".cuv" 3;
-createNode blinn -n "aircrystal";
-	setAttr ".rfi" 1.5199999809265137;
-	setAttr ".rfc" yes;
-	setAttr ".dc" 0.098999999463558197;
-	setAttr ".c" -type "float3" 0.060746167 0.060746167 0.060746167 ;
-	setAttr ".fll" 2;
-	setAttr ".sc" -type "float3" 0.38785383 0.38785383 0.38785383 ;
-	setAttr ".ec" 0.057999998331069946;
-	setAttr ".sro" 0.92599999904632568;
-createNode shadingEngine -n "blinn1SG";
-	setAttr ".ihi" 0;
-	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo6";
-createNode ramp -n "ramp1";
-	setAttr -s 2 ".cel";
-	setAttr ".cel[0].ep" 0.014999999664723873;
-	setAttr ".cel[0].ec" -type "float3" 0.54400003 0.54400003 0.54400003 ;
-	setAttr ".cel[2].ep" 0.33500000834465027;
-	setAttr ".cel[2].ec" -type "float3" 1 1 1 ;
-createNode place2dTexture -n "place2dTexture3";
-createNode shadingEngine -n "fluidShape2SG1";
-	setAttr ".ihi" 0;
-	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo7";
-createNode shadingEngine -n "fluidShape3SG";
-	setAttr ".ihi" 0;
-	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo8";
-createNode oceanShader -n "water";
-	setAttr ".dc" 0;
-	setAttr -s 3 ".env";
-	setAttr ".env[0].envp" 0.20000000298023224;
-	setAttr ".env[0].envc" -type "float3" 0.015 0.13 0.145 ;
-	setAttr ".env[0].envi" 2;
-	setAttr ".env[1].envp" 0.55000001192092896;
-	setAttr ".env[1].envc" -type "float3" 0.47999999 0.55000001 0.69999999 ;
-	setAttr ".env[1].envi" 2;
-	setAttr ".env[2].envp" 1;
-	setAttr ".env[2].envc" -type "float3" 0 0.1 0.44999999 ;
-	setAttr ".env[2].envi" 2;
-	setAttr ".scl" 7;
-	setAttr ".wi" -type "float2" 0 0 ;
-	setAttr ".wh[0]"  0 0.16 1;
-	setAttr ".wtb[0]"  0 1 1;
-	setAttr -s 2 ".wp[0:1]"  0 0.30000001 1 1 0.5 1;
-	setAttr ".fc" -type "float3" 0.68224615 0.68224615 0.68224615 ;
-	setAttr ".d" -0.0025213994085788727;
-	setAttr ".wvs" 0.05000000074505806;
-createNode shadingEngine -n "oceanShader1SG";
-	setAttr ".ihi" 0;
-	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo9";
-createNode noise -n "noise1";
-	setAttr ".cg" -type "float3" 0.16541 0.278 0.24985249 ;
-	setAttr ".dc" -type "float3" 0.230736 0.456 0.39968401 ;
-createNode place2dTexture -n "place2dTexture4";
 select -ne :time1;
-	setAttr ".o" 74;
-	setAttr ".unw" 74;
+	setAttr ".o" 98;
+	setAttr ".unw" 98;
 select -ne :renderPartition;
-	setAttr -s 17 ".st";
+	setAttr -s 21 ".st";
 select -ne :initialShadingGroup;
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
@@ -6891,12 +6916,12 @@ select -ne :initialParticleSE;
 select -ne :defaultShaderList1;
 	setAttr -s 16 ".s";
 select -ne :defaultTextureList1;
-	setAttr -s 7 ".tx";
+	setAttr -s 6 ".tx";
 select -ne :lightList1;
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
-	setAttr -s 10 ".u";
+	setAttr -s 9 ".u";
 select -ne :defaultRenderingList1;
 select -ne :renderGlobalsList1;
 select -ne :defaultResolution;
@@ -6912,24 +6937,10 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "TexturedPavillionTerrain:groupId1.id" "TexturedPavillionTerrain:Group20365Shape.iog.og[0].gid"
 		;
 connectAttr "TexturedPavillionTerrain:defaultMat.mwc" "TexturedPavillionTerrain:Group20365Shape.iog.og[0].gco"
 		;
-connectAttr "Testing:pSphere1_translateX.o" "Testing:Largerdevice.tx";
-connectAttr "Testing:pSphere1_translateY.o" "Testing:Largerdevice.ty";
-connectAttr "Testing:pSphere1_translateZ.o" "Testing:Largerdevice.tz";
-connectAttr "Testing:pSphere1_visibility.o" "Testing:Largerdevice.v";
-connectAttr "Testing:pSphere1_rotateX.o" "Testing:Largerdevice.rx";
-connectAttr "Testing:pSphere1_rotateY.o" "Testing:Largerdevice.ry";
-connectAttr "Testing:pSphere1_rotateZ.o" "Testing:Largerdevice.rz";
-connectAttr "Testing:pSphere1_scaleX.o" "Testing:Largerdevice.sx";
-connectAttr "Testing:pSphere1_scaleY.o" "Testing:Largerdevice.sy";
-connectAttr "Testing:pSphere1_scaleZ.o" "Testing:Largerdevice.sz";
-connectAttr "polyTweakUV1.out" "Testing:LargerdeviceShape.i";
-connectAttr "polyTweakUV1.uvtk[0]" "Testing:LargerdeviceShape.uvst[0].uvtw";
 connectAttr "Testing:polyTweakUV1.out" "Testing:SkysphereShape.i";
 connectAttr "Testing:polyTweakUV1.uvtk[0]" "Testing:SkysphereShape.uvst[0].uvtw"
 		;
@@ -6940,7 +6951,6 @@ connectAttr "Testing:polyCylinder2.out" "Testing:pCylinderShape10.i";
 connectAttr "Testing:Tree:polyTweakUV2.out" "Testing:Tree:pPlaneShape1.i";
 connectAttr "Testing:Tree:polyTweakUV2.uvtk[0]" "Testing:Tree:pPlaneShape1.uvst[0].uvtw"
 		;
-connectAttr "FireCTRLShape.wm" "annotationShape1.dom" -na;
 connectAttr "FireCTRL.SparkLifespan" "SparksParticleShape.lifespan";
 connectAttr "FireCTRL.SparkSize" "SparksParticleShape.lineWidth";
 connectAttr "FireCTRL.SparkTailSize" "SparksParticleShape.tailSize";
@@ -6982,17 +6992,55 @@ connectAttr ":time1.o" "FireNucleus.cti";
 connectAttr "SparksParticleShape.cust" "FireNucleus.niao[0]";
 connectAttr "SparksParticleShape.stst" "FireNucleus.nias[0]";
 connectAttr ":time1.o" "FireShape.cti";
-connectAttr "|Fire|fluidEmitter1.ef" "FireShape.eml[0].emfr";
-connectAttr "|Fire|fluidEmitter1.efc" "FireShape.fce[0]";
-connectAttr ":time1.o" "|Fire|fluidEmitter1.ct";
-connectAttr "FireShape.ifl" "|Fire|fluidEmitter1.full[0]";
-connectAttr "FireShape.ots" "|Fire|fluidEmitter1.dt[0]";
-connectAttr "FireShape.inh" "|Fire|fluidEmitter1.inh[0]";
-connectAttr "FireShape.sti" "|Fire|fluidEmitter1.stt[0]";
-connectAttr "FireShape.sd[0]" "|Fire|fluidEmitter1.sd[0]";
+connectAttr "fluidEmitter1.ef" "FireShape.eml[0].emfr";
+connectAttr "fluidEmitter1.efc" "FireShape.fce[0]";
+connectAttr ":time1.o" "fluidEmitter1.ct";
+connectAttr "FireShape.ifl" "fluidEmitter1.full[0]";
+connectAttr "FireShape.ots" "fluidEmitter1.dt[0]";
+connectAttr "FireShape.inh" "fluidEmitter1.inh[0]";
+connectAttr "FireShape.sti" "fluidEmitter1.stt[0]";
+connectAttr "FireShape.sd[0]" "fluidEmitter1.sd[0]";
 connectAttr "polyCylinder1.out" "pCylinderShape1.i";
-connectAttr ":time1.o" "VioletShape.cti";
 connectAttr ":time1.o" "AirShape.cti";
+connectAttr "fluidEmitter2.ef" "AirShape.eml[0].emfr";
+connectAttr "fluidEmitter2.efc" "AirShape.fce[0]";
+connectAttr ":time1.o" "fluidEmitter2.ct";
+connectAttr "AirShape.ifl" "fluidEmitter2.full[0]";
+connectAttr "AirShape.ots" "fluidEmitter2.dt[0]";
+connectAttr "AirShape.inh" "fluidEmitter2.inh[0]";
+connectAttr "AirShape.sti" "fluidEmitter2.stt[0]";
+connectAttr "AirShape.sd[0]" "fluidEmitter2.sd[0]";
+connectAttr ":time1.o" "fluidShape5.cti";
+connectAttr "fluidEmitter3.ef" "fluidShape5.eml[0].emfr";
+connectAttr "fluidEmitter3.efc" "fluidShape5.fce[0]";
+connectAttr ":time1.o" "fluidEmitter3.ct";
+connectAttr "fluidShape5.ifl" "fluidEmitter3.full[0]";
+connectAttr "fluidShape5.ots" "fluidEmitter3.dt[0]";
+connectAttr "fluidShape5.inh" "fluidEmitter3.inh[0]";
+connectAttr "fluidShape5.sti" "fluidEmitter3.stt[0]";
+connectAttr "fluidShape5.sd[0]" "fluidEmitter3.sd[0]";
+connectAttr "Testing:pSphere1_translateX.o" "Orb.tx";
+connectAttr "Testing:pSphere1_translateY.o" "Orb.ty";
+connectAttr "Testing:pSphere1_translateZ.o" "Orb.tz";
+connectAttr "Testing:pSphere1_visibility.o" "Orb.v";
+connectAttr "Testing:pSphere1_rotateX.o" "Orb.rx";
+connectAttr "Testing:pSphere1_rotateY.o" "Orb.ry";
+connectAttr "Testing:pSphere1_rotateZ.o" "Orb.rz";
+connectAttr "Testing:pSphere1_scaleX.o" "Orb.sx";
+connectAttr "Testing:pSphere1_scaleY.o" "Orb.sy";
+connectAttr "Testing:pSphere1_scaleZ.o" "Orb.sz";
+connectAttr "polyTweakUV1.out" "OrbShape.i";
+connectAttr "polyTweakUV1.uvtk[0]" "OrbShape.uvst[0].uvtw";
+connectAttr "motionTrail1.pts" "motionTrail1HandleShape.pts";
+connectAttr "motionTrail1.lp" "motionTrail1HandleShape.lp";
+connectAttr "motionTrail1.f" "motionTrail1HandleShape.f";
+connectAttr "motionTrail1.kt" "motionTrail1HandleShape.kt";
+connectAttr "motionTrail1.fk" "motionTrail1HandleShape.fk";
+connectAttr "motionTrail1.ekt" "motionTrail1HandleShape.ekt";
+connectAttr "Orb.msg" "motionTrail1HandleShape.tr";
+connectAttr "motionTrail1.s" "motionTrail1HandleShape.s";
+connectAttr "motionTrail1.b" "motionTrail1HandleShape.b";
+connectAttr "polyCylinder2.out" "pCylinderShape2.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "TexturedPavillionTerrain:defaultMat.message" ":defaultLightSet.message";
@@ -7010,6 +7058,10 @@ relationship "link" ":lightLinker1" "blinn1SG.message" ":defaultLightSet.message
 relationship "link" ":lightLinker1" "fluidShape2SG1.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "fluidShape3SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "oceanShader1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "fluidShape4SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Air1ShapeSG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "fluidShape5SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "oceanShader2SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "TexturedPavillionTerrain:defaultMat.message" ":defaultLightSet.message";
@@ -7027,6 +7079,10 @@ relationship "shadowLink" ":lightLinker1" "blinn1SG.message" ":defaultLightSet.m
 relationship "shadowLink" ":lightLinker1" "fluidShape2SG1.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "fluidShape3SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "oceanShader1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "fluidShape4SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Air1ShapeSG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "fluidShape5SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "oceanShader2SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "TexturedPavillionTerrain:defaultMat1.oc" "TexturedPavillionTerrain:defaultMat.ss"
@@ -7069,9 +7125,8 @@ connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat.msg" "Testing:Hero_Bo
 		;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat1.msg" "Testing:Hero_Body:stickFigure_Hero:materialInfo1.m"
 		;
-connectAttr "file2.oc" "orb.c";
 connectAttr "orb.oc" "Testing:lambert2SG.ss";
-connectAttr "Testing:LargerdeviceShape.iog" "Testing:lambert2SG.dsm" -na;
+connectAttr "OrbShape.iog" "Testing:lambert2SG.dsm" -na;
 connectAttr "Testing:lambert2SG.msg" "Testing:materialInfo1.sg";
 connectAttr "orb.msg" "Testing:materialInfo1.m";
 connectAttr "file2.msg" "Testing:materialInfo1.t" -na;
@@ -7258,8 +7313,6 @@ connectAttr ":miDefaultFramebuffer.msg" ":mentalrayGlobals.fb";
 connectAttr "Fire_fluidShape1SG.msg" "materialInfo3.sg";
 connectAttr "FireCTRL.msg" "Fire_hyperLayout1.hyp[0].dn";
 connectAttr "FireCTRLShape.msg" "Fire_hyperLayout1.hyp[5].dn";
-connectAttr "annotation1.msg" "Fire_hyperLayout1.hyp[6].dn";
-connectAttr "annotationShape1.msg" "Fire_hyperLayout1.hyp[7].dn";
 connectAttr "Sparks.msg" "Fire_hyperLayout1.hyp[8].dn";
 connectAttr "SparksParticleShape.msg" "Fire_hyperLayout1.hyp[9].dn";
 connectAttr "SparksTurbulenceField.msg" "Fire_hyperLayout1.hyp[10].dn";
@@ -7291,7 +7344,6 @@ connectAttr "FireCTRL.SparkColor" "hsvToRgb2.ir";
 connectAttr "FireCTRL.SparkSat" "hsvToRgb3.ig";
 connectAttr "FireCTRL.SparkIncand2Val" "hsvToRgb3.ib";
 connectAttr "FireCTRL.SparkColor" "hsvToRgb3.ir";
-connectAttr "Testing:polySphere1.out" "polyTweakUV1.ip";
 connectAttr "FireShape.ocl" "fluidShape2SG.vs";
 connectAttr "FireShape.iog" "fluidShape2SG.dsm" -na;
 connectAttr "fluidShape2SG.msg" "materialInfo5.sg";
@@ -7302,21 +7354,28 @@ connectAttr "blinn1SG.msg" "materialInfo6.sg";
 connectAttr "aircrystal.msg" "materialInfo6.m";
 connectAttr "place2dTexture3.o" "ramp1.uv";
 connectAttr "place2dTexture3.ofs" "ramp1.fs";
-connectAttr "VioletShape.ocl" "fluidShape2SG1.vs";
-connectAttr "VioletShape.iog" "fluidShape2SG1.dsm" -na;
 connectAttr "fluidShape2SG1.msg" "materialInfo7.sg";
-connectAttr "AirShape.ocl" "fluidShape3SG.vs";
-connectAttr "AirShape.iog" "fluidShape3SG.dsm" -na;
 connectAttr "fluidShape3SG.msg" "materialInfo8.sg";
 connectAttr ":time1.o" "water.ti";
-connectAttr "noise1.oc" "water.wc";
 connectAttr "water.oc" "oceanShader1SG.ss";
 connectAttr "water.d" "oceanShader1SG.ds";
+connectAttr "pCylinderShape2.iog" "oceanShader1SG.dsm" -na;
 connectAttr "oceanShader1SG.msg" "materialInfo9.sg";
 connectAttr "water.msg" "materialInfo9.m";
 connectAttr "water.msg" "materialInfo9.t" -na;
-connectAttr "place2dTexture4.o" "noise1.uv";
-connectAttr "place2dTexture4.ofs" "noise1.fs";
+connectAttr "AirShape.ocl" "fluidShape4SG.vs";
+connectAttr "AirShape.iog" "fluidShape4SG.dsm" -na;
+connectAttr "fluidShape4SG.msg" "materialInfo10.sg";
+connectAttr "Air1ShapeSG.msg" "materialInfo11.sg";
+connectAttr "fluidShape5.ocl" "fluidShape5SG.vs";
+connectAttr "fluidShape5.iog" "fluidShape5SG.dsm" -na;
+connectAttr "fluidShape5SG.msg" "materialInfo12.sg";
+connectAttr "Testing:polySphere1.out" "polyTweakUV1.ip";
+connectAttr "file2.oc" "orb.c";
+connectAttr "Orb.wm" "motionTrail1.im";
+connectAttr "Orb.rp" "motionTrail1.lp";
+connectAttr "Orb.msg" "motionTrail1.so";
+connectAttr "oceanShader2SG.msg" "materialInfo13.sg";
 connectAttr "TexturedPavillionTerrain:defaultMat.pa" ":renderPartition.st" -na;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat.pa" ":renderPartition.st"
 		 -na;
@@ -7333,6 +7392,10 @@ connectAttr "blinn1SG.pa" ":renderPartition.st" -na;
 connectAttr "fluidShape2SG1.pa" ":renderPartition.st" -na;
 connectAttr "fluidShape3SG.pa" ":renderPartition.st" -na;
 connectAttr "oceanShader1SG.pa" ":renderPartition.st" -na;
+connectAttr "fluidShape4SG.pa" ":renderPartition.st" -na;
+connectAttr "Air1ShapeSG.pa" ":renderPartition.st" -na;
+connectAttr "fluidShape5SG.pa" ":renderPartition.st" -na;
+connectAttr "oceanShader2SG.pa" ":renderPartition.st" -na;
 connectAttr "TexturedPavillionTerrain:defaultMat1.msg" ":defaultShaderList1.s" -na
 		;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat1.msg" ":defaultShaderList1.s"
@@ -7346,16 +7409,15 @@ connectAttr "npCloudBlinn.msg" ":defaultShaderList1.s" -na;
 connectAttr "npCloudVolume.msg" ":defaultShaderList1.s" -na;
 connectAttr "FireShape.msg" ":defaultShaderList1.s" -na;
 connectAttr "aircrystal.msg" ":defaultShaderList1.s" -na;
-connectAttr "VioletShape.msg" ":defaultShaderList1.s" -na;
-connectAttr "AirShape.msg" ":defaultShaderList1.s" -na;
 connectAttr "water.msg" ":defaultShaderList1.s" -na;
+connectAttr "AirShape.msg" ":defaultShaderList1.s" -na;
+connectAttr "fluidShape5.msg" ":defaultShaderList1.s" -na;
 connectAttr "file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Testing:file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Testing:Tree:file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Testing:Tree:file2.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file2.msg" ":defaultTextureList1.tx" -na;
 connectAttr "ramp1.msg" ":defaultTextureList1.tx" -na;
-connectAttr "noise1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "defaultLightShape.ltd" ":lightList1.l" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "Testing:place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
@@ -7368,7 +7430,6 @@ connectAttr "hsvToRgb1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "hsvToRgb2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "hsvToRgb3.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na;
-connectAttr "place2dTexture4.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "defaultLightShape.iog" ":defaultLightSet.dsm" -na;
 // End of MysteriousShrineTerrain.ma
