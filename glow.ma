@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: glow.ma
-//Last modified: Mon, Oct 07, 2013 02:06:47 PM
+//Last modified: Mon, Oct 07, 2013 02:15:27 PM
 //Codeset: 1252
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -90,7 +90,7 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 9.2265629601969223 10.404894524656783 8.9570679819921839 ;
+	setAttr ".t" -type "double3" 9.2265629601969223 10.404894524656784 8.9570679819921839 ;
 	setAttr ".r" -type "double3" -27.938352729602379 44.999999999999964 -5.172681101354183e-014 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
@@ -162,8 +162,8 @@ createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
 createNode hyperGraphInfo -n "nodeEditorPanel1Info";
 createNode hyperView -n "hyperView1";
-	setAttr ".vl" -type "double2" -118.51190476190476 -73.988095238095255 ;
-	setAttr ".vh" -type "double2" 119.70238095238096 72.797619047619051 ;
+	setAttr ".vl" -type "double2" -118.84467866213036 -75.348887730274612 ;
+	setAttr ".vh" -type "double2" 121.49761574937394 72.748088286409427 ;
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;
