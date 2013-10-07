@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Water.ma
-//Last modified: Mon, Oct 07, 2013 02:19:13 PM
+//Last modified: Mon, Oct 07, 2013 02:35:14 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -197,8 +197,8 @@ createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
 createNode hyperGraphInfo -n "nodeEditorPanel1Info";
 createNode hyperView -n "hyperView1";
-	setAttr ".vl" -type "double2" -118.86167413846037 -73.612257039850448 ;
-	setAttr ".vh" -type "double2" 119.35261157582535 73.173457245863844 ;
+	setAttr ".vl" -type "double2" -119.0402455670318 -73.433685611279017 ;
+	setAttr ".vh" -type "double2" 119.17404014725393 73.352028674435275 ;
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;

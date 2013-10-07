@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Cloud.ma
-//Last modified: Mon, Oct 07, 2013 01:46:49 PM
+//Last modified: Mon, Oct 07, 2013 02:34:27 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -13,7 +13,7 @@ fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
 	setAttr ".t" -type "double3" 38.541666666666707 40.541666666666664 38.541666666666664 ;
-	setAttr ".r" -type "double3" -35.264389682754704 45.000000000000007 -4.9477819230344395e-014 ;
+	setAttr ".r" -type "double3" -35.264389682754704 45.000000000000007 -4.9477819230344389e-014 ;
 	setAttr ".rp" -type "double3" -1.7208456881689926e-015 -1.7763568394002505e-015 
 		0 ;
 	setAttr ".rpt" -type "double3" 2.8904978368626445e-015 3.4134878575196467e-015 -4.1384730556991515e-015 ;
@@ -134,6 +134,8 @@ createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
 createNode hyperGraphInfo -n "nodeEditorPanel1Info";
 createNode hyperView -n "hyperView1";
+	setAttr ".vl" -type "double2" -119.0402455670318 -73.433685611279017 ;
+	setAttr ".vh" -type "double2" 119.17404014725393 73.352028674435275 ;
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;

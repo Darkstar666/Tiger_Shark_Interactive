@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Fog.ma
-//Last modified: Mon, Oct 07, 2013 01:37:52 PM
+//Last modified: Mon, Oct 07, 2013 02:33:01 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -13,8 +13,8 @@ fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
 	setAttr ".t" -type "double3" -5.6159233079861037e-015 2.8435912478863568e-016 37.32700049371195 ;
-	setAttr ".rpt" -type "double3" -3.1318625456421036e-016 -2.8435648210981282e-016 
-		3.8701251563631763e-016 ;
+	setAttr ".rpt" -type "double3" -3.1318625456421036e-016 -2.8435648210981277e-016 
+		3.8701251563631758e-016 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
@@ -22,7 +22,7 @@ createNode camera -s -n "perspShape" -p "persp";
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -5.9291095625503138e-015 2.6426788228529715e-021 0 ;
+	setAttr ".tp" -type "double3" -5.9291095625503131e-015 2.6426788228529715e-021 0 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	setAttr ".v" no;
@@ -73,6 +73,7 @@ createNode fluidShape -n "fluidShape1" -p "fluid1";
 	setAttr ".iss" yes;
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".sqvx" yes;
 	setAttr ".dw" 10;
 	setAttr ".dh" 10;
 	setAttr ".dd" 10;
@@ -80,13 +81,13 @@ createNode fluidShape -n "fluidShape1" -p "fluid1";
 	setAttr ".vmt" 0;
 	setAttr ".ss" yes;
 	setAttr ".cl[0].clp" 0;
-	setAttr ".cl[0].clc" -type "float3" 0.4531 0.58705997 0.78799999 ;
+	setAttr ".cl[0].clc" -type "float3" 0.55081201 0.64568722 0.78799999 ;
 	setAttr ".cl[0].cli" 1;
 	setAttr ".coi" 2;
-	setAttr -s 5 ".opa[0:4]"  0.23 0 1 1 0.47999999 1 0.86086959
-		 0.25999999 1 0.67826086 0.18000001 1 0.43478259 0.12 1;
+	setAttr -s 5 ".opa[0:4]"  0.2521739 0 1 1 0.57999998 1 0.85217392
+		 0.34 1 0.60869563 0.36000001 1 0.44347826 0.30000001 1;
 	setAttr ".opi" 2;
-	setAttr ".t" -type "float3" 0.32866406 0.32866406 0.32866406 ;
+	setAttr ".t" -type "float3" 0.23663691 0.23663691 0.23663691 ;
 	setAttr ".i[0].ip" 0;
 	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
 	setAttr ".i[0].ii" 1;
@@ -95,6 +96,7 @@ createNode fluidShape -n "fluidShape1" -p "fluid1";
 	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
 	setAttr ".env[0].envi" 1;
 	setAttr ".dos" 6;
+	setAttr ".edr" 0.075000002980232239;
 	setAttr ".otx" yes;
 	setAttr ".otxg" 0.89999997615814209;
 createNode lightLinker -s -n "lightLinker1";
@@ -107,6 +109,8 @@ createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
 createNode hyperGraphInfo -n "nodeEditorPanel1Info";
 createNode hyperView -n "hyperView1";
+	setAttr ".vl" -type "double2" -118.86167413846037 -73.612257039850448 ;
+	setAttr ".vh" -type "double2" 119.35261157582535 73.173457245863844 ;
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;
