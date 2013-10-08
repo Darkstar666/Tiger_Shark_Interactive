@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: MysteriousShrineTerrain.ma
-//Last modified: Mon, Oct 07, 2013 03:54:43 PM
+//Last modified: Mon, Oct 07, 2013 05:57:20 PM
 //Codeset: 1252
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -90,18 +90,17 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -3.1902757004629638 23.621901768317802 -4.8877703815758897 ;
-	setAttr ".r" -type "double3" -69.599999999986821 -187.99999999999025 0 ;
-	setAttr ".rpt" -type "double3" 4.1589252606520022e-015 -4.3322897767508051e-015 
-		2.0003246992270292e-015 ;
+	setAttr ".t" -type "double3" -204.9122961870905 109.5602833430012 113.71410834677951 ;
+	setAttr ".r" -type "double3" -18.000000000101668 -783.19999999995457 3.5270715376454242e-015 ;
+	setAttr ".rpt" -type "double3" 1.2651881039758898e-012 2.1185949808000162e-013 2.6166349122747382e-012 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 4.1804316995140098;
+	setAttr ".coi" 256.8519843065892;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" 6.8878492225385344 141.6396785670197 -1.1443513560182674 ;
+	setAttr ".tp" -type "double3" -1.4353744781823488 3.1481825357702338 0.24450850463693996 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	setAttr ".v" no;
@@ -2911,19 +2910,6 @@ createNode mesh -n "TexturedPavillionTerrain:Group20365Shape" -p "TexturedPavill
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Testing:Skysphere";
-	setAttr ".t" -type "double3" 6.887958173125142 -244 -1.144206088569284 ;
-	setAttr ".s" -type "double3" 0.59501546732355981 0.59501546732355981 0.59501546732355981 ;
-createNode mesh -n "Testing:SkysphereShape" -p "Testing:Skysphere";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.5209047794342041 0.4954692389569777 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "Testing:Tree:Trunk";
 	setAttr ".t" -type "double3" -39 6 26 ;
 	setAttr ".s" -type "double3" 0.84347422879777634 0.84347422879777634 0.84347422879777634 ;
@@ -5720,8 +5706,8 @@ createNode nParticle -n "SparksParticleShape" -p "Sparks";
 	setAttr ".irbx" -type "string" "";
 	setAttr ".irax" -type "string" "";
 	setAttr ".icx" -type "string" "";
-	setAttr ".cts" 79;
-	setAttr ".chw" 200;
+	setAttr ".cts" 61;
+	setAttr ".chw" 500;
 	setAttr ".prt" 6;
 	setAttr -s 2 ".ppfd";
 	setAttr ".cofl" 1;
@@ -5824,7 +5810,7 @@ createNode nucleus -n "FireNucleus";
 	setAttr ".sstp" 20;
 	setAttr ".mcit" 20;
 createNode transform -n "Fire";
-	setAttr ".t" -type "double3" 4 7.4506266009808755 -3 ;
+	setAttr ".t" -type "double3" -3 7.4506266009808755 19 ;
 	setAttr ".rp" -type "double3" 0 -6.4506266009808755 0 ;
 	setAttr ".sp" -type "double3" 0 -6.4506266009808755 0 ;
 createNode fluidShape -n "FireShape" -p "Fire";
@@ -5891,7 +5877,8 @@ createNode fluidEmitter -n "fluidEmitter1" -p "Fire";
 	setAttr ".fhe" 2;
 	setAttr ".ffe" 4;
 createNode transform -n "pCylinder1";
-	setAttr ".t" -type "double3" -26.618653276465793 26 9 ;
+	setAttr ".t" -type "double3" -6 10 -20 ;
+	setAttr ".s" -type "double3" 0.63887860757255321 0.63887860757255321 0.63887860757255321 ;
 createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
@@ -5904,7 +5891,7 @@ createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr -s 2 ".pt[40:41]" -type "float3"  0 -3.7029941 0 0 3.1519837 
 		0;
 createNode transform -n "Air";
-	setAttr ".t" -type "double3" 3.001891870517623 7.1114952997605752 11.76621014008628 ;
+	setAttr ".t" -type "double3" -5 4 -20 ;
 createNode fluidShape -n "AirShape" -p "Air";
 	setAttr -k off ".v";
 	setAttr ".rt" 1;
@@ -6010,11 +5997,16 @@ createNode stroke -n "strokeShapeLargeFlames2" -p "strokeLargeFlames2";
 	setAttr ".psc[0]"  0 1 1;
 	setAttr -s 33 ".psr[0:32]"  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
 		1 1 1 1 1 1 1 1 1 1 1 1 1;
-createNode transform -n "Orb";
-createNode transform -n "Orb" -p "|Orb";
+createNode transform -n "Centralobject";
+	setAttr ".t" -type "double3" 9.1682577667757599 9 -17 ;
+	setAttr ".rp" -type "double3" -7.1682577667757599 0 -2 ;
+	setAttr ".sp" -type "double3" -7.1682577667757599 0 -2 ;
+createNode transform -n "Orb" -p "Centralobject";
+	setAttr ".t" -type "double3" -4.1682577667757679 -7.2830630415410269e-014 15.000000000000375 ;
+	setAttr ".s" -type "double3" 0.92523154319962186 0.92523154319962186 0.92523154319962186 ;
 	setAttr ".rp" -type "double3" 3.9968028886505628e-015 6.8389738316909643e-014 -3.748112931134529e-013 ;
 	setAttr ".spt" -type "double3" 3.9968028886505628e-015 6.8389738316909643e-014 -3.748112931134529e-013 ;
-createNode mesh -n "OrbShape" -p "|Orb|Orb";
+createNode mesh -n "OrbShape" -p "Orb";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6901,42 +6893,314 @@ createNode nurbsCurve -n "curveLargeFlamesShape61" -p "curveLargeFlames61";
 		0.35721399999999998 0.81281999999999999
 		0.35204600000000003 0.82367800000000002
 		;
-createNode transform -n "largeFlames2Main" -p "|Orb";
-	setAttr ".s" -type "double3" 1.0681664020143093 1.0681664020143093 1.0681664020143093 ;
-createNode mesh -n "largeFlames2MainShape" -p "largeFlames2Main";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-createNode transform -n "largeFlames1Main" -p "|Orb";
-	setAttr ".s" -type "double3" 1.0681664020143093 1.0681664020143093 1.0681664020143093 ;
-createNode mesh -n "largeFlames1MainShape" -p "largeFlames1Main";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "Lightray";
-	setAttr ".s" -type "double3" 7781.6731530716461 7781.6731530716461 7781.6731530716461 ;
 createNode mentalrayIblShape -n "Lightray" -p "|Lightray";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".cg" -type "float3" 0.5 0.5 0.5 ;
 	setAttr ".tx" -type "string" "C:/Users/student/Documents/GitHub/Tiger_Shark_Interactive/FishTreeTextures/sky.jpg";
 	setAttr ".vien" yes;
 	setAttr ".vifg" yes;
+createNode transform -n "Fog:fluid1";
+	setAttr ".t" -type "double3" 5 7 -2 ;
+	setAttr ".s" -type "double3" 1.8017914866579257 1.8017914866579257 1.8017914866579257 ;
+createNode fluidShape -n "Fog:fluidShape1" -p "Fog:fluid1";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".iss" yes;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".sqvx" yes;
+	setAttr ".dw" 10;
+	setAttr ".dh" 10;
+	setAttr ".dd" 10;
+	setAttr ".dmt" 3;
+	setAttr ".vmt" 0;
+	setAttr ".ss" yes;
+	setAttr ".cl[0].clp" 0;
+	setAttr ".cl[0].clc" -type "float3" 0.55081201 0.64568722 0.78799999 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr ".coi" 2;
+	setAttr -s 5 ".opa[0:4]"  0.2521739 0 1 1 0.57999998 1 0.85217392
+		 0.34 1 0.60869563 0.36000001 1 0.44347826 0.30000001 1;
+	setAttr ".opi" 2;
+	setAttr ".t" -type "float3" 0.23663691 0.23663691 0.23663691 ;
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".ili" 4;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 6;
+	setAttr ".edr" 0.075000002980232239;
+	setAttr ".otx" yes;
+	setAttr ".otxg" 0.89999997615814209;
+createNode transform -n "Cloud:fluid1";
+	setAttr ".t" -type "double3" 0 48 -15.51133314247684 ;
+	setAttr ".rp" -type "double3" 0 -2 0 ;
+	setAttr ".sp" -type "double3" 0 -2 0 ;
+createNode fluidShape -n "Cloud:fluidShape1" -p "Cloud:fluid1";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".iss" yes;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".rw" 75;
+	setAttr ".rd" 75;
+	setAttr ".dw" 25;
+	setAttr ".dh" 5;
+	setAttr ".dd" 25;
+	setAttr ".dmt" 0;
+	setAttr ".vmt" 0;
+	setAttr ".ss" yes;
+	setAttr -s 3 ".cl";
+	setAttr ".cl[0].clp" 0;
+	setAttr ".cl[0].clc" -type "float3" 0.49991989 0.65347368 0.82278478 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr ".cl[1].clp" 0.75;
+	setAttr ".cl[1].clc" -type "float3" 0.56099999 0.56099999 0.56099999 ;
+	setAttr ".cl[1].cli" 1;
+	setAttr ".cl[2].clp" 0.99130398035049438;
+	setAttr ".cl[2].clc" -type "float3" 0.064999998 0.091000006 0.13 ;
+	setAttr ".cl[2].cli" 2;
+	setAttr ".coi" 2;
+	setAttr -s 3 ".opa[0:2]"  0.36521739 0 2 1 1 1 0.54782611 0.66000003 
+		1;
+	setAttr ".opi" 0;
+	setAttr ".t" -type "float3" 0.10489052 0.10489052 0.10489052 ;
+	setAttr ".ambc" -type "float3" 1 1 1 ;
+	setAttr -s 3 ".i";
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".i[1].ip" 0.80000001192092896;
+	setAttr ".i[1].ic" -type "float3" 0.89999998 0.2 0 ;
+	setAttr ".i[1].ii" 1;
+	setAttr ".i[2].ip" 1;
+	setAttr ".i[2].ic" -type "float3" 1.5 1 0 ;
+	setAttr ".i[2].ii" 1;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 2;
+	setAttr ".edr" 0.48500001430511475;
+	setAttr ".ctx" yes;
+	setAttr ".otx" yes;
+	setAttr ".ra" 0.40000000596046448;
+	setAttr ".th" 0.05000000074505806;
+	setAttr ".dm" 4;
+	setAttr ".fr" 4;
+	setAttr ".in" yes;
+createNode transform -n "Water:oceanPlane1";
+	setAttr ".t" -type "double3" 0 1.0205854505688894 0 ;
+	setAttr ".s" -type "double3" 161.97060736853206 161.97060736853206 161.97060736853206 ;
+createNode nurbsSurface -n "Water:oceanPlaneShape1" -p "Water:oceanPlane1";
+	addAttr -ci true -sn "nts" -ln "notes" -dt "string";
+	setAttr -k off ".v";
+	setAttr ".ovs" no;
+	setAttr ".ovt" no;
+	setAttr ".ovp" no;
+	setAttr ".ove" yes;
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".tw" yes;
+	setAttr -s 121 ".cp[0:120]" -type "double3" 0.14677356245004036 4.1577566360353477e-017 
+		-0.14677356245004036 0.13166760969656849 3.4190198363577702e-017 -0.12069530888852098 
+		0.098944563191612989 2.102153518023267e-017 -0.074208422393709728 0.053414235837186408 
+		7.5655107705930314e-018 -0.026707117918593204 0.010632473589959279 7.529836587766168e-019 
+		-0.0026581183974898198 0 0 0 0.010632473589959279 -7.529836587766168e-019 0.0026581183974898198 
+		0.053414235837186408 -7.5655107705930314e-018 0.026707117918593204 0.098944563191612989 
+		-2.102153518023267e-017 0.074208422393709728 0.13166760969656849 -3.4190198363577702e-017 
+		0.12069530888852098 0.14677356245004036 -4.1577566360353477e-017 0.14677356245004036 
+		0.12069530888852098 3.7298398214811995e-017 -0.13166760969656849 0.22334387636476571 
+		6.3268170954803047e-017 -0.22334387636476571 0.20528885641474087 4.7580218233829302e-017 
+		-0.16796360979387873 0.18328848333292425 2.8320764504006899e-017 -0.099975536363413248 
+		0.16953425189925797 1.3097766799348587e-017 -0.046236614154343061 0.16847234378759496 
+		0 0 0.16953425189925797 -1.3097766799348587e-017 0.046236614154343061 0.18328848333292425 
+		-2.8320764504006899e-017 0.099975536363413248 0.20528885641474087 -4.7580218233829302e-017 
+		0.16796360979387873 0.22334387636476571 -6.3268170954803047e-017 0.22334387636476571 
+		0.12069530888852098 -3.7298398214811995e-017 0.13166760969656849 0.074208422393709728 
+		2.802871357364368e-017 -0.098944563191612989 0.16796360979387873 5.8153600063569208e-017 
+		-0.20528885641474087 0.25261524985034939 7.1560076208310855e-017 -0.25261524985034939 
+		0.2328661834254368 4.3977080671454722e-017 -0.15524412228362444 0.21975098660657011 
+		2.0750129373600714e-017 -0.073250328868856698 0.21711251513877425 0 0 0.21975098660657011 
+		-2.0750129373600714e-017 0.07325032886885674 0.2328661834254368 -4.3977080671454722e-017 
+		0.15524412228362444 0.25261524985034939 -7.1560076208310855e-017 0.25261524985034939 
+		0.16796360979387873 -5.8153600063569208e-017 0.20528885641474087 0.074208422393709728 
+		-2.802871357364368e-017 0.098944563191612989 0.026707117918593204 1.5131021541186066e-017 
+		-0.053414235837186408 0.099975536363413248 5.1921401590679278e-017 -0.18328848333292425 
+		0.15524412228362444 6.596562100718207e-017 -0.2328661834254368 0.1945364331574472 
+		5.5107686453160644e-017 -0.1945364331574472 0.18854460657107269 2.6705170061753663e-017 
+		-0.094272303285536346 0.18509276456554619 0 0 0.18854460657107269 -2.6705170061753672e-017 
+		0.094272303285536374 0.1945364331574472 -5.5107686453160644e-017 0.1945364331574472 
+		0.15524412228362444 -6.596562100718207e-017 0.2328661834254368 0.099975536363413248 
+		-5.1921401590679278e-017 0.18328848333292425 0.026707117918593204 -1.5131021541186066e-017 
+		0.053414235837186408 0.0026581183974898198 3.0119346351064672e-018 -0.010632473589959279 
+		0.046236614154343061 4.8025144930944811e-017 -0.16953425189925797 0.073250328868856698 
+		6.225038812080218e-017 -0.21975098660657011 0.094272303285536346 5.3410340123507326e-017 
+		-0.18854460657107269 0.10796038170857056 3.0582687098741499e-017 -0.10796038170857056 
+		0.10450853970304412 4.6659014702819536e-034 -1.0506676061454628e-018 0.10796038170857056 
+		-3.0582687098741499e-017 0.1079603817085706 0.094272303285536346 -5.3410340123507326e-017 
+		0.18854460657107269 0.073250328868856698 -6.225038812080218e-017 0.21975098660657011 
+		0.046236614154343061 -4.8025144930944811e-017 0.16953425189925797 0.0026581183974898198 
+		-3.0119346351064672e-018 0.010632473589959279 0 0 0 0 4.7724330845327093e-017 -0.16847234378759496 
+		0 6.1502969984245581e-017 -0.21711251513877425 0 5.2432512865965072e-017 -0.18509276456554619 
+		1.0506676061454628e-018 2.9604859841199233e-017 -0.10450853970304412 1.0506676061454628e-018 
+		4.6659014702819536e-034 -1.0506676061454628e-018 1.0506676061454628e-018 -2.9604859841199233e-017 
+		0.10450853970304412 0 -5.2432512865965072e-017 0.18509276456554619 0 -6.1502969984245581e-017 
+		0.21711251513877425 0 -4.7724330845327093e-017 0.16847234378759496 0 0 0 -0.0026581183974898198 
+		3.0119346351064672e-018 -0.010632473589959279 -0.046236614154343061 4.8025144930944811e-017 
+		-0.16953425189925797 -0.07325032886885674 6.225038812080218e-017 -0.21975098660657011 
+		-0.094272303285536374 5.3410340123507326e-017 -0.18854460657107269 -0.1079603817085706 
+		3.0582687098741499e-017 -0.10796038170857056 -0.10450853970304412 4.6659014702819536e-034 
+		-1.0506676061454628e-018 -0.1079603817085706 -3.0582687098741499e-017 0.1079603817085706 
+		-0.094272303285536374 -5.3410340123507326e-017 0.18854460657107269 -0.07325032886885674 
+		-6.225038812080218e-017 0.21975098660657011 -0.046236614154343061 -4.8025144930944811e-017 
+		0.16953425189925797 -0.0026581183974898198 -3.0119346351064672e-018 0.010632473589959279 
+		-0.026707117918593204 1.5131021541186066e-017 -0.053414235837186408 -0.099975536363413248 
+		5.1921401590679278e-017 -0.18328848333292425 -0.15524412228362444 6.596562100718207e-017 
+		-0.2328661834254368 -0.1945364331574472 5.5107686453160644e-017 -0.1945364331574472 
+		-0.18854460657107269 2.6705170061753663e-017 -0.094272303285536346 -0.18509276456554619 
+		0 0 -0.18854460657107269 -2.6705170061753672e-017 0.094272303285536374 -0.1945364331574472 
+		-5.5107686453160644e-017 0.1945364331574472 -0.15524412228362444 -6.596562100718207e-017 
+		0.2328661834254368 -0.099975536363413248 -5.1921401590679278e-017 0.18328848333292425 
+		-0.026707117918593204 -1.5131021541186066e-017 0.053414235837186408 -0.074208422393709728 
+		2.802871357364368e-017 -0.098944563191612989 -0.16796360979387873 5.8153600063569208e-017 
+		-0.20528885641474087 -0.25261524985034939 7.1560076208310855e-017 -0.25261524985034939 
+		-0.2328661834254368 4.3977080671454722e-017 -0.15524412228362444 -0.21975098660657011 
+		2.0750129373600714e-017 -0.073250328868856698 -0.21711251513877425 0 0 -0.21975098660657011 
+		-2.0750129373600714e-017 0.07325032886885674 -0.2328661834254368 -4.3977080671454722e-017 
+		0.15524412228362444 -0.25261524985034939 -7.1560076208310855e-017 0.25261524985034939 
+		-0.16796360979387873 -5.8153600063569208e-017 0.20528885641474087 -0.074208422393709728 
+		-2.802871357364368e-017 0.098944563191612989 -0.12069530888852098 3.7298398214811995e-017 
+		-0.13166760969656849 -0.22334387636476571 6.3268170954803047e-017 -0.22334387636476571 
+		-0.20528885641474087 4.7580218233829302e-017 -0.16796360979387873 -0.18328848333292425 
+		2.8320764504006899e-017 -0.099975536363413248 -0.16953425189925797 1.3097766799348587e-017 
+		-0.046236614154343061 -0.16847234378759496 0 0 -0.16953425189925797 -1.3097766799348587e-017 
+		0.046236614154343061 -0.18328848333292425 -2.8320764504006899e-017 0.099975536363413248 
+		-0.20528885641474087 -4.7580218233829302e-017 0.16796360979387873 -0.22334387636476571 
+		-6.3268170954803047e-017 0.22334387636476571 -0.12069530888852098 -3.7298398214811995e-017 
+		0.13166760969656849 -0.14677356245004036 4.1577566360353477e-017 -0.14677356245004036 
+		-0.13166760969656849 3.4190198363577702e-017 -0.12069530888852098 -0.098944563191612989 
+		2.102153518023267e-017 -0.074208422393709728 -0.053414235837186408 7.5655107705930314e-018 
+		-0.026707117918593204 -0.010632473589959279 7.529836587766168e-019 -0.0026581183974898198 
+		0 0 0 -0.010632473589959279 -7.529836587766168e-019 0.0026581183974898198 -0.053414235837186408 
+		-7.5655107705930314e-018 0.026707117918593204 -0.098944563191612989 -2.102153518023267e-017 
+		0.074208422393709728 -0.13166760969656849 -3.4190198363577702e-017 0.12069530888852098 
+		-0.14677356245004036 -4.1577566360353477e-017 0.14677356245004036;
+	setAttr ".fbda" no;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".dvu" 0;
+	setAttr ".dvv" 0;
+	setAttr ".cpr" 4;
+	setAttr ".cps" 1;
+	setAttr ".ucr" no;
+	setAttr ".nu" 10;
+	setAttr ".nv" 10;
+	setAttr ".eta" yes;
+	setAttr ".nufa" 4.5;
+	setAttr ".nvfa" 4.5;
+	setAttr ".nts" -type "string" "This node is used to render the ocean surface. It is designed to concentrate more triangles in the center so that one can can have the ocean extend to the horizon, and yet still see reasonable resolution in the local displacement. The draw overrides have been set to disable interactive shading of this surface, which would slow down playback.For best resolution you may wish to translate this surface so that the center is just in front of the view. Scale it as small as is acceptable, based on the horizon.\nThe heightfield node oceanPreviewPlane1 has been set up to allow one to interactively preview the ocean at a defined location.";
+createNode transform -n "Water:transform1";
+	setAttr ".t" -type "double3" -4 0 0 ;
+	setAttr -l on ".ty";
+	setAttr -l on ".rx";
+	setAttr -l on ".ry";
+	setAttr -l on ".rz";
+	setAttr ".s" -type "double3" 23.603860220493896 1 23.603860220493896 ;
+	setAttr -l on ".sy";
+createNode heightField -n "Water:oceanPreviewPlane1" -p "Water:transform1";
+	addAttr -ci true -sn "nts" -ln "notes" -dt "string";
+	setAttr -k off ".v";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".res" 20;
+	setAttr ".nts" -type "string" "This node is used to preview the ocean's surface. It does not appear in renders. (oceanPlane1 is the node that renders) Translate and scale it to preview different parts of the ocean.\nOne may increase the resolution to better judge the fine details on the surface, or lower it to provide faster playback performance.\n";
+createNode transform -n "Borderedge";
+	setAttr ".t" -type "double3" 0 5 47.178189709520083 ;
+	setAttr ".s" -type "double3" 10.999086861932055 1.7776499512241111 1.5770251737664092 ;
+createNode fluidShape -n "BorderedgeShape" -p "Borderedge";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".iss" yes;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".sqvx" yes;
+	setAttr ".dw" 10;
+	setAttr ".dh" 10;
+	setAttr ".dd" 10;
+	setAttr ".dmt" 3;
+	setAttr ".vmt" 0;
+	setAttr ".ss" yes;
+	setAttr ".cl[0].clp" 0;
+	setAttr ".cl[0].clc" -type "float3" 0.55081201 0.64568722 0.78799999 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr ".coi" 2;
+	setAttr -s 5 ".opa[0:4]"  0.2521739 0 1 1 0.57999998 1 0.85217392
+		 0.34 1 0.60869563 0.36000001 1 0.44347826 0.30000001 1;
+	setAttr ".opi" 2;
+	setAttr ".t" -type "float3" 0.23663691 0.23663691 0.23663691 ;
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".ili" 4;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 6;
+	setAttr ".edr" 0.075000002980232239;
+	setAttr ".otx" yes;
+	setAttr ".otxg" 0.89999997615814209;
+	setAttr ".tti" 2.0916666984558105;
+createNode transform -n "Borderedge_2";
+	setAttr ".t" -type "double3" -48 8 -9 ;
+	setAttr ".r" -type "double3" 0 92.589170296909145 0 ;
+	setAttr ".s" -type "double3" 10.999086861932055 1.7776499512241111 1.5770251737664092 ;
+createNode fluidShape -n "Borderedge_2Shape" -p "Borderedge_2";
+	setAttr -k off ".v";
+	setAttr ".rt" 1;
+	setAttr ".vf" 0;
+	setAttr ".iss" yes;
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".sqvx" yes;
+	setAttr ".dw" 10;
+	setAttr ".dh" 10;
+	setAttr ".dd" 10;
+	setAttr ".dmt" 3;
+	setAttr ".vmt" 0;
+	setAttr ".ss" yes;
+	setAttr ".cl[0].clp" 0;
+	setAttr ".cl[0].clc" -type "float3" 0.55081201 0.64568722 0.78799999 ;
+	setAttr ".cl[0].cli" 1;
+	setAttr ".coi" 2;
+	setAttr -s 5 ".opa[0:4]"  0.2521739 0 1 1 0.57999998 1 0.85217392
+		 0.34 1 0.60869563 0.36000001 1 0.44347826 0.30000001 1;
+	setAttr ".opi" 2;
+	setAttr ".t" -type "float3" 0.23663691 0.23663691 0.23663691 ;
+	setAttr ".i[0].ip" 0;
+	setAttr ".i[0].ic" -type "float3" 0 0 0 ;
+	setAttr ".i[0].ii" 1;
+	setAttr ".ili" 4;
+	setAttr ".env[0].envp" 0;
+	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
+	setAttr ".env[0].envi" 1;
+	setAttr ".dos" 6;
+	setAttr ".edr" 0.075000002980232239;
+	setAttr ".otx" yes;
+	setAttr ".otxg" 0.89999997615814209;
+	setAttr ".tti" 2.0916666984558105;
 createNode lightLinker -s -n "lightLinker1";
-	setAttr -s 25 ".lnk";
-	setAttr -s 25 ".slnk";
+	setAttr -s 30 ".lnk";
+	setAttr -s 30 ".slnk";
 createNode displayLayerManager -n "layerManager";
 createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
@@ -6960,148 +7224,76 @@ createNode hyperView -n "hyperView1";
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;
-	setAttr -s 47 ".hyp";
-	setAttr ".hyp[0].x" -35.714286804199219;
-	setAttr ".hyp[0].y" -79.166664123535156;
+	setAttr -s 57 ".hyp";
+	setAttr ".hyp[0].x" -35.103736877441406;
+	setAttr ".hyp[0].y" -158.44305419921875;
 	setAttr ".hyp[0].nvs" 1920;
-	setAttr ".hyp[1].x" -35.714286804199219;
-	setAttr ".hyp[1].y" -0.5952380895614624;
+	setAttr ".hyp[1].x" -35.103736877441406;
+	setAttr ".hyp[1].y" -79.871620178222656;
 	setAttr ".hyp[1].nvs" 1920;
-	setAttr ".hyp[2].x" -232.84063720703125;
-	setAttr ".hyp[2].y" -165.68778991699219;
+	setAttr ".hyp[2].x" -35.103736877441406;
+	setAttr ".hyp[2].y" -1.3001894950866699;
 	setAttr ".hyp[2].nvs" 1920;
-	setAttr ".hyp[3].x" -232.84063720703125;
-	setAttr ".hyp[3].y" -94.259208679199219;
+	setAttr ".hyp[3].x" -232.24659729003906;
+	setAttr ".hyp[3].y" -24.001260757446289;
 	setAttr ".hyp[3].nvs" 1920;
-	setAttr ".hyp[4].x" -232.6529541015625;
-	setAttr ".hyp[4].y" 48.597934722900391;
+	setAttr ".hyp[4].x" -232.24659729003906;
+	setAttr ".hyp[4].y" -95.429832458496094;
 	setAttr ".hyp[4].nvs" 1920;
-	setAttr ".hyp[5].x" -232.6529541015625;
-	setAttr ".hyp[5].y" -22.830636978149414;
+	setAttr ".hyp[5].x" -232.24659729003906;
+	setAttr ".hyp[5].y" -166.8583984375;
 	setAttr ".hyp[5].nvs" 1920;
-	setAttr ".hyp[6].x" -35.103736877441406;
-	setAttr ".hyp[6].y" -157.73809814453125;
 	setAttr ".hyp[6].nvs" 1920;
-	setAttr ".hyp[7].x" -232.24659729003906;
-	setAttr ".hyp[7].y" 120.02650451660156;
 	setAttr ".hyp[7].nvs" 1920;
-	setAttr ".hyp[8].x" -35.103736877441406;
-	setAttr ".hyp[8].y" 235.68659973144531;
 	setAttr ".hyp[8].nvs" 1920;
-	setAttr ".hyp[9].x" -232.24659729003906;
-	setAttr ".hyp[9].y" 270.02651977539062;
 	setAttr ".hyp[9].nvs" 1920;
-	setAttr ".hyp[10].x" 162.03912353515625;
-	setAttr ".hyp[10].y" 78.543739318847656;
 	setAttr ".hyp[10].nvs" 1920;
-	setAttr ".hyp[11].x" 162.03912353515625;
-	setAttr ".hyp[11].y" 235.68659973144531;
 	setAttr ".hyp[11].nvs" 1920;
-	setAttr ".hyp[12].x" -232.24659729003906;
-	setAttr ".hyp[12].y" 191.455078125;
 	setAttr ".hyp[12].nvs" 1920;
-	setAttr ".hyp[13].x" -35.103736877441406;
-	setAttr ".hyp[13].y" 78.543739318847656;
 	setAttr ".hyp[13].nvs" 1920;
-	setAttr ".hyp[14].x" -35.103736877441406;
-	setAttr ".hyp[14].y" 149.97230529785156;
 	setAttr ".hyp[14].nvs" 1920;
-	setAttr ".hyp[15].x" 162.03912353515625;
-	setAttr ".hyp[15].y" -0.027690436691045761;
 	setAttr ".hyp[15].nvs" 1920;
-	setAttr ".hyp[16].x" 162.03912353515625;
-	setAttr ".hyp[16].y" 157.11517333984375;
 	setAttr ".hyp[16].nvs" 1920;
-	setAttr ".hyp[17].x" 162.03912353515625;
-	setAttr ".hyp[17].y" -166.8583984375;
 	setAttr ".hyp[17].nvs" 1920;
-	setAttr ".hyp[18].x" 162.03912353515625;
-	setAttr ".hyp[18].y" 157.11517333984375;
 	setAttr ".hyp[18].nvs" 1920;
-	setAttr ".hyp[19].x" 162.03912353515625;
-	setAttr ".hyp[19].y" -0.027690436691045761;
 	setAttr ".hyp[19].nvs" 1920;
-	setAttr ".hyp[20].x" 359.18197631835937;
-	setAttr ".hyp[20].y" -95.429832458496094;
 	setAttr ".hyp[20].nvs" 1920;
-	setAttr ".hyp[21].x" 359.18197631835937;
-	setAttr ".hyp[21].y" -166.8583984375;
 	setAttr ".hyp[21].nvs" 1920;
-	setAttr ".hyp[22].x" -35.103736877441406;
-	setAttr ".hyp[22].y" -1.3001894950866699;
 	setAttr ".hyp[22].nvs" 1920;
-	setAttr ".hyp[23].x" 162.03912353515625;
-	setAttr ".hyp[23].y" -78.59912109375;
 	setAttr ".hyp[23].nvs" 1920;
-	setAttr ".hyp[24].x" 950.61053466796875;
-	setAttr ".hyp[24].y" 157.11517333984375;
 	setAttr ".hyp[24].nvs" 1920;
-	setAttr ".hyp[25].x" 753.46771240234375;
-	setAttr ".hyp[25].y" 118.85588073730469;
 	setAttr ".hyp[25].nvs" 1920;
-	setAttr ".hyp[26].x" 950.61053466796875;
-	setAttr ".hyp[26].y" 235.68659973144531;
 	setAttr ".hyp[26].nvs" 1920;
-	setAttr ".hyp[27].x" 753.46771240234375;
-	setAttr ".hyp[27].y" 190.28445434570312;
 	setAttr ".hyp[27].nvs" 1920;
-	setAttr ".hyp[28].x" 753.46771240234375;
-	setAttr ".hyp[28].y" 47.427310943603516;
 	setAttr ".hyp[28].nvs" 1920;
-	setAttr ".hyp[29].x" 556.3248291015625;
-	setAttr ".hyp[29].y" 78.543739318847656;
 	setAttr ".hyp[29].nvs" 1920;
-	setAttr ".hyp[30].x" 359.18197631835937;
-	setAttr ".hyp[30].y" 190.28445434570312;
 	setAttr ".hyp[30].nvs" 1920;
-	setAttr ".hyp[31].x" -35.103736877441406;
-	setAttr ".hyp[31].y" -1.3001894950866699;
 	setAttr ".hyp[31].nvs" 1920;
-	setAttr ".hyp[32].x" 556.3248291015625;
-	setAttr ".hyp[32].y" -78.59912109375;
 	setAttr ".hyp[32].nvs" 1920;
-	setAttr ".hyp[33].x" 556.3248291015625;
-	setAttr ".hyp[33].y" 157.11517333984375;
 	setAttr ".hyp[33].nvs" 1920;
-	setAttr ".hyp[34].x" 359.18197631835937;
-	setAttr ".hyp[34].y" 118.85588073730469;
 	setAttr ".hyp[34].nvs" 1920;
-	setAttr ".hyp[35].x" 359.18197631835937;
-	setAttr ".hyp[35].y" 47.427310943603516;
 	setAttr ".hyp[35].nvs" 1920;
-	setAttr ".hyp[36].x" 556.3248291015625;
-	setAttr ".hyp[36].y" -0.027690436691045761;
 	setAttr ".hyp[36].nvs" 1920;
-	setAttr ".hyp[37].x" 359.18197631835937;
-	setAttr ".hyp[37].y" 190.28445434570312;
 	setAttr ".hyp[37].nvs" 1920;
-	setAttr ".hyp[38].x" 359.18197631835937;
-	setAttr ".hyp[38].y" -24.001260757446289;
 	setAttr ".hyp[38].nvs" 1920;
-	setAttr ".hyp[39].x" 556.3248291015625;
-	setAttr ".hyp[39].y" -157.17054748535156;
 	setAttr ".hyp[39].nvs" 1920;
-	setAttr ".hyp[40].x" 556.3248291015625;
-	setAttr ".hyp[40].y" -157.17054748535156;
 	setAttr ".hyp[40].nvs" 1920;
-	setAttr ".hyp[41].x" 753.46771240234375;
-	setAttr ".hyp[41].y" -166.8583984375;
 	setAttr ".hyp[41].nvs" 1920;
-	setAttr ".hyp[42].x" 753.46771240234375;
-	setAttr ".hyp[42].y" -95.429832458496094;
 	setAttr ".hyp[42].nvs" 1920;
-	setAttr ".hyp[43].x" 753.46771240234375;
-	setAttr ".hyp[43].y" -24.001260757446289;
 	setAttr ".hyp[43].nvs" 1920;
-	setAttr ".hyp[44].x" -35.103736877441406;
-	setAttr ".hyp[44].y" -1.3001894950866699;
 	setAttr ".hyp[44].nvs" 1920;
-	setAttr ".hyp[45].x" -35.103736877441406;
-	setAttr ".hyp[45].y" -1.3001894950866699;
 	setAttr ".hyp[45].nvs" 1920;
-	setAttr ".hyp[46].x" -35.103736877441406;
-	setAttr ".hyp[46].y" -1.3001894950866699;
 	setAttr ".hyp[46].nvs" 1920;
+	setAttr ".hyp[47].nvs" 1920;
+	setAttr ".hyp[48].nvs" 1920;
+	setAttr ".hyp[49].nvs" 1920;
+	setAttr ".hyp[50].nvs" 1920;
+	setAttr ".hyp[51].nvs" 1920;
+	setAttr ".hyp[52].nvs" 1920;
+	setAttr ".hyp[53].nvs" 1920;
+	setAttr ".hyp[54].nvs" 1920;
+	setAttr ".hyp[55].nvs" 1920;
+	setAttr ".hyp[56].nvs" 1920;
 	setAttr ".anf" yes;
 createNode script -n "uiConfigurationScriptNode";
 	setAttr ".b" -type "string" (
@@ -7174,7 +7366,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
-	setAttr ".b" -type "string" "playbackOptions -min 1 -max 200 -ast 1 -aet 200 ";
+	setAttr ".b" -type "string" "playbackOptions -min 1 -max 500 -ast 1 -aet 500 ";
 	setAttr ".st" 6;
 createNode shadingEngine -n "Testing:Hero_Body:stickFigure_Hero:defaultMat";
 	setAttr ".ihi" 0;
@@ -7203,76 +7395,6 @@ createNode file -n "Testing:file1";
 	setAttr ".pf" yes;
 	setAttr ".pfr" 1.7068063020706177;
 createNode place2dTexture -n "Testing:place2dTexture1";
-createNode polySphere -n "Testing:polySphere2";
-	setAttr ".r" 1296.2341600799598;
-createNode deleteComponent -n "Testing:deleteComponent1";
-	setAttr ".dc" -type "componentList" 2 "f[0:179]" "f[360:379]";
-createNode polyTweakUV -n "Testing:polyTweakUV1";
-	setAttr ".uopa" yes;
-	setAttr -s 230 ".uvtk[0:229]" -type "float2" 0.073413372 0.46582085 0.023473844
-		 0.41876107 -0.026465751 0.37170166 -0.076405346 0.32464188 -0.12634481 0.27758247
-		 -0.17628434 0.23052284 -0.22622401 0.18346307 -0.27616352 0.13640362 -0.32610309
-		 0.089344114 -0.37604266 0.042284459 -0.42598227 -0.0047753565 -0.47592175 -0.051835123
-		 -0.52586132 -0.098894671 -0.5758009 -0.14595437 -0.62574041 -0.19301367 -0.67567992
-		 -0.24007344 -0.72561955 -0.28713286 -0.77555925 -0.33419254 -0.8254987 -0.38125232
-		 -0.87543833 -0.428312 -0.92537785 -0.47537148 0.16279376 0.4158752 0.1128542 0.36881554
-		 0.062914714 0.32175601 0.012975127 0.27469611 -0.036964379 0.22763661 -0.08690393
-		 0.18057719 -0.1368435 0.1335175 -0.18678302 0.086457878 -0.23672274 0.039398268 -0.28666225
-		 -0.0076612644 -0.33660176 -0.05472092 -0.3865414 -0.10178073 -0.43648088 -0.14884037
-		 -0.48642048 -0.19590014 -0.53636003 -0.24295929 -0.58629966 -0.29001907 -0.63623905
-		 -0.33707851 -0.68617868 -0.3841382 -0.73611832 -0.43119797 -0.78605777 -0.47825772
-		 -0.83599734 -0.52531719 0.25217429 0.36592942 0.20223469 0.31887001 0.15229522 0.27181023
-		 0.10235564 0.22475049 0.052416071 0.17769107 0.0024765283 0.13063163 -0.04746297
-		 0.083571672 -0.09740258 0.036512095 -0.14734222 -0.010547537 -0.19728172 -0.057607014
-		 -0.24722131 -0.10466671 -0.29716086 -0.15172648 -0.34710038 -0.19878605 -0.39703998
-		 -0.24584574 -0.44697952 -0.29290503 -0.49691913 -0.33996487 -0.54685867 -0.38702422
-		 -0.59679818 -0.43408391 -0.64673781 -0.48114365 -0.69667745 -0.52820337 -0.74661678
-		 -0.5752629 0.34155476 0.31598377 0.29161522 0.26892412 0.24167567 0.22186473 0.19173607
-		 0.17480505 0.14179657 0.12774551 0.091857001 0.08068575 0.041917436 0.033625949 -0.0080220737
-		 -0.013433594 -0.057961777 -0.060492892 -0.10790132 -0.10755259 -0.15784077 -0.15461236
-		 -0.20778032 -0.20167214 -0.25771993 -0.24873173 -0.30765945 -0.29579151 -0.35759908
-		 -0.34285071 -0.40753865 -0.38991049 -0.45747817 -0.43696994 -0.5074178 -0.48402968
-		 -0.55735731 -0.53108943 -0.60729688 -0.57814908 -0.65723646 -0.62520862 0.43093514
-		 0.26603824 0.38099557 0.21897838 0.33105603 0.17191881 0.28111652 0.12485918 0.23117697
-		 0.077799514 0.18123747 0.030740101 0.13129781 -0.016319562 0.081358328 -0.063379213
-		 0.031418744 -0.11043873 -0.018520879 -0.15749836 -0.06846033 -0.20455793 -0.11839996
-		 -0.25161791 -0.16833951 -0.29867747 -0.21827902 -0.34573722 -0.26821873 -0.39279643
-		 -0.31815824 -0.43985611 -0.36809781 -0.48691559 -0.41803733 -0.53397536 -0.46797696
-		 -0.58103502 -0.5179165 -0.62809479 -0.56785589 -0.67515415 0.52031553 0.2160925 0.4703759
-		 0.16903284 0.42043635 0.12197331 0.37049669 0.074913412 0.3205573 0.027853984 0.27061772
-		 -0.019205619 0.2206782 -0.066265196 0.17073862 -0.11332493 0.12079909 -0.16038442
-		 0.070859462 -0.20744407 0.020919947 -0.25450382 -0.029019719 -0.30156356 -0.078959107
-		 -0.34862316 -0.12889875 -0.39568287 -0.17883824 -0.44274211 -0.22877784 -0.48980185
-		 -0.27871752 -0.5368613 -0.32865709 -0.58392107 -0.37859654 -0.63098085 -0.42853618
-		 -0.6780405 -0.47847569 -0.72509998 0.60969579 0.16614696 0.55975628 0.11908707 0.50981665
-		 0.072027534 0.4598771 0.024967749 0.40993765 -0.02209167 0.35999805 -0.069151312
-		 0.31005847 -0.11621086 0.26011905 -0.16327065 0.21017937 -0.21033007 0.16023983 -0.25738961
-		 0.11030026 -0.30444956 0.060360696 -0.35150921 0.010421226 -0.39856881 -0.039518461
-		 -0.44562858 -0.089458093 -0.49268776 -0.13939746 -0.53974754 -0.18933709 -0.58680701
-		 -0.23927677 -0.63386661 -0.28921622 -0.68092638 -0.33915591 -0.72798616 -0.3890954
-		 -0.77504563 0.69907635 0.11620119 0.64913684 0.069141537 0.59919721 0.022081867 0.54925781
-		 -0.024977779 0.49931815 -0.072037444 0.44937861 -0.11909698 0.3994391 -0.16615653
-		 0.34949958 -0.2132163 0.29955995 -0.26027584 0.24962042 -0.30733544 0.19968085 -0.35439527
-		 0.14974131 -0.40145481 0.099801734 -0.44851455 0.049862027 -0.49557424 -7.7348202e-005
-		 -0.54263353 -0.050016984 -0.58969331 -0.099956527 -0.63675261 -0.14989604 -0.6838125
-		 -0.19983566 -0.73087209 -0.24977529 -0.77793181 -0.29971471 -0.82499123 0.78845698
-		 0.066255659 0.73851752 0.019195765 0.68857783 -0.027863672 0.63863832 -0.07492356
-		 0.5886988 -0.12198299 0.53875935 -0.1690425 0.48881966 -0.2161023 0.43888009 -0.26316184
-		 0.38894051 -0.31022161 0.33900106 -0.35728127 0.28906149 -0.40434068 0.23912202 -0.45140058
-		 0.18918234 -0.49846011 0.13924274 -0.54551989 0.089303106 -0.59257919 0.039363522
-		 -0.63963884 -0.010575876 -0.68669844 -0.060515538 -0.73375809 -0.11045511 -0.78081775
-		 -0.16039455 -0.8278774 -0.21033415 -0.87493694 0.8778373 0.016309764 0.82789773 -0.030749787
-		 0.7779581 -0.077809595 0.72801846 -0.12486911 0.67807931 -0.17192873 0.62813967 -0.2189883
-		 0.57820004 -0.26604807 0.52826047 -0.31310785 0.47832084 -0.36016715 0.42838138 -0.40722692
-		 0.37844175 -0.45428658 0.32850218 -0.50134635 0.27856272 -0.54840589 0.22862314 -0.59546572
-		 0.17868347 -0.64252484 0.12874392 -0.68958455 0.078804456 -0.73664403 0.028864861
-		 -0.78370374 -0.021074772 -0.83076346 -0.071014181 -0.87782311 -0.12095378 -0.92488259
-		 0.94224775 -0.057165649 0.89230818 -0.10422516 0.84236848 -0.15128469 0.79242903
-		 -0.19834435 0.74248952 -0.24540401 0.69255006 -0.29246378 0.64261025 -0.3395232 0.59267092
-		 -0.38658285 0.54273123 -0.43364263 0.49279162 -0.48070228 0.44285217 -0.52776182
-		 0.39291281 -0.57482135 0.34297299 -0.62188095 0.29303354 -0.66894078 0.24309413 -0.71600032
-		 0.19315435 -0.76305997 0.14321491 -0.81011951 0.093275562 -0.85717893 0.043335751
-		 -0.90423864 -0.0066038221 -0.95129836;
 createNode polyCylinder -n "Testing:Tree:polyCylinder1";
 	setAttr ".r" 0.96771747779397355;
 	setAttr ".h" 6.4009589685042494;
@@ -7845,8 +7967,10 @@ createNode blinn -n "aircrystal";
 	setAttr ".c" -type "float3" 0.060746167 0.060746167 0.060746167 ;
 	setAttr ".fll" 2;
 	setAttr ".sc" -type "float3" 0.38785383 0.38785383 0.38785383 ;
+	setAttr ".rfl" 0.20000000298023224;
 	setAttr ".ec" 0.057999998331069946;
 	setAttr ".sro" 0.92599999904632568;
+	setAttr ".mircb" 10;
 createNode shadingEngine -n "blinn1SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
@@ -7884,7 +8008,7 @@ createNode oceanShader -n "water";
 	setAttr ".wtb[0]"  0 1 1;
 	setAttr -s 2 ".wp[0:1]"  0 0.30000001 1 1 0.5 1;
 	setAttr ".fc" -type "float3" 0.68224615 0.68224615 0.68224615 ;
-	setAttr ".d" -0.0019519021734595299;
+	setAttr ".d" -0.0039343065582215786;
 	setAttr ".wvs" 0.05000000074505806;
 createNode shadingEngine -n "oceanShader1SG";
 	setAttr ".ihi" 0;
@@ -7902,144 +8026,6 @@ createNode shadingEngine -n "fluidShape5SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo12";
-createNode animCurveTA -n "Testing:pSphere1_rotateX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTA -n "Testing:pSphere1_rotateZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTA -n "Testing:pSphere1_rotateY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0 10 0 40 0 50 0 90 0 100 0 130 0 140 0
-		 175 0 180 0 200 0;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 9.6757576675891688 10 9.6757576675891688
-		 40 18.033732617501578 50 18.033732617501578 90 9.6757576675891688 100 9.6757576675891688
-		 130 18.033732617501578 140 18.033732617501578 175 9.6757576675891688 180 9.6757576675891688
-		 198 19;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 12 ".ktv[0:11]"  1 -6.7404256014318022 10 -6.7404256014318022
-		 40 -6.7404256014318022 50 -6.7404256014318022 90 -6.7404256014318022 100 -6.7404256014318022
-		 130 -6.7404256014318022 140 -6.7404256014318022 175 -6.7404256014318022 180 -6.7404256014318022
-		 198 -6.7348075323966476 200 -6.7404256014318022;
-	setAttr -s 12 ".kit[0:11]"  18 1 1 1 1 1 1 1 
-		1 1 18 1;
-	setAttr -s 12 ".kot[0:11]"  18 1 1 1 1 1 1 1 
-		1 1 18 1;
-	setAttr -s 12 ".kix[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 12 ".kiy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 12 ".kox[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 12 ".koy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTL -n "Testing:pSphere1_translateZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 12 ".ktv[0:11]"  1 -2.8002470786315996 10 -2.8002470786315996
-		 40 -2.8002470786315996 50 -2.8002470786315996 90 -2.8002470786315996 100 -2.8002470786315996
-		 130 -2.8002470786315996 140 -2.8002470786315996 175 -2.8002470786315996 180 -2.8002470786315996
-		 198 -2.7954237995107718 200 -2.8002470786315996;
-	setAttr -s 12 ".kit[0:11]"  18 1 1 1 1 1 1 1 
-		1 1 18 1;
-	setAttr -s 12 ".kot[0:11]"  18 1 1 1 1 1 1 1 
-		1 1 18 1;
-	setAttr -s 12 ".kix[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 12 ".kiy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 12 ".kox[1:11]"  1 1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 12 ".koy[1:11]"  0 0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_visibility";
-	setAttr ".tan" 5;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 1 10 1 40 1 50 1 90 1 100 1 130 1 140 1
-		 175 1 180 1 200 1;
-	setAttr -s 11 ".kit[0:10]"  9 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_scaleX";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_scaleY";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-createNode animCurveTU -n "Testing:pSphere1_scaleZ";
-	setAttr ".tan" 1;
-	setAttr ".wgt" no;
-	setAttr -s 11 ".ktv[0:10]"  1 0.91279181640526785 10 0.91279181640526785
-		 40 0.91279181640526785 50 0.91279181640526785 90 0.91279181640526785 100 0.91279181640526785
-		 130 0.91279181640526785 140 0.91279181640526785 175 0.91279181640526785 180 0.91279181640526785
-		 200 0.91279181640526785;
-	setAttr -s 11 ".kit[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kot[0:10]"  18 1 1 1 1 1 1 1 
-		1 1 1;
-	setAttr -s 11 ".kix[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".kiy[1:10]"  0 0 0 0 0 0 0 0 0 0;
-	setAttr -s 11 ".kox[1:10]"  1 1 1 1 1 1 1 1 1 1;
-	setAttr -s 11 ".koy[1:10]"  0 0 0 0 0 0 0 0 0 0;
 createNode polyTweakUV -n "polyTweakUV1";
 	setAttr ".uopa" yes;
 	setAttr -s 439 ".uvtk";
@@ -8142,7 +8128,7 @@ createNode rampShader -n "GlowX";
 	setAttr ".clr[0].clrc" -type "float3" 0 0 0 ;
 	setAttr ".clr[0].clri" 1;
 	setAttr ".clr[1].clrp" 0.44347825646400452;
-	setAttr ".clr[1].clrc" -type "float3" 0.97259998 1 0 ;
+	setAttr ".clr[1].clrc" -type "float3" 0.98876667 0 1 ;
 	setAttr ".clr[1].clri" 1;
 	setAttr ".clr[2].clrp" 0.78260868787765503;
 	setAttr ".clr[2].clrc" -type "float3" 0 0 0 ;
@@ -8163,6 +8149,7 @@ createNode rampShader -n "GlowX";
 	setAttr ".env[0].envp" 0;
 	setAttr ".env[0].envc" -type "float3" 0 0 0 ;
 	setAttr ".env[0].envi" 1;
+	setAttr ".mircb" 5;
 createNode shadingEngine -n "rampShader1SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
@@ -8422,17 +8409,166 @@ createNode shadingEngine -n "largeFlames2ShaderSG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo17";
+createNode animCurveTU -n "Lightray_visibility";
+	setAttr ".tan" 9;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 1;
+	setAttr ".kot[0]"  5;
+createNode animCurveTL -n "Lightray_translateX";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTL -n "Lightray_translateY";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTL -n "Lightray_translateZ";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTA -n "Lightray_rotateX";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTA -n "Lightray_rotateY";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTA -n "Lightray_rotateZ";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 0;
+createNode animCurveTU -n "Lightray_scaleX";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 7781.6731530716461;
+createNode animCurveTU -n "Lightray_scaleY";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 7781.6731530716461;
+createNode animCurveTU -n "Lightray_scaleZ";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  103 7781.6731530716461;
+createNode hyperGraphInfo -n "Fog:nodeEditorPanel1Info";
+createNode hyperView -n "Fog:hyperView1";
+	setAttr ".vl" -type "double2" -118.86167413846036 -73.612257039850448 ;
+	setAttr ".vh" -type "double2" 119.35261157582536 73.173457245863844 ;
+	setAttr ".dag" no;
+createNode hyperLayout -n "Fog:hyperLayout1";
+	setAttr ".ihi" 0;
+	setAttr -s 9 ".hyp";
+	setAttr ".hyp[0].nvs" 1920;
+	setAttr ".hyp[1].nvs" 1920;
+	setAttr ".hyp[2].nvs" 1920;
+	setAttr ".hyp[3].nvs" 1920;
+	setAttr ".hyp[4].nvs" 1920;
+	setAttr ".hyp[5].nvs" 1920;
+	setAttr ".hyp[6].nvs" 1920;
+	setAttr ".hyp[7].nvs" 1920;
+	setAttr ".hyp[8].nvs" 1920;
+	setAttr ".anf" yes;
+createNode shadingEngine -n "Fog:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "Fog:materialInfo1";
+createNode expression -n "Fog:expression1";
+	setAttr -k on ".nds";
+	setAttr ".ixp" -type "string" ".O[0]=time*.2";
+createNode hyperGraphInfo -n "Cloud:nodeEditorPanel1Info";
+createNode hyperView -n "Cloud:hyperView1";
+	setAttr ".vl" -type "double2" -119.0402455670318 -73.433685611279017 ;
+	setAttr ".vh" -type "double2" 119.17404014725392 73.352028674435275 ;
+	setAttr ".dag" no;
+createNode hyperLayout -n "Cloud:hyperLayout1";
+	setAttr ".ihi" 0;
+	setAttr -s 9 ".hyp";
+	setAttr ".hyp[0].nvs" 1920;
+	setAttr ".hyp[1].nvs" 1920;
+	setAttr ".hyp[2].nvs" 1920;
+	setAttr ".hyp[3].nvs" 1920;
+	setAttr ".hyp[4].nvs" 1920;
+	setAttr ".hyp[5].nvs" 1920;
+	setAttr ".hyp[6].nvs" 1920;
+	setAttr ".hyp[7].nvs" 1920;
+	setAttr ".hyp[8].nvs" 1920;
+	setAttr ".anf" yes;
+createNode shadingEngine -n "Cloud:fluidShape1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "Cloud:materialInfo1";
+createNode expression -n "Cloud:expression1";
+	setAttr -k on ".nds";
+	setAttr ".ixp" -type "string" ".O[0]=time/12";
+createNode hyperGraphInfo -n "Water:nodeEditorPanel1Info";
+createNode hyperView -n "Water:hyperView1";
+	setAttr ".vl" -type "double2" -119.0402455670318 -73.433685611279017 ;
+	setAttr ".vh" -type "double2" 119.17404014725392 73.352028674435275 ;
+	setAttr ".dag" no;
+createNode hyperLayout -n "Water:hyperLayout1";
+	setAttr ".ihi" 0;
+	setAttr -s 12 ".hyp";
+	setAttr ".hyp[0].nvs" 1920;
+	setAttr ".hyp[1].nvs" 1920;
+	setAttr ".hyp[2].nvs" 1920;
+	setAttr ".hyp[3].nvs" 1920;
+	setAttr ".hyp[4].nvs" 1920;
+	setAttr ".hyp[5].nvs" 1920;
+	setAttr ".hyp[6].nvs" 1920;
+	setAttr ".hyp[7].nvs" 1920;
+	setAttr ".hyp[8].nvs" 1920;
+	setAttr ".hyp[9].nvs" 1920;
+	setAttr ".hyp[10].nvs" 1920;
+	setAttr ".hyp[11].nvs" 1920;
+	setAttr ".anf" yes;
+createNode makeNurbPlane -n "Water:makeNurbPlane1";
+	setAttr ".ax" -type "double3" 0 1 0 ;
+	setAttr ".u" 8;
+	setAttr ".v" 8;
+createNode oceanShader -n "Water:oceanShader1";
+	setAttr ".gi" 0.1269841343164444;
+	setAttr ".spg" 0.1746031790971756;
+	setAttr -s 3 ".env";
+	setAttr ".env[0].envp" 0.20000000298023224;
+	setAttr ".env[0].envc" -type "float3" 0.015 0.13 0.145 ;
+	setAttr ".env[0].envi" 2;
+	setAttr ".env[1].envp" 0.55000001192092896;
+	setAttr ".env[1].envc" -type "float3" 0.47999999 0.55000001 0.69999999 ;
+	setAttr ".env[1].envi" 2;
+	setAttr ".env[2].envp" 1;
+	setAttr ".env[2].envc" -type "float3" 0 0.1 0.44999999 ;
+	setAttr ".env[2].envi" 2;
+	setAttr ".scl" 2;
+	setAttr ".nf" 0.55555552244186401;
+	setAttr -s 2 ".wh[0:1]"  0.017391304 0.69999999 1 1 0.81999999 
+		1;
+	setAttr -s 2 ".wtb[0:1]"  0 1 1 1 1 1;
+	setAttr -s 2 ".wp[0:1]"  0.0086956518 0.62 1 1 0.63999999 1;
+	setAttr ".d" 0.034511968493461609;
+	setAttr ".wvs" 0;
+createNode shadingEngine -n "Water:oceanShader1SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "Water:materialInfo1";
+createNode shadingEngine -n "fluidShape1SG1";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo18";
+createNode shadingEngine -n "Borderedge1ShapeSG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo19";
 select -ne :time1;
-	setAttr ".o" 79;
-	setAttr ".unw" 79;
+	setAttr ".o" 61;
+	setAttr ".unw" 61;
 select -ne :renderPartition;
-	setAttr -s 25 ".st";
+	setAttr -s 30 ".st";
 select -ne :initialShadingGroup;
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
 select -ne :defaultShaderList1;
-	setAttr -s 18 ".s";
+	setAttr -s 23 ".s";
 select -ne :defaultTextureList1;
 	setAttr -s 13 ".tx";
 select -ne :lightList1;
@@ -8440,7 +8576,7 @@ select -ne :lightList1;
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
-	setAttr -s 15 ".u";
+	setAttr -s 16 ".u";
 select -ne :defaultRenderingList1;
 select -ne :renderGlobalsList1;
 select -ne :defaultRenderGlobals;
@@ -8469,9 +8605,6 @@ select -ne :ikSystem;
 connectAttr "TexturedPavillionTerrain:groupId1.id" "TexturedPavillionTerrain:Group20365Shape.iog.og[0].gid"
 		;
 connectAttr "TexturedPavillionTerrain:defaultMat.mwc" "TexturedPavillionTerrain:Group20365Shape.iog.og[0].gco"
-		;
-connectAttr "Testing:polyTweakUV1.out" "Testing:SkysphereShape.i";
-connectAttr "Testing:polyTweakUV1.uvtk[0]" "Testing:SkysphereShape.uvst[0].uvtw"
 		;
 connectAttr "Testing:Tree:polyTweakUV1.out" "Testing:Tree:pCylinderShape1.i";
 connectAttr "Testing:Tree:polyTweakUV1.uvtk[0]" "Testing:Tree:pCylinderShape1.uvst[0].uvtw"
@@ -8546,7 +8679,7 @@ connectAttr "motionTrail1.f" "motionTrail1HandleShape.f";
 connectAttr "motionTrail1.kt" "motionTrail1HandleShape.kt";
 connectAttr "motionTrail1.fk" "motionTrail1HandleShape.fk";
 connectAttr "motionTrail1.ekt" "motionTrail1HandleShape.ekt";
-connectAttr "|Orb|Orb.msg" "motionTrail1HandleShape.tr";
+connectAttr "Orb.msg" "motionTrail1HandleShape.tr";
 connectAttr "motionTrail1.s" "motionTrail1HandleShape.s";
 connectAttr "motionTrail1.b" "motionTrail1HandleShape.b";
 connectAttr "largeFlames1.obr" "strokeShapeLargeFlames1.brs";
@@ -8557,20 +8690,27 @@ connectAttr "largeFlames2.obr" "strokeShapeLargeFlames2.brs";
 connectAttr "curveFromMeshCoM2.oc" "strokeShapeLargeFlames2.pcv[0].crv";
 connectAttr "OrbShape.uvst[0].uvsn" "strokeShapeLargeFlames2.uvsetn[0]";
 connectAttr "FlameCam.t" "strokeShapeLargeFlames2.cpt";
-connectAttr "Testing:pSphere1_translateX.o" "|Orb|Orb.tx";
-connectAttr "Testing:pSphere1_translateY.o" "|Orb|Orb.ty";
-connectAttr "Testing:pSphere1_translateZ.o" "|Orb|Orb.tz";
-connectAttr "Testing:pSphere1_visibility.o" "|Orb|Orb.v";
-connectAttr "Testing:pSphere1_rotateX.o" "|Orb|Orb.rx";
-connectAttr "Testing:pSphere1_rotateY.o" "|Orb|Orb.ry";
-connectAttr "Testing:pSphere1_rotateZ.o" "|Orb|Orb.rz";
-connectAttr "Testing:pSphere1_scaleX.o" "|Orb|Orb.sx";
-connectAttr "Testing:pSphere1_scaleY.o" "|Orb|Orb.sy";
-connectAttr "Testing:pSphere1_scaleZ.o" "|Orb|Orb.sz";
 connectAttr "polyTweakUV1.out" "OrbShape.i";
 connectAttr "polyTweakUV1.uvtk[0]" "OrbShape.uvst[0].uvtw";
-connectAttr "strokeShapeLargeFlames2.wmm" "largeFlames2MainShape.i";
-connectAttr "strokeShapeLargeFlames1.wmm" "largeFlames1MainShape.i";
+connectAttr "Lightray_visibility.o" "|Lightray.v";
+connectAttr "Lightray_translateX.o" "|Lightray.tx";
+connectAttr "Lightray_translateY.o" "|Lightray.ty";
+connectAttr "Lightray_translateZ.o" "|Lightray.tz";
+connectAttr "Lightray_rotateX.o" "|Lightray.rx";
+connectAttr "Lightray_rotateY.o" "|Lightray.ry";
+connectAttr "Lightray_rotateZ.o" "|Lightray.rz";
+connectAttr "Lightray_scaleX.o" "|Lightray.sx";
+connectAttr "Lightray_scaleY.o" "|Lightray.sy";
+connectAttr "Lightray_scaleZ.o" "|Lightray.sz";
+connectAttr ":time1.o" "Fog:fluidShape1.cti";
+connectAttr "Fog:expression1.out[0]" "Fog:fluidShape1.tti";
+connectAttr ":time1.o" "Cloud:fluidShape1.cti";
+connectAttr "Cloud:expression1.out[0]" "Cloud:fluidShape1.tti";
+connectAttr "Water:makeNurbPlane1.os" "Water:oceanPlaneShape1.cr";
+connectAttr "Water:oceanShader1.d" "Water:oceanPreviewPlane1.dis";
+connectAttr "Water:oceanShader1.oc" "Water:oceanPreviewPlane1.cl";
+connectAttr ":time1.o" "BorderedgeShape.cti";
+connectAttr ":time1.o" "Borderedge_2Shape.cti";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "TexturedPavillionTerrain:defaultMat.message" ":defaultLightSet.message";
@@ -8596,6 +8736,11 @@ relationship "link" ":lightLinker1" "mia_material_x1SG.message" ":defaultLightSe
 relationship "link" ":lightLinker1" "rampShader1SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "largeFlames1ShaderSG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "largeFlames2ShaderSG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Fog:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Cloud:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Water:oceanShader1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "fluidShape1SG1.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Borderedge1ShapeSG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "TexturedPavillionTerrain:defaultMat.message" ":defaultLightSet.message";
@@ -8621,6 +8766,11 @@ relationship "shadowLink" ":lightLinker1" "mia_material_x1SG.message" ":defaultL
 relationship "shadowLink" ":lightLinker1" "rampShader1SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "largeFlames1ShaderSG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "largeFlames2ShaderSG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Fog:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Cloud:fluidShape1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Water:oceanShader1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "fluidShape1SG1.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Borderedge1ShapeSG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "TexturedPavillionTerrain:defaultMat1.oc" "TexturedPavillionTerrain:defaultMat.ss"
@@ -8655,52 +8805,12 @@ connectAttr "place2dTexture1.o" "file1.uv";
 connectAttr "place2dTexture1.ofs" "file1.fs";
 connectAttr "hyperView1.msg" "nodeEditorPanel1Info.b[0]";
 connectAttr "hyperLayout1.msg" "hyperView1.hl";
-connectAttr "file1.msg" "hyperLayout1.hyp[0].dn";
-connectAttr "place2dTexture1.msg" "hyperLayout1.hyp[1].dn";
-connectAttr "mia_material_x1SG.msg" "hyperLayout1.hyp[2].dn";
-connectAttr "mia_light_surface1.msg" "hyperLayout1.hyp[3].dn";
-connectAttr "GlowX.msg" "hyperLayout1.hyp[4].dn";
-connectAttr "rampShader1SG.msg" "hyperLayout1.hyp[5].dn";
-connectAttr "polyTweakUV2.msg" "hyperLayout1.hyp[6].dn";
-connectAttr "curveLargeFlames21.msg" "hyperLayout1.hyp[8].dn";
-connectAttr "curveLargeFlamesShape21.msg" "hyperLayout1.hyp[9].dn";
-connectAttr "curveLargeFlames31.msg" "hyperLayout1.hyp[10].dn";
-connectAttr "curveLargeFlamesShape31.msg" "hyperLayout1.hyp[11].dn";
-connectAttr "strokeLargeFlames1.msg" "hyperLayout1.hyp[12].dn";
-connectAttr "strokeShapeLargeFlames1.msg" "hyperLayout1.hyp[13].dn";
-connectAttr "largeFlames1.msg" "hyperLayout1.hyp[14].dn";
-connectAttr "curveLargeFlames51.msg" "hyperLayout1.hyp[15].dn";
-connectAttr "curveLargeFlamesShape51.msg" "hyperLayout1.hyp[16].dn";
-connectAttr "curveFromMeshCoM1.msg" "hyperLayout1.hyp[17].dn";
-connectAttr "strokeLargeFlames2.msg" "hyperLayout1.hyp[18].dn";
-connectAttr "strokeShapeLargeFlames2.msg" "hyperLayout1.hyp[19].dn";
-connectAttr "largeFlames2.msg" "hyperLayout1.hyp[20].dn";
-connectAttr "curveLargeFlames61.msg" "hyperLayout1.hyp[21].dn";
-connectAttr "curveLargeFlamesShape61.msg" "hyperLayout1.hyp[22].dn";
-connectAttr "curveFromMeshCoM2.msg" "hyperLayout1.hyp[23].dn";
-connectAttr "largeFlames1Main.msg" "hyperLayout1.hyp[24].dn";
-connectAttr "largeFlames1MainShape.msg" "hyperLayout1.hyp[25].dn";
-connectAttr "largeFlames1Shader.msg" "hyperLayout1.hyp[26].dn";
-connectAttr "ramp2.msg" "hyperLayout1.hyp[27].dn";
-connectAttr "fractal1.msg" "hyperLayout1.hyp[28].dn";
-connectAttr "place2dTexture4.msg" "hyperLayout1.hyp[29].dn";
-connectAttr "ramp3.msg" "hyperLayout1.hyp[30].dn";
-connectAttr "place2dTexture5.msg" "hyperLayout1.hyp[31].dn";
-connectAttr "reverse1.msg" "hyperLayout1.hyp[32].dn";
-connectAttr "largeFlames1ShaderSG.msg" "hyperLayout1.hyp[33].dn";
-connectAttr "largeFlames2Main.msg" "hyperLayout1.hyp[34].dn";
-connectAttr "largeFlames2MainShape.msg" "hyperLayout1.hyp[35].dn";
-connectAttr "largeFlames2Shader.msg" "hyperLayout1.hyp[36].dn";
-connectAttr "ramp4.msg" "hyperLayout1.hyp[37].dn";
-connectAttr "fractal2.msg" "hyperLayout1.hyp[38].dn";
-connectAttr "place2dTexture6.msg" "hyperLayout1.hyp[39].dn";
-connectAttr "ramp5.msg" "hyperLayout1.hyp[40].dn";
-connectAttr "place2dTexture7.msg" "hyperLayout1.hyp[41].dn";
-connectAttr "reverse2.msg" "hyperLayout1.hyp[42].dn";
-connectAttr "largeFlames2ShaderSG.msg" "hyperLayout1.hyp[43].dn";
-connectAttr "|Orb.msg" "hyperLayout1.hyp[44].dn";
-connectAttr "|Lightray.msg" "hyperLayout1.hyp[45].dn";
-connectAttr "|Lightray|Lightray.msg" "hyperLayout1.hyp[46].dn";
+connectAttr "Borderedge.msg" "hyperLayout1.hyp[0].dn";
+connectAttr "BorderedgeShape.msg" "hyperLayout1.hyp[1].dn";
+connectAttr "fluidShape1SG1.msg" "hyperLayout1.hyp[2].dn";
+connectAttr "Borderedge1ShapeSG.msg" "hyperLayout1.hyp[3].dn";
+connectAttr "Borderedge_2.msg" "hyperLayout1.hyp[4].dn";
+connectAttr "Borderedge_2Shape.msg" "hyperLayout1.hyp[5].dn";
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat1.oc" "Testing:Hero_Body:stickFigure_Hero:defaultMat.ss"
 		;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat.msg" "Testing:Hero_Body:stickFigure_Hero:materialInfo1.sg"
@@ -8713,7 +8823,6 @@ connectAttr "orb.msg" "Testing:materialInfo1.m";
 connectAttr "file2.msg" "Testing:materialInfo1.t" -na;
 connectAttr "Testing:file1.oc" "sky.c";
 connectAttr "sky.oc" "Testing:lambert3SG.ss";
-connectAttr "Testing:SkysphereShape.iog" "Testing:lambert3SG.dsm" -na;
 connectAttr "Testing:lambert3SG.msg" "Testing:materialInfo2.sg";
 connectAttr "sky.msg" "Testing:materialInfo2.m";
 connectAttr "Testing:file1.msg" "Testing:materialInfo2.t" -na;
@@ -8738,8 +8847,6 @@ connectAttr "Testing:place2dTexture1.vt3" "Testing:file1.vt3";
 connectAttr "Testing:place2dTexture1.vc1" "Testing:file1.vc1";
 connectAttr "Testing:place2dTexture1.o" "Testing:file1.uv";
 connectAttr "Testing:place2dTexture1.ofs" "Testing:file1.fs";
-connectAttr "Testing:polySphere2.out" "Testing:deleteComponent1.ig";
-connectAttr "Testing:deleteComponent1.og" "Testing:polyTweakUV1.ip";
 connectAttr "Testing:Tree:file1.oc" "treetrunk.c";
 connectAttr "treetrunk.oc" "Testing:Tree:lambert2SG.ss";
 connectAttr "Testing:Tree:pCylinderShape1.iog" "Testing:Tree:lambert2SG.dsm" -na
@@ -8951,9 +9058,9 @@ connectAttr "Air1ShapeSG.msg" "materialInfo11.sg";
 connectAttr "fluidShape5SG.msg" "materialInfo12.sg";
 connectAttr "Testing:polySphere1.out" "polyTweakUV1.ip";
 connectAttr "file2.oc" "orb.c";
-connectAttr "|Orb|Orb.rp" "motionTrail1.lp";
-connectAttr "|Orb|Orb.wm" "motionTrail1.im";
-connectAttr "|Orb|Orb.msg" "motionTrail1.so";
+connectAttr "Orb.rp" "motionTrail1.lp";
+connectAttr "Orb.wm" "motionTrail1.im";
+connectAttr "Orb.msg" "motionTrail1.so";
 connectAttr "oceanShader2SG.msg" "materialInfo13.sg";
 connectAttr "mia_material_x1SG.msg" "materialInfo14.sg";
 connectAttr "GlowX.oc" "rampShader1SG.ss";
@@ -8980,7 +9087,6 @@ connectAttr "fractal1.oa" "reverse1.ix";
 connectAttr "fractal1.oa" "reverse1.iy";
 connectAttr "fractal1.oa" "reverse1.iz";
 connectAttr "largeFlames1Shader.oc" "largeFlames1ShaderSG.ss";
-connectAttr "largeFlames1MainShape.iog" "largeFlames1ShaderSG.dsm" -na;
 connectAttr "largeFlames1ShaderSG.msg" "materialInfo16.sg";
 connectAttr "largeFlames1Shader.msg" "materialInfo16.m";
 connectAttr "largeFlames1Shader.msg" "materialInfo16.t" -na;
@@ -8996,10 +9102,53 @@ connectAttr "fractal2.oa" "reverse2.ix";
 connectAttr "fractal2.oa" "reverse2.iy";
 connectAttr "fractal2.oa" "reverse2.iz";
 connectAttr "largeFlames2Shader.oc" "largeFlames2ShaderSG.ss";
-connectAttr "largeFlames2MainShape.iog" "largeFlames2ShaderSG.dsm" -na;
 connectAttr "largeFlames2ShaderSG.msg" "materialInfo17.sg";
 connectAttr "largeFlames2Shader.msg" "materialInfo17.m";
 connectAttr "largeFlames2Shader.msg" "materialInfo17.t" -na;
+connectAttr "Fog:hyperView1.msg" "Fog:nodeEditorPanel1Info.b[0]";
+connectAttr "Fog:hyperLayout1.msg" "Fog:hyperView1.hl";
+connectAttr "Fog:fluid1.msg" "Fog:hyperLayout1.hyp[5].dn";
+connectAttr "Fog:fluidShape1.msg" "Fog:hyperLayout1.hyp[6].dn";
+connectAttr "Fog:fluidShape1SG.msg" "Fog:hyperLayout1.hyp[7].dn";
+connectAttr "Fog:expression1.msg" "Fog:hyperLayout1.hyp[8].dn";
+connectAttr "Fog:fluidShape1.ocl" "Fog:fluidShape1SG.vs";
+connectAttr "Fog:fluidShape1.iog" "Fog:fluidShape1SG.dsm" -na;
+connectAttr "Fog:fluidShape1SG.msg" "Fog:materialInfo1.sg";
+connectAttr ":time1.o" "Fog:expression1.tim";
+connectAttr "Fog:fluidShape1.msg" "Fog:expression1.obm";
+connectAttr "Cloud:hyperView1.msg" "Cloud:nodeEditorPanel1Info.b[0]";
+connectAttr "Cloud:hyperLayout1.msg" "Cloud:hyperView1.hl";
+connectAttr "Cloud:fluid1.msg" "Cloud:hyperLayout1.hyp[5].dn";
+connectAttr "Cloud:fluidShape1.msg" "Cloud:hyperLayout1.hyp[6].dn";
+connectAttr "Cloud:fluidShape1SG.msg" "Cloud:hyperLayout1.hyp[7].dn";
+connectAttr "Cloud:expression1.msg" "Cloud:hyperLayout1.hyp[8].dn";
+connectAttr "Cloud:fluidShape1.ocl" "Cloud:fluidShape1SG.vs";
+connectAttr "Cloud:fluidShape1.iog" "Cloud:fluidShape1SG.dsm" -na;
+connectAttr "Cloud:fluidShape1SG.msg" "Cloud:materialInfo1.sg";
+connectAttr ":time1.o" "Cloud:expression1.tim";
+connectAttr "Cloud:fluidShape1.msg" "Cloud:expression1.obm";
+connectAttr "Water:hyperView1.msg" "Water:nodeEditorPanel1Info.b[0]";
+connectAttr "Water:hyperLayout1.msg" "Water:hyperView1.hl";
+connectAttr "Water:oceanPlane1.msg" "Water:hyperLayout1.hyp[5].dn";
+connectAttr "Water:oceanPlaneShape1.msg" "Water:hyperLayout1.hyp[6].dn";
+connectAttr "Water:makeNurbPlane1.msg" "Water:hyperLayout1.hyp[7].dn";
+connectAttr "Water:oceanShader1.msg" "Water:hyperLayout1.hyp[8].dn";
+connectAttr "Water:oceanShader1SG.msg" "Water:hyperLayout1.hyp[9].dn";
+connectAttr "Water:transform1.msg" "Water:hyperLayout1.hyp[10].dn";
+connectAttr "Water:oceanPreviewPlane1.msg" "Water:hyperLayout1.hyp[11].dn";
+connectAttr ":time1.o" "Water:oceanShader1.ti";
+connectAttr "Water:oceanShader1.oc" "Water:oceanShader1SG.ss";
+connectAttr "Water:oceanShader1.d" "Water:oceanShader1SG.ds";
+connectAttr "Water:oceanPlaneShape1.iog" "Water:oceanShader1SG.dsm" -na;
+connectAttr "Water:oceanShader1SG.msg" "Water:materialInfo1.sg";
+connectAttr "Water:oceanShader1.msg" "Water:materialInfo1.m";
+connectAttr "Water:oceanShader1.msg" "Water:materialInfo1.t" -na;
+connectAttr "BorderedgeShape.ocl" "fluidShape1SG1.vs";
+connectAttr "BorderedgeShape.iog" "fluidShape1SG1.dsm" -na;
+connectAttr "fluidShape1SG1.msg" "materialInfo18.sg";
+connectAttr "Borderedge_2Shape.ocl" "Borderedge1ShapeSG.vs";
+connectAttr "Borderedge_2Shape.iog" "Borderedge1ShapeSG.dsm" -na;
+connectAttr "Borderedge1ShapeSG.msg" "materialInfo19.sg";
 connectAttr "TexturedPavillionTerrain:defaultMat.pa" ":renderPartition.st" -na;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat.pa" ":renderPartition.st"
 		 -na;
@@ -9024,6 +9173,11 @@ connectAttr "mia_material_x1SG.pa" ":renderPartition.st" -na;
 connectAttr "rampShader1SG.pa" ":renderPartition.st" -na;
 connectAttr "largeFlames1ShaderSG.pa" ":renderPartition.st" -na;
 connectAttr "largeFlames2ShaderSG.pa" ":renderPartition.st" -na;
+connectAttr "Fog:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "Cloud:fluidShape1SG.pa" ":renderPartition.st" -na;
+connectAttr "Water:oceanShader1SG.pa" ":renderPartition.st" -na;
+connectAttr "fluidShape1SG1.pa" ":renderPartition.st" -na;
+connectAttr "Borderedge1ShapeSG.pa" ":renderPartition.st" -na;
 connectAttr "TexturedPavillionTerrain:defaultMat1.msg" ":defaultShaderList1.s" -na
 		;
 connectAttr "Testing:Hero_Body:stickFigure_Hero:defaultMat1.msg" ":defaultShaderList1.s"
@@ -9042,6 +9196,11 @@ connectAttr "AirShape.msg" ":defaultShaderList1.s" -na;
 connectAttr "GlowX.msg" ":defaultShaderList1.s" -na;
 connectAttr "largeFlames1Shader.msg" ":defaultShaderList1.s" -na;
 connectAttr "largeFlames2Shader.msg" ":defaultShaderList1.s" -na;
+connectAttr "Fog:fluidShape1.msg" ":defaultShaderList1.s" -na;
+connectAttr "Cloud:fluidShape1.msg" ":defaultShaderList1.s" -na;
+connectAttr "Water:oceanShader1.msg" ":defaultShaderList1.s" -na;
+connectAttr "BorderedgeShape.msg" ":defaultShaderList1.s" -na;
+connectAttr "Borderedge_2Shape.msg" ":defaultShaderList1.s" -na;
 connectAttr "file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Testing:file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Testing:Tree:file1.msg" ":defaultTextureList1.tx" -na;
@@ -9074,7 +9233,9 @@ connectAttr "reverse1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture6.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture7.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "reverse2.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "Water:oceanPreviewPlane1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
+connectAttr ":perspShape.msg" ":defaultRenderGlobals.sc";
 connectAttr "defaultLightShape.iog" ":defaultLightSet.dsm" -na;
 connectAttr "|Lightray.iog" ":defaultLightSet.dsm" -na;
 // End of MysteriousShrineTerrain.ma
