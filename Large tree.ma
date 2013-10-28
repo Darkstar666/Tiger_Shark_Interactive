@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Large tree.ma
-//Last modified: Mon, Oct 07, 2013 01:34:00 PM
+//Last modified: Mon, Oct 28, 2013 03:02:57 PM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -78,17 +78,6 @@ createNode directionalLight -n "directionalLightShape1" -p "directionalLight1";
 	setAttr ".urs" no;
 	setAttr ".sc" -type "float3" 0.31999999 0.048640002 0.048640002 ;
 	setAttr ".dms" yes;
-createNode transform -n "pPlane1";
-	setAttr ".t" -type "double3" -0.041741625859135212 0.064274009680157729 -1.6928883720915708 ;
-createNode mesh -n "pPlaneShape1" -p "pPlane1";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "Tree";
 createNode transform -n "Small_branch" -p "Tree";
 	setAttr ".s" -type "double3" 0.5270133655147311 0.5270133655147311 0.5270133655147311 ;
@@ -55563,12 +55552,6 @@ createNode polyPlane -n "polyPlane1";
 	setAttr ".sw" 1;
 	setAttr ".sh" 1;
 	setAttr ".cuv" 2;
-createNode polyPlane -n "polyPlane2";
-	setAttr ".w" 21.522881880123311;
-	setAttr ".h" 31.425840892041123;
-	setAttr ".sw" 1;
-	setAttr ".sh" 1;
-	setAttr ".cuv" 2;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -55610,7 +55593,6 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "polyPlane2.out" "pPlaneShape1.i";
 connectAttr "polyTweakUV2.out" "pCylinderShape2.i";
 connectAttr "polyTweakUV2.uvtk[0]" "pCylinderShape2.uvst[0].uvtw";
 connectAttr "polyTweakUV3.out" "TrunkShape.i";
@@ -57531,7 +57513,6 @@ connectAttr "|Tree|Leaves|Center_leaves|group2|group1|leaves_1|leaves_1Shape.wm"
 connectAttr "polyPlane1.out" "polyTweakUV1.ip";
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert3SG.pa" ":renderPartition.st" -na;
-connectAttr "pPlaneShape1.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "Bark.msg" ":defaultShaderList1.s" -na;
 connectAttr "lambert3.msg" ":defaultShaderList1.s" -na;
 connectAttr "file1.msg" ":defaultTextureList1.tx" -na;
