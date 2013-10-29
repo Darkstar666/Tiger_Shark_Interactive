@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
-//Name: Tree.ma
-//Last modified: Mon, Oct 07, 2013 01:42:31 PM
+//Name: Small tree 2.ma
+//Last modified: Tue, Oct 29, 2013 11:34:45 AM
 //Codeset: 1252
 requires maya "2014";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeType "mentalrayRenderPass"
@@ -90,15 +90,15 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 49.194047805936975 14.08413370227008 -20.991369186886534 ;
-	setAttr ".r" -type "double3" -6.6000000000012689 5149.2000000004036 0 ;
+	setAttr ".t" -type "double3" 17.698950428519982 16.02490756355111 16.742792024832266 ;
+	setAttr ".r" -type "double3" -26.399999993545347 5083.1999999998634 -2.1815442817525783e-015 ;
 	setAttr ".rp" -type "double3" 0 0 3.5527136788005009e-015 ;
 	setAttr ".rpt" -type "double3" -9.3984478141333072e-016 4.2921924589101575e-015 
 		-4.5924994508171515e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 53.508615150797404;
+	setAttr ".coi" 28.278736594409096;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -145,10 +145,18 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
-createNode transform -n "pCylinder1";
+createNode transform -n "Tree";
+	setAttr ".t" -type "double3" 0 0 0.35993905249135949 ;
+	setAttr ".rp" -type "double3" 0 0 -0.35993905249135949 ;
+	setAttr ".sp" -type "double3" 0 0 -0.35993905249135949 ;
+createNode transform -n "Trunk" -p "Tree";
 	setAttr ".t" -type "double3" -0.0091918568007809398 7.0545236613035422 -0.35993909532807322 ;
-createNode mesh -n "pCylinderShape1" -p "pCylinder1";
+createNode transform -n "transform106" -p "Trunk";
+	setAttr ".v" no;
+createNode mesh -n "TrunkShape" -p "transform106";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr -s 2 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.49580615758895874 0.50046992301940918 ;
@@ -319,7 +327,7 @@ createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr ".pt[158]" -type "float3" -0.55715275 -1.0830804 -0.13113004 ;
 	setAttr ".pt[159]" -type "float3" -0.57896006 -1.0797534 -7.6461596e-008 ;
 	setAttr ".pt[161]" -type "float3" -0.34096712 -0.41544896 0 ;
-createNode transform -n "group1";
+createNode transform -n "group1" -p "Tree";
 	setAttr ".t" -type "double3" 0.96343427153235806 6.5599428511964692 8.1471002577857838 ;
 	setAttr ".r" -type "double3" -66.841460077091298 0 0 ;
 	setAttr ".s" -type "double3" 0.78834981445452734 0.78834981445452734 0.78834981445452734 ;
@@ -330,8 +338,34 @@ createNode transform -n "pPlane7" -p "group1";
 	setAttr ".t" -type "double3" -1.2031990258656475 13.1841650776483 -5.0490710432289703 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group1|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group1|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform105" -p "|Tree|group1|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform105";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -379,7 +413,11 @@ createNode mesh -n "pPlaneShape7" -p "|group1|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane7";
+createNode transform -n "pPlane8" -p "group1";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group1|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -402,12 +440,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group1";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group1|pPlane8";
+createNode transform -n "transform104" -p "|Tree|group1|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform104";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -455,7 +492,11 @@ createNode mesh -n "pPlaneShape8" -p "|group1|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane8";
+createNode transform -n "pPlane9" -p "group1";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group1|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -478,12 +519,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group1";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group1|pPlane9";
+createNode transform -n "transform103" -p "|Tree|group1|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform103";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -531,7 +571,11 @@ createNode mesh -n "pPlaneShape9" -p "|group1|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane9";
+createNode transform -n "pPlane10" -p "group1";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group1|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -554,12 +598,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group1";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group1|pPlane10";
+createNode transform -n "transform102" -p "|Tree|group1|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform102";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -607,7 +650,11 @@ createNode mesh -n "pPlaneShape10" -p "|group1|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane10";
+createNode transform -n "pPlane11" -p "group1";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group1|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -630,12 +677,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group1";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group1|pPlane11";
+createNode transform -n "transform101" -p "|Tree|group1|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform101";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -683,7 +729,15 @@ createNode mesh -n "pPlaneShape11" -p "|group1|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane11";
+createNode transform -n "group2" -p "Tree";
+	setAttr ".s" -type "double3" 0.63203203083249915 0.63203203083249915 0.63203203083249915 ;
+	setAttr ".rp" -type "double3" 0 12.670112802988456 0 ;
+	setAttr ".sp" -type "double3" 0 12.670112802988456 0 ;
+createNode transform -n "pPlane2" -p "group2";
+	setAttr ".t" -type "double3" -1.2031990258656475 13.578846820821241 -0.15574485136917815 ;
+	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
+	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group2|pPlane2";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -706,16 +760,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group1|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group2";
-	setAttr ".s" -type "double3" 0.63203203083249915 0.63203203083249915 0.63203203083249915 ;
-	setAttr ".rp" -type "double3" 0 12.670112802988456 0 ;
-	setAttr ".sp" -type "double3" 0 12.670112802988456 0 ;
-createNode transform -n "pPlane2" -p "group2";
-	setAttr ".t" -type "double3" -1.2031990258656475 13.578846820821241 -0.15574485136917815 ;
-	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
-	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape2" -p "|group2|pPlane2";
+createNode transform -n "transform100" -p "|Tree|group2|pPlane2";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape2" -p "transform100";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -734,7 +783,11 @@ createNode mesh -n "pPlaneShape2" -p "|group2|pPlane2";
 	setAttr ".pt[8]" -type "float3" 0 0.29697847 0 ;
 	setAttr ".pt[10]" -type "float3" 0 -0.048455968 0 ;
 	setAttr ".pt[11]" -type "float3" 0 -0.64593583 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane2";
+createNode transform -n "pPlane3" -p "group2";
+	setAttr ".t" -type "double3" -2.1498317053940688 13.367117896447887 1.1501437090679847 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group2|pPlane3";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -757,12 +810,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane3" -p "group2";
-	setAttr ".t" -type "double3" -2.1498317053940688 13.367117896447887 1.1501437090679847 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape3" -p "|group2|pPlane3";
+createNode transform -n "transform99" -p "|Tree|group2|pPlane3";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape3" -p "transform99";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -810,7 +862,11 @@ createNode mesh -n "pPlaneShape3" -p "|group2|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane3";
+createNode transform -n "pPlane4" -p "group2";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.578846820821241 1.199216728547535 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group2|pPlane4";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -833,12 +889,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane4" -p "group2";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.578846820821241 1.199216728547535 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape4" -p "|group2|pPlane4";
+createNode transform -n "transform98" -p "|Tree|group2|pPlane4";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape4" -p "transform98";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -886,7 +941,11 @@ createNode mesh -n "pPlaneShape4" -p "|group2|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane4";
+createNode transform -n "pPlane5" -p "group2";
+	setAttr ".t" -type "double3" -0.86188794722341955 14.189229411098372 -1.4535931392142878 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group2|pPlane5";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -909,12 +968,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane5" -p "group2";
-	setAttr ".t" -type "double3" -0.86188794722341955 14.189229411098372 -1.4535931392142878 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape5" -p "|group2|pPlane5";
+createNode transform -n "transform97" -p "|Tree|group2|pPlane5";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape5" -p "transform97";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -962,7 +1020,11 @@ createNode mesh -n "pPlaneShape5" -p "|group2|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane5";
+createNode transform -n "pPlane6" -p "group2";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.897959393261852 -0.80559189931196329 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group2|pPlane6";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -985,12 +1047,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane6" -p "group2";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.897959393261852 -0.80559189931196329 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape6" -p "|group2|pPlane6";
+createNode transform -n "transform96" -p "|Tree|group2|pPlane6";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape6" -p "transform96";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1038,30 +1099,7 @@ createNode mesh -n "pPlaneShape6" -p "|group2|pPlane6";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group2|pPlane6";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group3";
+createNode transform -n "group3" -p "Tree";
 	setAttr ".t" -type "double3" 0.84060122158486517 1.6499904770698386 -0.041954686435317967 ;
 	setAttr ".r" -type "double3" -142.29778362998147 35.745342171019367 -174.86103357423286 ;
 	setAttr ".s" -type "double3" 0.51411464927285422 0.51411464927285422 0.51411464927285422 ;
@@ -1073,8 +1111,34 @@ createNode transform -n "pPlane2" -p "group3";
 	setAttr ".t" -type "double3" 7.5506381785984544 21.01656932096143 21.88425666165535 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape2" -p "|group3|pPlane2";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group3|pPlane2";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform95" -p "|Tree|group3|pPlane2";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape2" -p "transform95";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1122,7 +1186,11 @@ createNode mesh -n "pPlaneShape2" -p "|group3|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane2";
+createNode transform -n "pPlane3" -p "group3";
+	setAttr ".t" -type "double3" 6.6040054990700314 20.80484039658808 23.190145222092511 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group3|pPlane3";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1145,12 +1213,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane3" -p "group3";
-	setAttr ".t" -type "double3" 6.6040054990700314 20.80484039658808 23.190145222092511 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape3" -p "|group3|pPlane3";
+createNode transform -n "transform94" -p "|Tree|group3|pPlane3";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape3" -p "transform94";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1198,7 +1265,11 @@ createNode mesh -n "pPlaneShape3" -p "|group3|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane3";
+createNode transform -n "pPlane4" -p "group3";
+	setAttr ".t" -type "double3" 8.4651569406820322 21.01656932096143 23.239218241572061 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group3|pPlane4";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1221,12 +1292,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane4" -p "group3";
-	setAttr ".t" -type "double3" 8.4651569406820322 21.01656932096143 23.239218241572061 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape4" -p "|group3|pPlane4";
+createNode transform -n "transform93" -p "|Tree|group3|pPlane4";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape4" -p "transform93";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1274,7 +1344,11 @@ createNode mesh -n "pPlaneShape4" -p "|group3|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane4";
+createNode transform -n "pPlane5" -p "group3";
+	setAttr ".t" -type "double3" 7.8919492572406824 21.626951911238564 20.586408373810237 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group3|pPlane5";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1297,12 +1371,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane5" -p "group3";
-	setAttr ".t" -type "double3" 7.8919492572406824 21.626951911238564 20.586408373810237 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape5" -p "|group3|pPlane5";
+createNode transform -n "transform92" -p "|Tree|group3|pPlane5";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape5" -p "transform92";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1350,7 +1423,11 @@ createNode mesh -n "pPlaneShape5" -p "|group3|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane5";
+createNode transform -n "pPlane6" -p "group3";
+	setAttr ".t" -type "double3" 6.6757833998292417 22.335681893402043 21.234409613712561 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group3|pPlane6";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1373,12 +1450,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane6" -p "group3";
-	setAttr ".t" -type "double3" 6.6757833998292417 22.335681893402043 21.234409613712561 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape6" -p "|group3|pPlane6";
+createNode transform -n "transform91" -p "|Tree|group3|pPlane6";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape6" -p "transform91";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1426,30 +1502,7 @@ createNode mesh -n "pPlaneShape6" -p "|group3|pPlane6";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group3|pPlane6";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group4";
+createNode transform -n "group4" -p "Tree";
 	setAttr ".t" -type "double3" 0.41551499953561533 3.1828283658579757 -0.71911967638253849 ;
 	setAttr ".r" -type "double3" -171.07891460001304 35.745342171019367 -174.86103357423286 ;
 	setAttr ".s" -type "double3" 0.43638507071023419 0.43638507071023419 0.43638507071023419 ;
@@ -1459,8 +1512,34 @@ createNode transform -n "pPlane2" -p "group4";
 	setAttr ".t" -type "double3" 15.419942228960132 17.160273477852844 35.077313933430609 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape2" -p "|group4|pPlane2";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group4|pPlane2";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform90" -p "|Tree|group4|pPlane2";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape2" -p "transform90";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1508,7 +1587,11 @@ createNode mesh -n "pPlaneShape2" -p "|group4|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane2";
+createNode transform -n "pPlane3" -p "group4";
+	setAttr ".t" -type "double3" 14.473309549431711 16.94854455347949 36.383202493867778 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group4|pPlane3";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1531,12 +1614,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane3" -p "group4";
-	setAttr ".t" -type "double3" 14.473309549431711 16.94854455347949 36.383202493867778 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape3" -p "|group4|pPlane3";
+createNode transform -n "transform89" -p "|Tree|group4|pPlane3";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape3" -p "transform89";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1584,7 +1666,11 @@ createNode mesh -n "pPlaneShape3" -p "|group4|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane3";
+createNode transform -n "pPlane4" -p "group4";
+	setAttr ".t" -type "double3" 16.334460991043706 17.160273477852844 36.432275513347328 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group4|pPlane4";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1607,12 +1693,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane4" -p "group4";
-	setAttr ".t" -type "double3" 16.334460991043706 17.160273477852844 36.432275513347328 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape4" -p "|group4|pPlane4";
+createNode transform -n "transform88" -p "|Tree|group4|pPlane4";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape4" -p "transform88";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1660,7 +1745,11 @@ createNode mesh -n "pPlaneShape4" -p "|group4|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane4";
+createNode transform -n "pPlane5" -p "group4";
+	setAttr ".t" -type "double3" 15.76125330760236 17.770656068129977 33.779465645585503 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group4|pPlane5";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1683,12 +1772,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane5" -p "group4";
-	setAttr ".t" -type "double3" 15.76125330760236 17.770656068129977 33.779465645585503 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape5" -p "|group4|pPlane5";
+createNode transform -n "transform87" -p "|Tree|group4|pPlane5";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape5" -p "transform87";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1736,7 +1824,11 @@ createNode mesh -n "pPlaneShape5" -p "|group4|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane5";
+createNode transform -n "pPlane6" -p "group4";
+	setAttr ".t" -type "double3" 14.54508745019092 18.479386050293456 34.427466885487824 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group4|pPlane6";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1759,12 +1851,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane6" -p "group4";
-	setAttr ".t" -type "double3" 14.54508745019092 18.479386050293456 34.427466885487824 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape6" -p "|group4|pPlane6";
+createNode transform -n "transform86" -p "|Tree|group4|pPlane6";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape6" -p "transform86";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1812,30 +1903,7 @@ createNode mesh -n "pPlaneShape6" -p "|group4|pPlane6";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group4|pPlane6";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group5";
+createNode transform -n "group5" -p "Tree";
 	setAttr ".t" -type "double3" 0.33800003849871829 1.2535308693052531 -1.0983872344636119 ;
 	setAttr ".r" -type "double3" -129.23989646415416 -42.459098858733 -186.76688102525821 ;
 	setAttr ".s" -type "double3" 0.43638507071023419 0.43638507071023419 0.43638507071023419 ;
@@ -1845,8 +1913,34 @@ createNode transform -n "pPlane2" -p "group5";
 	setAttr ".t" -type "double3" -20.412361946600335 29.838160716306017 25.541373794404834 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape2" -p "|group5|pPlane2";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group5|pPlane2";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform85" -p "|Tree|group5|pPlane2";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape2" -p "transform85";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1894,7 +1988,11 @@ createNode mesh -n "pPlaneShape2" -p "|group5|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane2";
+createNode transform -n "pPlane3" -p "group5";
+	setAttr ".t" -type "double3" -21.358994626128759 29.626431791932667 26.847262354841998 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group5|pPlane3";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1917,12 +2015,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane2";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane3" -p "group5";
-	setAttr ".t" -type "double3" -21.358994626128759 29.626431791932667 26.847262354841998 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape3" -p "|group5|pPlane3";
+createNode transform -n "transform84" -p "|Tree|group5|pPlane3";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape3" -p "transform84";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -1970,7 +2067,11 @@ createNode mesh -n "pPlaneShape3" -p "|group5|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane3";
+createNode transform -n "pPlane4" -p "group5";
+	setAttr ".t" -type "double3" -19.497843184516757 29.838160716306017 26.896335374321549 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group5|pPlane4";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -1993,12 +2094,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane3";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane4" -p "group5";
-	setAttr ".t" -type "double3" -19.497843184516757 29.838160716306017 26.896335374321549 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape4" -p "|group5|pPlane4";
+createNode transform -n "transform83" -p "|Tree|group5|pPlane4";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape4" -p "transform83";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2046,7 +2146,11 @@ createNode mesh -n "pPlaneShape4" -p "|group5|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane4";
+createNode transform -n "pPlane5" -p "group5";
+	setAttr ".t" -type "double3" -20.071050867958107 30.448543306583144 24.243525506559724 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group5|pPlane5";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2069,12 +2173,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane4";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane5" -p "group5";
-	setAttr ".t" -type "double3" -20.071050867958107 30.448543306583144 24.243525506559724 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape5" -p "|group5|pPlane5";
+createNode transform -n "transform82" -p "|Tree|group5|pPlane5";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape5" -p "transform82";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2122,7 +2225,11 @@ createNode mesh -n "pPlaneShape5" -p "|group5|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane5";
+createNode transform -n "pPlane6" -p "group5";
+	setAttr ".t" -type "double3" -21.287216725369547 31.157273288746623 24.891526746462048 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group5|pPlane6";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2145,12 +2252,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane5";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane6" -p "group5";
-	setAttr ".t" -type "double3" -21.287216725369547 31.157273288746623 24.891526746462048 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape6" -p "|group5|pPlane6";
+createNode transform -n "transform81" -p "|Tree|group5|pPlane6";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape6" -p "transform81";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2198,30 +2304,7 @@ createNode mesh -n "pPlaneShape6" -p "|group5|pPlane6";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group5|pPlane6";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group6";
+createNode transform -n "group6" -p "Tree";
 	setAttr ".t" -type "double3" 0.15977752537750423 1.5992421887513277 8.4176009687889568 ;
 	setAttr ".r" -type "double3" -58.111537851666959 0 0 ;
 	setAttr ".rp" -type "double3" -1.3262306359693785 10.503141489397288 -6.068655411199841 ;
@@ -2231,8 +2314,34 @@ createNode transform -n "pPlane7" -p "group6";
 	setAttr ".t" -type "double3" -1.2031990258656475 13.1841650776483 -5.0490710432289703 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group6|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group6|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform80" -p "|Tree|group6|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform80";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2280,7 +2389,11 @@ createNode mesh -n "pPlaneShape7" -p "|group6|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane7";
+createNode transform -n "pPlane8" -p "group6";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group6|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2303,12 +2416,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group6";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group6|pPlane8";
+createNode transform -n "transform79" -p "|Tree|group6|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform79";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2356,7 +2468,11 @@ createNode mesh -n "pPlaneShape8" -p "|group6|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane8";
+createNode transform -n "pPlane9" -p "group6";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group6|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2379,12 +2495,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group6";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group6|pPlane9";
+createNode transform -n "transform78" -p "|Tree|group6|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform78";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2432,7 +2547,11 @@ createNode mesh -n "pPlaneShape9" -p "|group6|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane9";
+createNode transform -n "pPlane10" -p "group6";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group6|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2455,12 +2574,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group6";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group6|pPlane10";
+createNode transform -n "transform77" -p "|Tree|group6|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform77";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2508,7 +2626,11 @@ createNode mesh -n "pPlaneShape10" -p "|group6|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane10";
+createNode transform -n "pPlane11" -p "group6";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group6|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2531,12 +2653,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group6";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group6|pPlane11";
+createNode transform -n "transform76" -p "|Tree|group6|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform76";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2584,30 +2705,7 @@ createNode mesh -n "pPlaneShape11" -p "|group6|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group6|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group7";
+createNode transform -n "group7" -p "Tree";
 	setAttr ".t" -type "double3" -0.53504265949326379 3.3442686664942611 10.367855921752572 ;
 	setAttr ".r" -type "double3" -102.83348785971857 76.286950040244903 -50.346506745771386 ;
 	setAttr ".rp" -type "double3" -1.3262306359693785 10.503141489397288 -6.068655411199841 ;
@@ -2617,8 +2715,34 @@ createNode transform -n "pPlane7" -p "group7";
 	setAttr ".t" -type "double3" -1.2031990258656475 13.1841650776483 -5.0490710432289703 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group7|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group7|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform75" -p "|Tree|group7|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform75";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2666,7 +2790,11 @@ createNode mesh -n "pPlaneShape7" -p "|group7|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane7";
+createNode transform -n "pPlane8" -p "group7";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group7|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2689,12 +2817,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group7";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group7|pPlane8";
+createNode transform -n "transform74" -p "|Tree|group7|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform74";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2742,7 +2869,11 @@ createNode mesh -n "pPlaneShape8" -p "|group7|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane8";
+createNode transform -n "pPlane9" -p "group7";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group7|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2765,12 +2896,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group7";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group7|pPlane9";
+createNode transform -n "transform73" -p "|Tree|group7|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform73";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2818,7 +2948,11 @@ createNode mesh -n "pPlaneShape9" -p "|group7|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane9";
+createNode transform -n "pPlane10" -p "group7";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group7|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2841,12 +2975,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group7";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group7|pPlane10";
+createNode transform -n "transform72" -p "|Tree|group7|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform72";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2894,7 +3027,11 @@ createNode mesh -n "pPlaneShape10" -p "|group7|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane10";
+createNode transform -n "pPlane11" -p "group7";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group7|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -2917,12 +3054,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group7";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group7|pPlane11";
+createNode transform -n "transform71" -p "|Tree|group7|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform71";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -2970,30 +3106,7 @@ createNode mesh -n "pPlaneShape11" -p "|group7|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group7|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group8";
+createNode transform -n "group8" -p "Tree";
 	setAttr ".t" -type "double3" 0.78928656102292338 9.122543665969209 9.4348083850036133 ;
 	setAttr ".r" -type "double3" 95.659293054038457 26.314124689428866 162.08026501935453 ;
 	setAttr ".s" -type "double3" 0.73139784074813863 0.73139784074813863 0.73139784074813863 ;
@@ -3004,8 +3117,34 @@ createNode transform -n "pPlane7" -p "group8";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group8|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group8|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform70" -p "|Tree|group8|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform70";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3053,7 +3192,11 @@ createNode mesh -n "pPlaneShape7" -p "|group8|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane7";
+createNode transform -n "pPlane8" -p "group8";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group8|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3076,12 +3219,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group8";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group8|pPlane8";
+createNode transform -n "transform69" -p "|Tree|group8|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform69";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3129,7 +3271,11 @@ createNode mesh -n "pPlaneShape8" -p "|group8|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane8";
+createNode transform -n "pPlane9" -p "group8";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group8|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3152,12 +3298,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group8";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group8|pPlane9";
+createNode transform -n "transform68" -p "|Tree|group8|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform68";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3205,7 +3350,11 @@ createNode mesh -n "pPlaneShape9" -p "|group8|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane9";
+createNode transform -n "pPlane10" -p "group8";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group8|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3228,12 +3377,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group8";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group8|pPlane10";
+createNode transform -n "transform67" -p "|Tree|group8|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform67";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3281,7 +3429,11 @@ createNode mesh -n "pPlaneShape10" -p "|group8|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane10";
+createNode transform -n "pPlane11" -p "group8";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group8|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3304,12 +3456,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group8";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group8|pPlane11";
+createNode transform -n "transform66" -p "|Tree|group8|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform66";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3357,30 +3508,7 @@ createNode mesh -n "pPlaneShape11" -p "|group8|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group8|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group9";
+createNode transform -n "group9" -p "Tree";
 	setAttr ".t" -type "double3" 1.9752447636231554 11.578660079902422 10.2767158175989 ;
 	setAttr ".r" -type "double3" 157.12449790126578 18.72180150237703 137.27424532052171 ;
 	setAttr ".s" -type "double3" 0.47260974306441134 0.47260974306441134 0.47260974306441134 ;
@@ -3391,8 +3519,34 @@ createNode transform -n "pPlane7" -p "group9";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group9|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group9|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform65" -p "|Tree|group9|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform65";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3440,7 +3594,11 @@ createNode mesh -n "pPlaneShape7" -p "|group9|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane7";
+createNode transform -n "pPlane8" -p "group9";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group9|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3463,12 +3621,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group9";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group9|pPlane8";
+createNode transform -n "transform64" -p "|Tree|group9|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform64";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3516,7 +3673,11 @@ createNode mesh -n "pPlaneShape8" -p "|group9|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane8";
+createNode transform -n "pPlane9" -p "group9";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group9|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3539,12 +3700,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group9";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group9|pPlane9";
+createNode transform -n "transform63" -p "|Tree|group9|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform63";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3592,7 +3752,11 @@ createNode mesh -n "pPlaneShape9" -p "|group9|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane9";
+createNode transform -n "pPlane10" -p "group9";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group9|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3615,12 +3779,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group9";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group9|pPlane10";
+createNode transform -n "transform62" -p "|Tree|group9|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform62";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3668,7 +3831,11 @@ createNode mesh -n "pPlaneShape10" -p "|group9|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane10";
+createNode transform -n "pPlane11" -p "group9";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group9|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3691,12 +3858,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group9";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group9|pPlane11";
+createNode transform -n "transform61" -p "|Tree|group9|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform61";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3744,30 +3910,7 @@ createNode mesh -n "pPlaneShape11" -p "|group9|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group9|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group10";
+createNode transform -n "group10" -p "Tree";
 	setAttr ".t" -type "double3" 1.5886759449278844 9.1451343124772677 10.491122548058645 ;
 	setAttr ".r" -type "double3" 122.72016126768274 18.721801502377037 137.27424532052174 ;
 	setAttr ".s" -type "double3" 0.62766248396745916 0.62766248396745916 0.62766248396745916 ;
@@ -3778,8 +3921,34 @@ createNode transform -n "pPlane7" -p "group10";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group10|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group10|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform60" -p "|Tree|group10|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform60";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3827,7 +3996,11 @@ createNode mesh -n "pPlaneShape7" -p "|group10|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane7";
+createNode transform -n "pPlane8" -p "group10";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group10|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3850,12 +4023,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group10";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group10|pPlane8";
+createNode transform -n "transform59" -p "|Tree|group10|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform59";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3903,7 +4075,11 @@ createNode mesh -n "pPlaneShape8" -p "|group10|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane8";
+createNode transform -n "pPlane9" -p "group10";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group10|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -3926,12 +4102,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group10";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group10|pPlane9";
+createNode transform -n "transform58" -p "|Tree|group10|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform58";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -3979,7 +4154,11 @@ createNode mesh -n "pPlaneShape9" -p "|group10|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane9";
+createNode transform -n "pPlane10" -p "group10";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group10|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4002,12 +4181,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group10";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group10|pPlane10";
+createNode transform -n "transform57" -p "|Tree|group10|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform57";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4055,7 +4233,11 @@ createNode mesh -n "pPlaneShape10" -p "|group10|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane10";
+createNode transform -n "pPlane11" -p "group10";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group10|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4078,12 +4260,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group10";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group10|pPlane11";
+createNode transform -n "transform56" -p "|Tree|group10|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform56";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4131,30 +4312,7 @@ createNode mesh -n "pPlaneShape11" -p "|group10|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group10|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group11";
+createNode transform -n "group11" -p "Tree";
 	setAttr ".t" -type "double3" 1.588675944927884 10.994780319017462 9.6423827493389105 ;
 	setAttr ".r" -type "double3" 224.04618310852464 18.721801502377104 137.27424532052171 ;
 	setAttr ".s" -type "double3" 0.62766248396745916 0.62766248396745916 0.62766248396745916 ;
@@ -4165,8 +4323,34 @@ createNode transform -n "pPlane7" -p "group11";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group11|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group11|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform55" -p "|Tree|group11|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform55";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4214,7 +4398,11 @@ createNode mesh -n "pPlaneShape7" -p "|group11|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane7";
+createNode transform -n "pPlane8" -p "group11";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group11|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4237,12 +4425,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group11";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group11|pPlane8";
+createNode transform -n "transform54" -p "|Tree|group11|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform54";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4290,7 +4477,11 @@ createNode mesh -n "pPlaneShape8" -p "|group11|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane8";
+createNode transform -n "pPlane9" -p "group11";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group11|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4313,12 +4504,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group11";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group11|pPlane9";
+createNode transform -n "transform53" -p "|Tree|group11|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform53";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4366,7 +4556,11 @@ createNode mesh -n "pPlaneShape9" -p "|group11|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane9";
+createNode transform -n "pPlane10" -p "group11";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group11|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4389,12 +4583,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group11";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group11|pPlane10";
+createNode transform -n "transform52" -p "|Tree|group11|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform52";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4442,7 +4635,11 @@ createNode mesh -n "pPlaneShape10" -p "|group11|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane10";
+createNode transform -n "pPlane11" -p "group11";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group11|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4465,12 +4662,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group11";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group11|pPlane11";
+createNode transform -n "transform51" -p "|Tree|group11|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform51";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4518,30 +4714,7 @@ createNode mesh -n "pPlaneShape11" -p "|group11|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group11|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group12";
+createNode transform -n "group12" -p "Tree";
 	setAttr ".t" -type "double3" 1.8931747644633512 3.6467179791171702 9.4093110353901324 ;
 	setAttr ".r" -type "double3" 242.34613548457691 41.980851166374933 171.95249616961453 ;
 	setAttr ".s" -type "double3" 0.82145673809214004 0.82145673809214004 0.82145673809214004 ;
@@ -4552,8 +4725,34 @@ createNode transform -n "pPlane7" -p "group12";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group12|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group12|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform50" -p "|Tree|group12|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform50";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4601,7 +4800,11 @@ createNode mesh -n "pPlaneShape7" -p "|group12|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane7";
+createNode transform -n "pPlane8" -p "group12";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group12|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4624,12 +4827,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group12";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group12|pPlane8";
+createNode transform -n "transform49" -p "|Tree|group12|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform49";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4677,7 +4879,11 @@ createNode mesh -n "pPlaneShape8" -p "|group12|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane8";
+createNode transform -n "pPlane9" -p "group12";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group12|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4700,12 +4906,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group12";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group12|pPlane9";
+createNode transform -n "transform48" -p "|Tree|group12|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform48";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4753,7 +4958,11 @@ createNode mesh -n "pPlaneShape9" -p "|group12|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane9";
+createNode transform -n "pPlane10" -p "group12";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group12|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4776,12 +4985,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group12";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group12|pPlane10";
+createNode transform -n "transform47" -p "|Tree|group12|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform47";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4829,7 +5037,11 @@ createNode mesh -n "pPlaneShape10" -p "|group12|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane10";
+createNode transform -n "pPlane11" -p "group12";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group12|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -4852,12 +5064,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group12";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group12|pPlane11";
+createNode transform -n "transform46" -p "|Tree|group12|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform46";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4905,30 +5116,7 @@ createNode mesh -n "pPlaneShape11" -p "|group12|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group12|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group13";
+createNode transform -n "group13" -p "Tree";
 	setAttr ".t" -type "double3" 1.8931747644633512 5.9968371354298498 8.7373175887379357 ;
 	setAttr ".r" -type "double3" 318.77290114227787 -2.4319122445548467 302.15611635030268 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -4939,8 +5127,34 @@ createNode transform -n "pPlane7" -p "group13";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group13|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group13|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform45" -p "|Tree|group13|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform45";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -4988,7 +5202,11 @@ createNode mesh -n "pPlaneShape7" -p "|group13|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane7";
+createNode transform -n "pPlane8" -p "group13";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group13|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5011,12 +5229,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group13";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group13|pPlane8";
+createNode transform -n "transform44" -p "|Tree|group13|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform44";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5064,7 +5281,11 @@ createNode mesh -n "pPlaneShape8" -p "|group13|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane8";
+createNode transform -n "pPlane9" -p "group13";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group13|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5087,12 +5308,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group13";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group13|pPlane9";
+createNode transform -n "transform43" -p "|Tree|group13|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform43";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5140,7 +5360,11 @@ createNode mesh -n "pPlaneShape9" -p "|group13|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane9";
+createNode transform -n "pPlane10" -p "group13";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group13|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5163,12 +5387,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group13";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group13|pPlane10";
+createNode transform -n "transform42" -p "|Tree|group13|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform42";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5216,7 +5439,11 @@ createNode mesh -n "pPlaneShape10" -p "|group13|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane10";
+createNode transform -n "pPlane11" -p "group13";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group13|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5239,12 +5466,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group13";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group13|pPlane11";
+createNode transform -n "transform41" -p "|Tree|group13|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform41";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5292,30 +5518,7 @@ createNode mesh -n "pPlaneShape11" -p "|group13|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group13|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group14";
+createNode transform -n "group14" -p "Tree";
 	setAttr ".t" -type "double3" 1.8329757854433708 7.5538504298515816 10.715358056568284 ;
 	setAttr ".r" -type "double3" 441.70494480488645 49.031385283300722 374.5235971967449 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -5326,8 +5529,34 @@ createNode transform -n "pPlane7" -p "group14";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group14|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group14|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform40" -p "|Tree|group14|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform40";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5375,7 +5604,11 @@ createNode mesh -n "pPlaneShape7" -p "|group14|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane7";
+createNode transform -n "pPlane8" -p "group14";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group14|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5398,12 +5631,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group14";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group14|pPlane8";
+createNode transform -n "transform39" -p "|Tree|group14|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform39";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5451,7 +5683,11 @@ createNode mesh -n "pPlaneShape8" -p "|group14|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane8";
+createNode transform -n "pPlane9" -p "group14";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group14|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5474,12 +5710,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group14";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group14|pPlane9";
+createNode transform -n "transform38" -p "|Tree|group14|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform38";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5527,7 +5762,11 @@ createNode mesh -n "pPlaneShape9" -p "|group14|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane9";
+createNode transform -n "pPlane10" -p "group14";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group14|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5550,12 +5789,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group14";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group14|pPlane10";
+createNode transform -n "transform37" -p "|Tree|group14|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform37";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5603,7 +5841,11 @@ createNode mesh -n "pPlaneShape10" -p "|group14|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane10";
+createNode transform -n "pPlane11" -p "group14";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group14|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5626,12 +5868,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group14";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group14|pPlane11";
+createNode transform -n "transform36" -p "|Tree|group14|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform36";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5679,30 +5920,7 @@ createNode mesh -n "pPlaneShape11" -p "|group14|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group14|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group15";
+createNode transform -n "group15" -p "Tree";
 	setAttr ".t" -type "double3" 1.8329757854433708 4.8992098168348006 9.8896255340891415 ;
 	setAttr ".r" -type "double3" 428.35040387404791 75.143917028305907 359.81588606167259 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -5713,8 +5931,34 @@ createNode transform -n "pPlane7" -p "group15";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group15|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group15|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform35" -p "|Tree|group15|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform35";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5762,7 +6006,11 @@ createNode mesh -n "pPlaneShape7" -p "|group15|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane7";
+createNode transform -n "pPlane8" -p "group15";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group15|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5785,12 +6033,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group15";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group15|pPlane8";
+createNode transform -n "transform34" -p "|Tree|group15|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform34";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5838,7 +6085,11 @@ createNode mesh -n "pPlaneShape8" -p "|group15|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane8";
+createNode transform -n "pPlane9" -p "group15";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group15|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5861,12 +6112,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group15";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group15|pPlane9";
+createNode transform -n "transform33" -p "|Tree|group15|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform33";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5914,7 +6164,11 @@ createNode mesh -n "pPlaneShape9" -p "|group15|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane9";
+createNode transform -n "pPlane10" -p "group15";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group15|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -5937,12 +6191,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group15";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group15|pPlane10";
+createNode transform -n "transform32" -p "|Tree|group15|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform32";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -5990,7 +6243,11 @@ createNode mesh -n "pPlaneShape10" -p "|group15|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane10";
+createNode transform -n "pPlane11" -p "group15";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group15|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6013,12 +6270,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group15";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group15|pPlane11";
+createNode transform -n "transform31" -p "|Tree|group15|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform31";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6066,30 +6322,7 @@ createNode mesh -n "pPlaneShape11" -p "|group15|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group15|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group16";
+createNode transform -n "group16" -p "Tree";
 	setAttr ".t" -type "double3" 1.5497371928287342 8.9767393346898192 9.7406371878517017 ;
 	setAttr ".r" -type "double3" 428.35040387404791 75.143917028305907 359.81588606167259 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -6100,8 +6333,34 @@ createNode transform -n "pPlane7" -p "group16";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group16|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group16|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform30" -p "|Tree|group16|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform30";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6149,7 +6408,11 @@ createNode mesh -n "pPlaneShape7" -p "|group16|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane7";
+createNode transform -n "pPlane8" -p "group16";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group16|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6172,12 +6435,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group16";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group16|pPlane8";
+createNode transform -n "transform29" -p "|Tree|group16|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform29";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6225,7 +6487,11 @@ createNode mesh -n "pPlaneShape8" -p "|group16|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane8";
+createNode transform -n "pPlane9" -p "group16";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group16|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6248,12 +6514,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group16";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group16|pPlane9";
+createNode transform -n "transform28" -p "|Tree|group16|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform28";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6301,7 +6566,11 @@ createNode mesh -n "pPlaneShape9" -p "|group16|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane9";
+createNode transform -n "pPlane10" -p "group16";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group16|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6324,12 +6593,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group16";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group16|pPlane10";
+createNode transform -n "transform27" -p "|Tree|group16|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform27";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6377,7 +6645,11 @@ createNode mesh -n "pPlaneShape10" -p "|group16|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane10";
+createNode transform -n "pPlane11" -p "group16";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group16|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6400,12 +6672,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group16";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group16|pPlane11";
+createNode transform -n "transform26" -p "|Tree|group16|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform26";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6453,30 +6724,7 @@ createNode mesh -n "pPlaneShape11" -p "|group16|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group16|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group17";
+createNode transform -n "group17" -p "Tree";
 	setAttr ".t" -type "double3" 1.2636921148884059 6.2248363567834204 10.41751363698093 ;
 	setAttr ".r" -type "double3" 444.50338360006697 -9.065411168850396 381.67442643794385 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -6487,8 +6735,34 @@ createNode transform -n "pPlane7" -p "group17";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group17|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group17|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform25" -p "|Tree|group17|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform25";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6536,7 +6810,11 @@ createNode mesh -n "pPlaneShape7" -p "|group17|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane7";
+createNode transform -n "pPlane8" -p "group17";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group17|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6559,12 +6837,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group17";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group17|pPlane8";
+createNode transform -n "transform24" -p "|Tree|group17|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform24";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6612,7 +6889,11 @@ createNode mesh -n "pPlaneShape8" -p "|group17|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane8";
+createNode transform -n "pPlane9" -p "group17";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group17|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6635,12 +6916,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group17";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group17|pPlane9";
+createNode transform -n "transform23" -p "|Tree|group17|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform23";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6688,7 +6968,11 @@ createNode mesh -n "pPlaneShape9" -p "|group17|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane9";
+createNode transform -n "pPlane10" -p "group17";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group17|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6711,12 +6995,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group17";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group17|pPlane10";
+createNode transform -n "transform22" -p "|Tree|group17|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform22";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6764,7 +7047,11 @@ createNode mesh -n "pPlaneShape10" -p "|group17|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane10";
+createNode transform -n "pPlane11" -p "group17";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group17|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6787,12 +7074,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group17";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group17|pPlane11";
+createNode transform -n "transform21" -p "|Tree|group17|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform21";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6840,30 +7126,7 @@ createNode mesh -n "pPlaneShape11" -p "|group17|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group17|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group18";
+createNode transform -n "group18" -p "Tree";
 	setAttr ".t" -type "double3" 0.91944539825989358 3.5421698964524708 10.099378295778552 ;
 	setAttr ".r" -type "double3" 444.50338360006697 -9.065411168850396 381.67442643794385 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -6874,8 +7137,34 @@ createNode transform -n "pPlane7" -p "group18";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group18|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group18|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform20" -p "|Tree|group18|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform20";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6923,7 +7212,11 @@ createNode mesh -n "pPlaneShape7" -p "|group18|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane7";
+createNode transform -n "pPlane8" -p "group18";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group18|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -6946,12 +7239,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group18";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group18|pPlane8";
+createNode transform -n "transform19" -p "|Tree|group18|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform19";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -6999,7 +7291,11 @@ createNode mesh -n "pPlaneShape8" -p "|group18|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane8";
+createNode transform -n "pPlane9" -p "group18";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group18|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7022,12 +7318,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group18";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group18|pPlane9";
+createNode transform -n "transform18" -p "|Tree|group18|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform18";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7075,7 +7370,11 @@ createNode mesh -n "pPlaneShape9" -p "|group18|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane9";
+createNode transform -n "pPlane10" -p "group18";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group18|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7098,12 +7397,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group18";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group18|pPlane10";
+createNode transform -n "transform17" -p "|Tree|group18|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform17";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7151,7 +7449,11 @@ createNode mesh -n "pPlaneShape10" -p "|group18|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane10";
+createNode transform -n "pPlane11" -p "group18";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group18|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7174,12 +7476,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group18";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group18|pPlane11";
+createNode transform -n "transform16" -p "|Tree|group18|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform16";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7227,30 +7528,7 @@ createNode mesh -n "pPlaneShape11" -p "|group18|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group18|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group19";
+createNode transform -n "group19" -p "Tree";
 	setAttr ".t" -type "double3" 0.9897180781311915 8.7814167648948107 9.6732431583530936 ;
 	setAttr ".r" -type "double3" 406.2966170073318 -50.988261854392228 387.54129369536514 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -7261,8 +7539,34 @@ createNode transform -n "pPlane7" -p "group19";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group19|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group19|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform15" -p "|Tree|group19|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform15";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7310,7 +7614,11 @@ createNode mesh -n "pPlaneShape7" -p "|group19|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane7";
+createNode transform -n "pPlane8" -p "group19";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group19|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7333,12 +7641,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group19";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group19|pPlane8";
+createNode transform -n "transform14" -p "|Tree|group19|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform14";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7386,7 +7693,11 @@ createNode mesh -n "pPlaneShape8" -p "|group19|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane8";
+createNode transform -n "pPlane9" -p "group19";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group19|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7409,12 +7720,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group19";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group19|pPlane9";
+createNode transform -n "transform13" -p "|Tree|group19|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform13";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7462,7 +7772,11 @@ createNode mesh -n "pPlaneShape9" -p "|group19|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane9";
+createNode transform -n "pPlane10" -p "group19";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group19|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7485,12 +7799,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group19";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group19|pPlane10";
+createNode transform -n "transform12" -p "|Tree|group19|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform12";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7538,7 +7851,11 @@ createNode mesh -n "pPlaneShape10" -p "|group19|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane10";
+createNode transform -n "pPlane11" -p "group19";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group19|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7561,12 +7878,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group19";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group19|pPlane11";
+createNode transform -n "transform11" -p "|Tree|group19|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform11";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7614,30 +7930,7 @@ createNode mesh -n "pPlaneShape11" -p "|group19|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group19|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group20";
+createNode transform -n "group20" -p "Tree";
 	setAttr ".t" -type "double3" 0.55483264098573759 6.5356977606230604 10.406123776782625 ;
 	setAttr ".r" -type "double3" 433.38366993583861 -36.267488908599809 371.69806343991382 ;
 	setAttr ".s" -type "double3" 0.73389088981226702 0.73389088981226702 0.73389088981226702 ;
@@ -7648,8 +7941,34 @@ createNode transform -n "pPlane7" -p "group20";
 	setAttr ".t" -type "double3" -2.1974130217657568 13.083120847618856 -5.2114782770123744 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group20|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group20|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform10" -p "|Tree|group20|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform10";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7697,7 +8016,11 @@ createNode mesh -n "pPlaneShape7" -p "|group20|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane7";
+createNode transform -n "pPlane8" -p "group20";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group20|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7720,12 +8043,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group20";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group20|pPlane8";
+createNode transform -n "transform9" -p "|Tree|group20|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform9";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7773,7 +8095,11 @@ createNode mesh -n "pPlaneShape8" -p "|group20|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane8";
+createNode transform -n "pPlane9" -p "group20";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group20|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7796,12 +8122,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group20";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group20|pPlane9";
+createNode transform -n "transform8" -p "|Tree|group20|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform8";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7849,7 +8174,11 @@ createNode mesh -n "pPlaneShape9" -p "|group20|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane9";
+createNode transform -n "pPlane10" -p "group20";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group20|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7872,12 +8201,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group20";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group20|pPlane10";
+createNode transform -n "transform7" -p "|Tree|group20|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -7925,7 +8253,11 @@ createNode mesh -n "pPlaneShape10" -p "|group20|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane10";
+createNode transform -n "pPlane11" -p "group20";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group20|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -7948,12 +8280,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group20";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group20|pPlane11";
+createNode transform -n "transform6" -p "|Tree|group20|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform6";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8001,30 +8332,7 @@ createNode mesh -n "pPlaneShape11" -p "|group20|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group20|pPlane11";
-	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "group21";
+createNode transform -n "group21" -p "Tree";
 	setAttr ".t" -type "double3" 0.2217338432172109 7.4237448538169399 9.8905339839773134 ;
 	setAttr ".r" -type "double3" -66.591678870723271 79.430932141240518 8.5390724555114783 ;
 	setAttr ".s" -type "double3" 0.78834981445452734 0.78834981445452734 0.78834981445452734 ;
@@ -8035,8 +8343,34 @@ createNode transform -n "pPlane7" -p "group21";
 	setAttr ".t" -type "double3" -1.2031990258656475 13.1841650776483 -5.0490710432289703 ;
 	setAttr ".r" -type "double3" -89.999999999999957 -6.9574633657014429e-016 -1.1776486692373238 ;
 	setAttr ".s" -type "double3" 0.63808846221539994 0.73155440089503809 0.7776828507976804 ;
-createNode mesh -n "pPlaneShape7" -p "|group21|pPlane7";
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group21|pPlane7";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
+	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
+		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
+		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
+	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
+	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
+		f 4 0 2 -4 -2
+		mu 0 4 0 1 2 3;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "transform5" -p "|Tree|group21|pPlane7";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape7" -p "transform5";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8084,7 +8418,11 @@ createNode mesh -n "pPlaneShape7" -p "|group21|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane7";
+createNode transform -n "pPlane8" -p "group21";
+	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
+	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
+	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group21|pPlane8";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -8107,12 +8445,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane7";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane8" -p "group21";
-	setAttr ".t" -type "double3" -2.1498317053940688 12.972436153274947 -3.7431824827918061 ;
-	setAttr ".r" -type "double3" -53.744637039800089 46.598256716231873 66.239102385579884 ;
-	setAttr ".s" -type "double3" 0.31711302494138238 0.36356311501318833 0.38648772993836172 ;
-createNode mesh -n "pPlaneShape8" -p "|group21|pPlane8";
+createNode transform -n "transform4" -p "|Tree|group21|pPlane8";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape8" -p "transform4";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8160,7 +8497,11 @@ createNode mesh -n "pPlaneShape8" -p "|group21|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane8";
+createNode transform -n "pPlane9" -p "group21";
+	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
+	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
+	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group21|pPlane9";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -8183,12 +8524,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane8";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane9" -p "group21";
-	setAttr ".t" -type "double3" -0.28868026378206979 13.1841650776483 -3.694109463312254 ;
-	setAttr ".r" -type "double3" 70.165917167163059 38.508529318948966 166.98221132992725 ;
-	setAttr ".s" -type "double3" 0.54036608606900183 0.61951784394553289 0.65858178477245011 ;
-createNode mesh -n "pPlaneShape9" -p "|group21|pPlane9";
+createNode transform -n "transform3" -p "|Tree|group21|pPlane9";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape9" -p "transform3";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8236,7 +8576,11 @@ createNode mesh -n "pPlaneShape9" -p "|group21|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane9";
+createNode transform -n "pPlane10" -p "group21";
+	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
+	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
+	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group21|pPlane10";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -8259,12 +8603,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane9";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane10" -p "group21";
-	setAttr ".t" -type "double3" -0.86188794722341955 13.794547667925434 -6.3469193310740737 ;
-	setAttr ".r" -type "double3" -171.87416915839287 -63.991361305428704 81.510041271996826 ;
-	setAttr ".s" -type "double3" 0.29636774673352478 0.33977910939418876 0.36120401450921258 ;
-createNode mesh -n "pPlaneShape10" -p "|group21|pPlane10";
+createNode transform -n "transform2" -p "|Tree|group21|pPlane10";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape10" -p "transform2";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8312,7 +8655,11 @@ createNode mesh -n "pPlaneShape10" -p "|group21|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane10";
+createNode transform -n "pPlane11" -p "group21";
+	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
+	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
+	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
+createNode mesh -n "polySurfaceShape1" -p "|Tree|group21|pPlane11";
 	setAttr -k off ".v";
 	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
@@ -8335,12 +8682,11 @@ createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane10";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "pPlane11" -p "group21";
-	setAttr ".t" -type "double3" -2.0780538046348584 14.503277650088918 -5.6989180911717536 ;
-	setAttr ".r" -type "double3" -112.52170602661707 -32.658681955797704 36.361241545460338 ;
-	setAttr ".s" -type "double3" 0.32322294813508518 0.37056800769839016 0.39393431888143177 ;
-createNode mesh -n "pPlaneShape11" -p "|group21|pPlane11";
+createNode transform -n "transform1" -p "|Tree|group21|pPlane11";
+	setAttr ".v" no;
+createNode mesh -n "pPlaneShape11" -p "transform1";
 	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:5]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -8388,29 +8734,18 @@ createNode mesh -n "pPlaneShape11" -p "|group21|pPlane11";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode mesh -n "polySurfaceShape1" -p "|group21|pPlane11";
+createNode transform -n "polySurface1" -p "Tree";
+	setAttr ".t" -type "double3" 0 0 -0.35993905249135949 ;
+createNode mesh -n "polySurfaceShape2" -p "polySurface1";
 	setAttr -k off ".v";
-	setAttr ".io" yes;
-	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0]";
+	setAttr -s 4 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4307287335395813 0.49525269865989685 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 4 ".uvst[0].uvsp[0:3]" -type "float2" 0.88355851 0.06142801
-		 0.88241541 0.93117547 -0.022101045 0.92907745 -0.020957947 0.059329867;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".vt[0:3]"  -3.88426876 0 5.36659622 3.88426876 0 5.36659622
-		 -3.88426876 0 -5.36659527 3.88426876 0 -5.36659527;
-	setAttr -s 4 ".ed[0:3]"  0 1 0 0 2 0 1 3 0 2 3 0;
-	setAttr -ch 4 ".fc[0]" -type "polyFaces" 
-		f 4 0 2 -4 -2
-		mu 0 4 0 1 2 3;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode mentalrayItemsList -s -n "mentalrayItemsList";
 createNode mentalrayGlobals -s -n "mentalrayGlobals";
 	setAttr ".rvb" 3;
@@ -8569,9 +8904,9 @@ createNode renderLayer -n "defaultRenderLayer";
 createNode lambert -n "lambert2";
 createNode shadingEngine -n "lambert2SG";
 	setAttr ".ihi" 0;
-	setAttr -s 105 ".dsm";
+	setAttr -s 106 ".dsm";
 	setAttr ".ro" yes;
-	setAttr -s 105 ".gn";
+	setAttr -s 106 ".gn";
 createNode materialInfo -n "materialInfo1";
 createNode file -n "file1";
 	setAttr ".ftn" -type "string" "C:/Users/student/Documents/GitHub/Tiger_Shark_Interactive/Fall tree branch texture.tga";
@@ -8823,7 +9158,9 @@ createNode groupId -n "groupId108";
 createNode lambert -n "lambert3";
 createNode shadingEngine -n "lambert3SG";
 	setAttr ".ihi" 0;
+	setAttr -s 3 ".dsm";
 	setAttr ".ro" yes;
+	setAttr -s 3 ".gn";
 createNode materialInfo -n "materialInfo2";
 createNode file -n "file3";
 	setAttr ".ftn" -type "string" "C:/Users/student/Documents/GitHub/Tiger_Shark_Interactive/FishTreeTextures/trunk.jpg";
@@ -9327,6 +9664,26 @@ createNode polyTweakUV -n "polyTweakUV2";
 		 1.013220906 -0.042377234 -0.13885206 -0.87034625 -0.14054051 -0.045642108 -0.14241332
 		 0.86914682 0.34615749 -0.86897385 0.34446901 -0.044269681 0.34259623 0.87051922 -0.59235406
 		 -0.87162948 -0.59404254 -0.046925366 -0.59591532 0.86786348;
+createNode polyUnite -n "polyUnite1";
+	setAttr -s 106 ".ip";
+	setAttr -s 106 ".im";
+createNode groupId -n "groupId114";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts3";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[0:179]";
+createNode groupId -n "groupId115";
+	setAttr ".ihi" 0;
+createNode groupId -n "groupId116";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts4";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[0:179]";
+createNode groupId -n "groupId117";
+	setAttr ".ihi" 0;
+createNode groupParts -n "groupParts5";
+	setAttr ".ihi" 0;
+	setAttr ".ic" -type "componentList" 1 "f[180:809]";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -9363,220 +9720,440 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "polyTweakUV1.out" "pCylinderShape1.i";
-connectAttr "polyTweakUV1.uvtk[0]" "pCylinderShape1.uvst[0].uvtw";
-connectAttr "groupId14.id" "|group1|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group1|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId15.id" "|group1|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group1|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId16.id" "|group1|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group1|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId17.id" "|group1|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group1|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId18.id" "|group1|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group1|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId9.id" "|group2|pPlane2|pPlaneShape2.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group2|pPlane2|pPlaneShape2.iog.og[0].gco";
-connectAttr "polyTweakUV2.out" "|group2|pPlane2|pPlaneShape2.i";
-connectAttr "polyTweakUV2.uvtk[0]" "|group2|pPlane2|pPlaneShape2.uvst[0].uvtw";
-connectAttr "groupId10.id" "|group2|pPlane3|pPlaneShape3.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group2|pPlane3|pPlaneShape3.iog.og[0].gco";
-connectAttr "groupId11.id" "|group2|pPlane4|pPlaneShape4.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group2|pPlane4|pPlaneShape4.iog.og[0].gco";
-connectAttr "groupId12.id" "|group2|pPlane5|pPlaneShape5.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group2|pPlane5|pPlaneShape5.iog.og[0].gco";
-connectAttr "groupId13.id" "|group2|pPlane6|pPlaneShape6.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group2|pPlane6|pPlaneShape6.iog.og[0].gco";
-connectAttr "groupId19.id" "|group3|pPlane2|pPlaneShape2.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group3|pPlane2|pPlaneShape2.iog.og[0].gco";
-connectAttr "groupId20.id" "|group3|pPlane3|pPlaneShape3.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group3|pPlane3|pPlaneShape3.iog.og[0].gco";
-connectAttr "groupId21.id" "|group3|pPlane4|pPlaneShape4.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group3|pPlane4|pPlaneShape4.iog.og[0].gco";
-connectAttr "groupId22.id" "|group3|pPlane5|pPlaneShape5.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group3|pPlane5|pPlaneShape5.iog.og[0].gco";
-connectAttr "groupId23.id" "|group3|pPlane6|pPlaneShape6.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group3|pPlane6|pPlaneShape6.iog.og[0].gco";
-connectAttr "groupId24.id" "|group4|pPlane2|pPlaneShape2.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group4|pPlane2|pPlaneShape2.iog.og[0].gco";
-connectAttr "groupId25.id" "|group4|pPlane3|pPlaneShape3.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group4|pPlane3|pPlaneShape3.iog.og[0].gco";
-connectAttr "groupId26.id" "|group4|pPlane4|pPlaneShape4.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group4|pPlane4|pPlaneShape4.iog.og[0].gco";
-connectAttr "groupId27.id" "|group4|pPlane5|pPlaneShape5.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group4|pPlane5|pPlaneShape5.iog.og[0].gco";
-connectAttr "groupId28.id" "|group4|pPlane6|pPlaneShape6.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group4|pPlane6|pPlaneShape6.iog.og[0].gco";
-connectAttr "groupId29.id" "|group5|pPlane2|pPlaneShape2.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group5|pPlane2|pPlaneShape2.iog.og[0].gco";
-connectAttr "groupId30.id" "|group5|pPlane3|pPlaneShape3.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group5|pPlane3|pPlaneShape3.iog.og[0].gco";
-connectAttr "groupId31.id" "|group5|pPlane4|pPlaneShape4.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group5|pPlane4|pPlaneShape4.iog.og[0].gco";
-connectAttr "groupId32.id" "|group5|pPlane5|pPlaneShape5.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group5|pPlane5|pPlaneShape5.iog.og[0].gco";
-connectAttr "groupId33.id" "|group5|pPlane6|pPlaneShape6.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group5|pPlane6|pPlaneShape6.iog.og[0].gco";
-connectAttr "groupId34.id" "|group6|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group6|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId35.id" "|group6|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group6|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId36.id" "|group6|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group6|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId37.id" "|group6|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group6|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId38.id" "|group6|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group6|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId39.id" "|group7|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group7|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId40.id" "|group7|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group7|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId41.id" "|group7|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group7|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId42.id" "|group7|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group7|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId43.id" "|group7|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group7|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId44.id" "|group8|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group8|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId45.id" "|group8|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group8|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId46.id" "|group8|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group8|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId47.id" "|group8|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group8|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId48.id" "|group8|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group8|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId49.id" "|group9|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group9|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId50.id" "|group9|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group9|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId51.id" "|group9|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group9|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId52.id" "|group9|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group9|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId53.id" "|group9|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group9|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId54.id" "|group10|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group10|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId55.id" "|group10|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group10|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId56.id" "|group10|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group10|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId57.id" "|group10|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group10|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId58.id" "|group10|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group10|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId59.id" "|group11|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group11|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId60.id" "|group11|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group11|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId61.id" "|group11|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group11|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId62.id" "|group11|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group11|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId63.id" "|group11|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group11|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId64.id" "|group12|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group12|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId65.id" "|group12|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group12|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId66.id" "|group12|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group12|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId67.id" "|group12|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group12|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId68.id" "|group12|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group12|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId69.id" "|group13|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group13|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId70.id" "|group13|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group13|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId71.id" "|group13|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group13|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId72.id" "|group13|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group13|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId73.id" "|group13|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group13|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId74.id" "|group14|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group14|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId75.id" "|group14|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group14|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId76.id" "|group14|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group14|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId77.id" "|group14|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group14|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId78.id" "|group14|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group14|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId79.id" "|group15|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group15|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId80.id" "|group15|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group15|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId81.id" "|group15|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group15|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId82.id" "|group15|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group15|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId83.id" "|group15|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group15|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId84.id" "|group16|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group16|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId85.id" "|group16|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group16|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId86.id" "|group16|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group16|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId87.id" "|group16|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group16|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId88.id" "|group16|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group16|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId89.id" "|group17|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group17|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId90.id" "|group17|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group17|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId91.id" "|group17|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group17|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId92.id" "|group17|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group17|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId93.id" "|group17|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group17|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId94.id" "|group18|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group18|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId95.id" "|group18|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group18|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId96.id" "|group18|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group18|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId97.id" "|group18|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group18|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId98.id" "|group18|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group18|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId99.id" "|group19|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group19|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId100.id" "|group19|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group19|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId101.id" "|group19|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group19|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId102.id" "|group19|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group19|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId103.id" "|group19|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group19|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId104.id" "|group20|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group20|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId105.id" "|group20|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group20|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId106.id" "|group20|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group20|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId107.id" "|group20|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group20|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId108.id" "|group20|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group20|pPlane11|pPlaneShape11.iog.og[0].gco";
-connectAttr "groupId109.id" "|group21|pPlane7|pPlaneShape7.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group21|pPlane7|pPlaneShape7.iog.og[0].gco";
-connectAttr "groupId110.id" "|group21|pPlane8|pPlaneShape8.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group21|pPlane8|pPlaneShape8.iog.og[0].gco";
-connectAttr "groupId111.id" "|group21|pPlane9|pPlaneShape9.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group21|pPlane9|pPlaneShape9.iog.og[0].gco";
-connectAttr "groupId112.id" "|group21|pPlane10|pPlaneShape10.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group21|pPlane10|pPlaneShape10.iog.og[0].gco";
-connectAttr "groupId113.id" "|group21|pPlane11|pPlaneShape11.iog.og[0].gid";
-connectAttr "lambert2SG.mwc" "|group21|pPlane11|pPlaneShape11.iog.og[0].gco";
+connectAttr "groupParts3.og" "TrunkShape.i";
+connectAttr "polyTweakUV1.uvtk[0]" "TrunkShape.uvst[0].uvtw";
+connectAttr "groupId114.id" "TrunkShape.iog.og[0].gid";
+connectAttr "lambert3SG.mwc" "TrunkShape.iog.og[0].gco";
+connectAttr "groupId115.id" "TrunkShape.ciog.cog[0].cgid";
+connectAttr "groupId14.id" "|Tree|group1|pPlane7|transform105|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group1|pPlane7|transform105|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId15.id" "|Tree|group1|pPlane8|transform104|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group1|pPlane8|transform104|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId16.id" "|Tree|group1|pPlane9|transform103|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group1|pPlane9|transform103|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId17.id" "|Tree|group1|pPlane10|transform102|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group1|pPlane10|transform102|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId18.id" "|Tree|group1|pPlane11|transform101|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group1|pPlane11|transform101|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId9.id" "|Tree|group2|pPlane2|transform100|pPlaneShape2.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group2|pPlane2|transform100|pPlaneShape2.iog.og[0].gco"
+		;
+connectAttr "polyTweakUV2.out" "|Tree|group2|pPlane2|transform100|pPlaneShape2.i"
+		;
+connectAttr "polyTweakUV2.uvtk[0]" "|Tree|group2|pPlane2|transform100|pPlaneShape2.uvst[0].uvtw"
+		;
+connectAttr "groupId10.id" "|Tree|group2|pPlane3|transform99|pPlaneShape3.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group2|pPlane3|transform99|pPlaneShape3.iog.og[0].gco"
+		;
+connectAttr "groupId11.id" "|Tree|group2|pPlane4|transform98|pPlaneShape4.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group2|pPlane4|transform98|pPlaneShape4.iog.og[0].gco"
+		;
+connectAttr "groupId12.id" "|Tree|group2|pPlane5|transform97|pPlaneShape5.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group2|pPlane5|transform97|pPlaneShape5.iog.og[0].gco"
+		;
+connectAttr "groupId13.id" "|Tree|group2|pPlane6|transform96|pPlaneShape6.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group2|pPlane6|transform96|pPlaneShape6.iog.og[0].gco"
+		;
+connectAttr "groupId19.id" "|Tree|group3|pPlane2|transform95|pPlaneShape2.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group3|pPlane2|transform95|pPlaneShape2.iog.og[0].gco"
+		;
+connectAttr "groupId20.id" "|Tree|group3|pPlane3|transform94|pPlaneShape3.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group3|pPlane3|transform94|pPlaneShape3.iog.og[0].gco"
+		;
+connectAttr "groupId21.id" "|Tree|group3|pPlane4|transform93|pPlaneShape4.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group3|pPlane4|transform93|pPlaneShape4.iog.og[0].gco"
+		;
+connectAttr "groupId22.id" "|Tree|group3|pPlane5|transform92|pPlaneShape5.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group3|pPlane5|transform92|pPlaneShape5.iog.og[0].gco"
+		;
+connectAttr "groupId23.id" "|Tree|group3|pPlane6|transform91|pPlaneShape6.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group3|pPlane6|transform91|pPlaneShape6.iog.og[0].gco"
+		;
+connectAttr "groupId24.id" "|Tree|group4|pPlane2|transform90|pPlaneShape2.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group4|pPlane2|transform90|pPlaneShape2.iog.og[0].gco"
+		;
+connectAttr "groupId25.id" "|Tree|group4|pPlane3|transform89|pPlaneShape3.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group4|pPlane3|transform89|pPlaneShape3.iog.og[0].gco"
+		;
+connectAttr "groupId26.id" "|Tree|group4|pPlane4|transform88|pPlaneShape4.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group4|pPlane4|transform88|pPlaneShape4.iog.og[0].gco"
+		;
+connectAttr "groupId27.id" "|Tree|group4|pPlane5|transform87|pPlaneShape5.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group4|pPlane5|transform87|pPlaneShape5.iog.og[0].gco"
+		;
+connectAttr "groupId28.id" "|Tree|group4|pPlane6|transform86|pPlaneShape6.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group4|pPlane6|transform86|pPlaneShape6.iog.og[0].gco"
+		;
+connectAttr "groupId29.id" "|Tree|group5|pPlane2|transform85|pPlaneShape2.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group5|pPlane2|transform85|pPlaneShape2.iog.og[0].gco"
+		;
+connectAttr "groupId30.id" "|Tree|group5|pPlane3|transform84|pPlaneShape3.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group5|pPlane3|transform84|pPlaneShape3.iog.og[0].gco"
+		;
+connectAttr "groupId31.id" "|Tree|group5|pPlane4|transform83|pPlaneShape4.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group5|pPlane4|transform83|pPlaneShape4.iog.og[0].gco"
+		;
+connectAttr "groupId32.id" "|Tree|group5|pPlane5|transform82|pPlaneShape5.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group5|pPlane5|transform82|pPlaneShape5.iog.og[0].gco"
+		;
+connectAttr "groupId33.id" "|Tree|group5|pPlane6|transform81|pPlaneShape6.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group5|pPlane6|transform81|pPlaneShape6.iog.og[0].gco"
+		;
+connectAttr "groupId34.id" "|Tree|group6|pPlane7|transform80|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group6|pPlane7|transform80|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId35.id" "|Tree|group6|pPlane8|transform79|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group6|pPlane8|transform79|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId36.id" "|Tree|group6|pPlane9|transform78|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group6|pPlane9|transform78|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId37.id" "|Tree|group6|pPlane10|transform77|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group6|pPlane10|transform77|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId38.id" "|Tree|group6|pPlane11|transform76|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group6|pPlane11|transform76|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId39.id" "|Tree|group7|pPlane7|transform75|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group7|pPlane7|transform75|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId40.id" "|Tree|group7|pPlane8|transform74|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group7|pPlane8|transform74|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId41.id" "|Tree|group7|pPlane9|transform73|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group7|pPlane9|transform73|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId42.id" "|Tree|group7|pPlane10|transform72|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group7|pPlane10|transform72|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId43.id" "|Tree|group7|pPlane11|transform71|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group7|pPlane11|transform71|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId44.id" "|Tree|group8|pPlane7|transform70|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group8|pPlane7|transform70|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId45.id" "|Tree|group8|pPlane8|transform69|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group8|pPlane8|transform69|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId46.id" "|Tree|group8|pPlane9|transform68|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group8|pPlane9|transform68|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId47.id" "|Tree|group8|pPlane10|transform67|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group8|pPlane10|transform67|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId48.id" "|Tree|group8|pPlane11|transform66|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group8|pPlane11|transform66|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId49.id" "|Tree|group9|pPlane7|transform65|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group9|pPlane7|transform65|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId50.id" "|Tree|group9|pPlane8|transform64|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group9|pPlane8|transform64|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId51.id" "|Tree|group9|pPlane9|transform63|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group9|pPlane9|transform63|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId52.id" "|Tree|group9|pPlane10|transform62|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group9|pPlane10|transform62|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId53.id" "|Tree|group9|pPlane11|transform61|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group9|pPlane11|transform61|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId54.id" "|Tree|group10|pPlane7|transform60|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group10|pPlane7|transform60|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId55.id" "|Tree|group10|pPlane8|transform59|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group10|pPlane8|transform59|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId56.id" "|Tree|group10|pPlane9|transform58|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group10|pPlane9|transform58|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId57.id" "|Tree|group10|pPlane10|transform57|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group10|pPlane10|transform57|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId58.id" "|Tree|group10|pPlane11|transform56|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group10|pPlane11|transform56|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId59.id" "|Tree|group11|pPlane7|transform55|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group11|pPlane7|transform55|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId60.id" "|Tree|group11|pPlane8|transform54|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group11|pPlane8|transform54|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId61.id" "|Tree|group11|pPlane9|transform53|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group11|pPlane9|transform53|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId62.id" "|Tree|group11|pPlane10|transform52|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group11|pPlane10|transform52|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId63.id" "|Tree|group11|pPlane11|transform51|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group11|pPlane11|transform51|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId64.id" "|Tree|group12|pPlane7|transform50|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group12|pPlane7|transform50|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId65.id" "|Tree|group12|pPlane8|transform49|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group12|pPlane8|transform49|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId66.id" "|Tree|group12|pPlane9|transform48|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group12|pPlane9|transform48|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId67.id" "|Tree|group12|pPlane10|transform47|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group12|pPlane10|transform47|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId68.id" "|Tree|group12|pPlane11|transform46|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group12|pPlane11|transform46|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId69.id" "|Tree|group13|pPlane7|transform45|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group13|pPlane7|transform45|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId70.id" "|Tree|group13|pPlane8|transform44|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group13|pPlane8|transform44|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId71.id" "|Tree|group13|pPlane9|transform43|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group13|pPlane9|transform43|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId72.id" "|Tree|group13|pPlane10|transform42|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group13|pPlane10|transform42|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId73.id" "|Tree|group13|pPlane11|transform41|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group13|pPlane11|transform41|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId74.id" "|Tree|group14|pPlane7|transform40|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group14|pPlane7|transform40|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId75.id" "|Tree|group14|pPlane8|transform39|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group14|pPlane8|transform39|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId76.id" "|Tree|group14|pPlane9|transform38|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group14|pPlane9|transform38|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId77.id" "|Tree|group14|pPlane10|transform37|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group14|pPlane10|transform37|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId78.id" "|Tree|group14|pPlane11|transform36|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group14|pPlane11|transform36|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId79.id" "|Tree|group15|pPlane7|transform35|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group15|pPlane7|transform35|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId80.id" "|Tree|group15|pPlane8|transform34|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group15|pPlane8|transform34|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId81.id" "|Tree|group15|pPlane9|transform33|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group15|pPlane9|transform33|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId82.id" "|Tree|group15|pPlane10|transform32|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group15|pPlane10|transform32|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId83.id" "|Tree|group15|pPlane11|transform31|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group15|pPlane11|transform31|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId84.id" "|Tree|group16|pPlane7|transform30|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group16|pPlane7|transform30|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId85.id" "|Tree|group16|pPlane8|transform29|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group16|pPlane8|transform29|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId86.id" "|Tree|group16|pPlane9|transform28|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group16|pPlane9|transform28|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId87.id" "|Tree|group16|pPlane10|transform27|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group16|pPlane10|transform27|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId88.id" "|Tree|group16|pPlane11|transform26|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group16|pPlane11|transform26|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId89.id" "|Tree|group17|pPlane7|transform25|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group17|pPlane7|transform25|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId90.id" "|Tree|group17|pPlane8|transform24|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group17|pPlane8|transform24|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId91.id" "|Tree|group17|pPlane9|transform23|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group17|pPlane9|transform23|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId92.id" "|Tree|group17|pPlane10|transform22|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group17|pPlane10|transform22|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId93.id" "|Tree|group17|pPlane11|transform21|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group17|pPlane11|transform21|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId94.id" "|Tree|group18|pPlane7|transform20|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group18|pPlane7|transform20|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId95.id" "|Tree|group18|pPlane8|transform19|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group18|pPlane8|transform19|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId96.id" "|Tree|group18|pPlane9|transform18|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group18|pPlane9|transform18|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId97.id" "|Tree|group18|pPlane10|transform17|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group18|pPlane10|transform17|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId98.id" "|Tree|group18|pPlane11|transform16|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group18|pPlane11|transform16|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId99.id" "|Tree|group19|pPlane7|transform15|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group19|pPlane7|transform15|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId100.id" "|Tree|group19|pPlane8|transform14|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group19|pPlane8|transform14|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId101.id" "|Tree|group19|pPlane9|transform13|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group19|pPlane9|transform13|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId102.id" "|Tree|group19|pPlane10|transform12|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group19|pPlane10|transform12|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId103.id" "|Tree|group19|pPlane11|transform11|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group19|pPlane11|transform11|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId104.id" "|Tree|group20|pPlane7|transform10|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group20|pPlane7|transform10|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId105.id" "|Tree|group20|pPlane8|transform9|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group20|pPlane8|transform9|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId106.id" "|Tree|group20|pPlane9|transform8|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group20|pPlane9|transform8|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId107.id" "|Tree|group20|pPlane10|transform7|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group20|pPlane10|transform7|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId108.id" "|Tree|group20|pPlane11|transform6|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group20|pPlane11|transform6|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupId109.id" "|Tree|group21|pPlane7|transform5|pPlaneShape7.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group21|pPlane7|transform5|pPlaneShape7.iog.og[0].gco"
+		;
+connectAttr "groupId110.id" "|Tree|group21|pPlane8|transform4|pPlaneShape8.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group21|pPlane8|transform4|pPlaneShape8.iog.og[0].gco"
+		;
+connectAttr "groupId111.id" "|Tree|group21|pPlane9|transform3|pPlaneShape9.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group21|pPlane9|transform3|pPlaneShape9.iog.og[0].gco"
+		;
+connectAttr "groupId112.id" "|Tree|group21|pPlane10|transform2|pPlaneShape10.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group21|pPlane10|transform2|pPlaneShape10.iog.og[0].gco"
+		;
+connectAttr "groupId113.id" "|Tree|group21|pPlane11|transform1|pPlaneShape11.iog.og[0].gid"
+		;
+connectAttr "lambert2SG.mwc" "|Tree|group21|pPlane11|transform1|pPlaneShape11.iog.og[0].gco"
+		;
+connectAttr "groupParts5.og" "polySurfaceShape2.i";
+connectAttr "groupId116.id" "polySurfaceShape2.iog.og[0].gid";
+connectAttr "lambert3SG.mwc" "polySurfaceShape2.iog.og[0].gco";
+connectAttr "groupId117.id" "polySurfaceShape2.iog.og[1].gid";
+connectAttr "lambert2SG.mwc" "polySurfaceShape2.iog.og[1].gco";
 connectAttr ":mentalrayGlobals.msg" ":mentalrayItemsList.glb";
 connectAttr ":miDefaultOptions.msg" ":mentalrayItemsList.opt" -na;
 connectAttr ":miDefaultFramebuffer.msg" ":mentalrayItemsList.fb" -na;
@@ -9595,111 +10172,217 @@ connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "file1.oc" "lambert2.c";
 connectAttr "file1.ot" "lambert2.it";
 connectAttr "lambert2.oc" "lambert2SG.ss";
-connectAttr "|group2|pPlane2|pPlaneShape2.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group2|pPlane3|pPlaneShape3.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group2|pPlane4|pPlaneShape4.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group2|pPlane5|pPlaneShape5.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group2|pPlane6|pPlaneShape6.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group1|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group1|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group1|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group1|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group1|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group3|pPlane2|pPlaneShape2.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group3|pPlane3|pPlaneShape3.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group3|pPlane4|pPlaneShape4.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group3|pPlane5|pPlaneShape5.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group3|pPlane6|pPlaneShape6.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group4|pPlane2|pPlaneShape2.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group4|pPlane3|pPlaneShape3.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group4|pPlane4|pPlaneShape4.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group4|pPlane5|pPlaneShape5.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group4|pPlane6|pPlaneShape6.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group5|pPlane2|pPlaneShape2.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group5|pPlane3|pPlaneShape3.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group5|pPlane4|pPlaneShape4.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group5|pPlane5|pPlaneShape5.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group5|pPlane6|pPlaneShape6.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group6|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group6|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group6|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group6|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group6|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group7|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group7|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group7|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group7|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group7|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group8|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group8|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group8|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group8|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group8|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group9|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group9|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group9|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group9|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group9|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group10|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group10|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group10|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group10|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group10|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group11|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group11|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group11|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group11|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group11|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group12|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group12|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group12|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group12|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group12|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group13|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group13|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group13|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group13|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group13|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group14|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group14|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group14|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group14|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group14|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group15|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group15|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group15|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group15|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group15|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group16|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group16|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group16|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group16|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group16|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group17|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group17|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group17|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group17|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group17|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group18|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group18|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group18|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group18|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group18|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group19|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group19|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group19|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group19|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group19|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group20|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group20|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group20|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group20|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group20|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group21|pPlane7|pPlaneShape7.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group21|pPlane8|pPlaneShape8.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group21|pPlane9|pPlaneShape9.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group21|pPlane10|pPlaneShape10.iog.og[0]" "lambert2SG.dsm" -na;
-connectAttr "|group21|pPlane11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm" -na;
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group2|pPlane3|transform99|pPlaneShape3.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group2|pPlane4|transform98|pPlaneShape4.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group2|pPlane5|transform97|pPlaneShape5.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group2|pPlane6|transform96|pPlaneShape6.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group1|pPlane7|transform105|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group1|pPlane8|transform104|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group1|pPlane9|transform103|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group1|pPlane10|transform102|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group1|pPlane11|transform101|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group3|pPlane2|transform95|pPlaneShape2.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group3|pPlane3|transform94|pPlaneShape3.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group3|pPlane4|transform93|pPlaneShape4.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group3|pPlane5|transform92|pPlaneShape5.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group3|pPlane6|transform91|pPlaneShape6.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group4|pPlane2|transform90|pPlaneShape2.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group4|pPlane3|transform89|pPlaneShape3.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group4|pPlane4|transform88|pPlaneShape4.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group4|pPlane5|transform87|pPlaneShape5.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group4|pPlane6|transform86|pPlaneShape6.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group5|pPlane2|transform85|pPlaneShape2.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group5|pPlane3|transform84|pPlaneShape3.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group5|pPlane4|transform83|pPlaneShape4.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group5|pPlane5|transform82|pPlaneShape5.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group5|pPlane6|transform81|pPlaneShape6.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group6|pPlane7|transform80|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group6|pPlane8|transform79|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group6|pPlane9|transform78|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group6|pPlane10|transform77|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group6|pPlane11|transform76|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group7|pPlane7|transform75|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group7|pPlane8|transform74|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group7|pPlane9|transform73|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group7|pPlane10|transform72|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group7|pPlane11|transform71|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group8|pPlane7|transform70|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group8|pPlane8|transform69|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group8|pPlane9|transform68|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group8|pPlane10|transform67|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group8|pPlane11|transform66|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group9|pPlane7|transform65|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group9|pPlane8|transform64|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group9|pPlane9|transform63|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group9|pPlane10|transform62|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group9|pPlane11|transform61|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group10|pPlane7|transform60|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group10|pPlane8|transform59|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group10|pPlane9|transform58|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group10|pPlane10|transform57|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group10|pPlane11|transform56|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group11|pPlane7|transform55|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group11|pPlane8|transform54|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group11|pPlane9|transform53|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group11|pPlane10|transform52|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group11|pPlane11|transform51|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group12|pPlane7|transform50|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group12|pPlane8|transform49|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group12|pPlane9|transform48|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group12|pPlane10|transform47|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group12|pPlane11|transform46|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group13|pPlane7|transform45|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group13|pPlane8|transform44|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group13|pPlane9|transform43|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group13|pPlane10|transform42|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group13|pPlane11|transform41|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group14|pPlane7|transform40|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group14|pPlane8|transform39|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group14|pPlane9|transform38|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group14|pPlane10|transform37|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group14|pPlane11|transform36|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group15|pPlane7|transform35|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group15|pPlane8|transform34|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group15|pPlane9|transform33|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group15|pPlane10|transform32|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group15|pPlane11|transform31|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group16|pPlane7|transform30|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group16|pPlane8|transform29|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group16|pPlane9|transform28|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group16|pPlane10|transform27|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group16|pPlane11|transform26|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group17|pPlane7|transform25|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group17|pPlane8|transform24|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group17|pPlane9|transform23|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group17|pPlane10|transform22|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group17|pPlane11|transform21|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group18|pPlane7|transform20|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group18|pPlane8|transform19|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group18|pPlane9|transform18|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group18|pPlane10|transform17|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group18|pPlane11|transform16|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group19|pPlane7|transform15|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group19|pPlane8|transform14|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group19|pPlane9|transform13|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group19|pPlane10|transform12|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group19|pPlane11|transform11|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group20|pPlane7|transform10|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group20|pPlane8|transform9|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group20|pPlane9|transform8|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group20|pPlane10|transform7|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group20|pPlane11|transform6|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group21|pPlane7|transform5|pPlaneShape7.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group21|pPlane8|transform4|pPlaneShape8.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group21|pPlane9|transform3|pPlaneShape9.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group21|pPlane10|transform2|pPlaneShape10.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "|Tree|group21|pPlane11|transform1|pPlaneShape11.iog.og[0]" "lambert2SG.dsm"
+		 -na;
+connectAttr "polySurfaceShape2.iog.og[1]" "lambert2SG.dsm" -na;
 connectAttr "groupId9.msg" "lambert2SG.gn" -na;
 connectAttr "groupId10.msg" "lambert2SG.gn" -na;
 connectAttr "groupId11.msg" "lambert2SG.gn" -na;
@@ -9805,6 +10488,7 @@ connectAttr "groupId110.msg" "lambert2SG.gn" -na;
 connectAttr "groupId111.msg" "lambert2SG.gn" -na;
 connectAttr "groupId112.msg" "lambert2SG.gn" -na;
 connectAttr "groupId113.msg" "lambert2SG.gn" -na;
+connectAttr "groupId117.msg" "lambert2SG.gn" -na;
 connectAttr "lambert2SG.msg" "materialInfo1.sg";
 connectAttr "lambert2.msg" "materialInfo1.m";
 connectAttr "file1.msg" "materialInfo1.t" -na;
@@ -9845,19 +10529,28 @@ connectAttr "place2dTexture2.vc1" "file2.vc1";
 connectAttr "place2dTexture2.o" "file2.uv";
 connectAttr "place2dTexture2.ofs" "file2.fs";
 connectAttr "groupParts2.og" "polySplitRing1.ip";
-connectAttr "|group2|pPlane2|pPlaneShape2.wm" "polySplitRing1.mp";
-connectAttr "|group2|pPlane2|polySurfaceShape1.o" "groupParts2.ig";
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.wm" "polySplitRing1.mp"
+		;
+connectAttr "|Tree|group2|pPlane2|polySurfaceShape1.o" "groupParts2.ig";
 connectAttr "groupId9.id" "groupParts2.gi";
 connectAttr "polySplitRing1.out" "polySplitRing2.ip";
-connectAttr "|group2|pPlane2|pPlaneShape2.wm" "polySplitRing2.mp";
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.wm" "polySplitRing2.mp"
+		;
 connectAttr "polySplitRing2.out" "polySplitRing3.ip";
-connectAttr "|group2|pPlane2|pPlaneShape2.wm" "polySplitRing3.mp";
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.wm" "polySplitRing3.mp"
+		;
 connectAttr "polySplitRing3.out" "polySplitRing4.ip";
-connectAttr "|group2|pPlane2|pPlaneShape2.wm" "polySplitRing4.mp";
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.wm" "polySplitRing4.mp"
+		;
 connectAttr "polySplitRing4.out" "deleteComponent1.ig";
 connectAttr "file3.oc" "lambert3.c";
 connectAttr "lambert3.oc" "lambert3SG.ss";
-connectAttr "pCylinderShape1.iog" "lambert3SG.dsm" -na;
+connectAttr "TrunkShape.iog.og[0]" "lambert3SG.dsm" -na;
+connectAttr "TrunkShape.ciog.cog[0]" "lambert3SG.dsm" -na;
+connectAttr "polySurfaceShape2.iog.og[0]" "lambert3SG.dsm" -na;
+connectAttr "groupId114.msg" "lambert3SG.gn" -na;
+connectAttr "groupId115.msg" "lambert3SG.gn" -na;
+connectAttr "groupId116.msg" "lambert3SG.gn" -na;
 connectAttr "lambert3SG.msg" "materialInfo2.sg";
 connectAttr "lambert3.msg" "materialInfo2.m";
 connectAttr "file3.msg" "materialInfo2.t" -na;
@@ -9892,354 +10585,532 @@ connectAttr "place2dTexture1.msg" "hyperLayout1.hyp[6].dn";
 connectAttr "file2.msg" "hyperLayout1.hyp[7].dn";
 connectAttr "place2dTexture2.msg" "hyperLayout1.hyp[8].dn";
 connectAttr "polyCylinder1.msg" "hyperLayout1.hyp[9].dn";
-connectAttr "pCylinder1.msg" "hyperLayout1.hyp[10].dn";
-connectAttr "pCylinderShape1.msg" "hyperLayout1.hyp[11].dn";
-connectAttr "|group2|pPlane2.msg" "hyperLayout1.hyp[12].dn";
-connectAttr "|group2|pPlane2|pPlaneShape2.msg" "hyperLayout1.hyp[13].dn";
+connectAttr "Trunk.msg" "hyperLayout1.hyp[10].dn";
+connectAttr "TrunkShape.msg" "hyperLayout1.hyp[11].dn";
+connectAttr "|Tree|group2|pPlane2.msg" "hyperLayout1.hyp[12].dn";
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.msg" "hyperLayout1.hyp[13].dn"
+		;
 connectAttr "polySplitRing1.msg" "hyperLayout1.hyp[14].dn";
-connectAttr "|group2|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[15].dn";
+connectAttr "|Tree|group2|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[15].dn"
+		;
 connectAttr "polySplitRing2.msg" "hyperLayout1.hyp[16].dn";
 connectAttr "polySplitRing3.msg" "hyperLayout1.hyp[17].dn";
 connectAttr "polySplitRing4.msg" "hyperLayout1.hyp[18].dn";
 connectAttr "deleteComponent1.msg" "hyperLayout1.hyp[19].dn";
-connectAttr "|group2|pPlane3.msg" "hyperLayout1.hyp[20].dn";
-connectAttr "|group2|pPlane3|pPlaneShape3.msg" "hyperLayout1.hyp[21].dn";
-connectAttr "|group2|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[22].dn";
-connectAttr "|group2|pPlane4.msg" "hyperLayout1.hyp[23].dn";
-connectAttr "|group2|pPlane4|pPlaneShape4.msg" "hyperLayout1.hyp[24].dn";
-connectAttr "|group2|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[25].dn";
-connectAttr "|group2|pPlane5.msg" "hyperLayout1.hyp[26].dn";
-connectAttr "|group2|pPlane5|pPlaneShape5.msg" "hyperLayout1.hyp[27].dn";
-connectAttr "|group2|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[28].dn";
-connectAttr "|group2|pPlane6.msg" "hyperLayout1.hyp[29].dn";
-connectAttr "|group2|pPlane6|pPlaneShape6.msg" "hyperLayout1.hyp[30].dn";
-connectAttr "|group2|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[31].dn";
-connectAttr "|group1|pPlane7.msg" "hyperLayout1.hyp[32].dn";
-connectAttr "|group1|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[33].dn";
-connectAttr "|group1|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[34].dn";
-connectAttr "|group1|pPlane8.msg" "hyperLayout1.hyp[35].dn";
-connectAttr "|group1|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[36].dn";
-connectAttr "|group1|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[37].dn";
-connectAttr "|group1|pPlane9.msg" "hyperLayout1.hyp[38].dn";
-connectAttr "|group1|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[39].dn";
-connectAttr "|group1|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[40].dn";
-connectAttr "|group1|pPlane10.msg" "hyperLayout1.hyp[41].dn";
-connectAttr "|group1|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[42].dn";
-connectAttr "|group1|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[43].dn";
-connectAttr "|group1|pPlane11.msg" "hyperLayout1.hyp[44].dn";
-connectAttr "|group1|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[45].dn";
-connectAttr "|group1|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[46].dn";
+connectAttr "|Tree|group2|pPlane3.msg" "hyperLayout1.hyp[20].dn";
+connectAttr "|Tree|group2|pPlane3|transform99|pPlaneShape3.msg" "hyperLayout1.hyp[21].dn"
+		;
+connectAttr "|Tree|group2|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[22].dn"
+		;
+connectAttr "|Tree|group2|pPlane4.msg" "hyperLayout1.hyp[23].dn";
+connectAttr "|Tree|group2|pPlane4|transform98|pPlaneShape4.msg" "hyperLayout1.hyp[24].dn"
+		;
+connectAttr "|Tree|group2|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[25].dn"
+		;
+connectAttr "|Tree|group2|pPlane5.msg" "hyperLayout1.hyp[26].dn";
+connectAttr "|Tree|group2|pPlane5|transform97|pPlaneShape5.msg" "hyperLayout1.hyp[27].dn"
+		;
+connectAttr "|Tree|group2|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[28].dn"
+		;
+connectAttr "|Tree|group2|pPlane6.msg" "hyperLayout1.hyp[29].dn";
+connectAttr "|Tree|group2|pPlane6|transform96|pPlaneShape6.msg" "hyperLayout1.hyp[30].dn"
+		;
+connectAttr "|Tree|group2|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[31].dn"
+		;
+connectAttr "|Tree|group1|pPlane7.msg" "hyperLayout1.hyp[32].dn";
+connectAttr "|Tree|group1|pPlane7|transform105|pPlaneShape7.msg" "hyperLayout1.hyp[33].dn"
+		;
+connectAttr "|Tree|group1|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[34].dn"
+		;
+connectAttr "|Tree|group1|pPlane8.msg" "hyperLayout1.hyp[35].dn";
+connectAttr "|Tree|group1|pPlane8|transform104|pPlaneShape8.msg" "hyperLayout1.hyp[36].dn"
+		;
+connectAttr "|Tree|group1|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[37].dn"
+		;
+connectAttr "|Tree|group1|pPlane9.msg" "hyperLayout1.hyp[38].dn";
+connectAttr "|Tree|group1|pPlane9|transform103|pPlaneShape9.msg" "hyperLayout1.hyp[39].dn"
+		;
+connectAttr "|Tree|group1|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[40].dn"
+		;
+connectAttr "|Tree|group1|pPlane10.msg" "hyperLayout1.hyp[41].dn";
+connectAttr "|Tree|group1|pPlane10|transform102|pPlaneShape10.msg" "hyperLayout1.hyp[42].dn"
+		;
+connectAttr "|Tree|group1|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[43].dn"
+		;
+connectAttr "|Tree|group1|pPlane11.msg" "hyperLayout1.hyp[44].dn";
+connectAttr "|Tree|group1|pPlane11|transform101|pPlaneShape11.msg" "hyperLayout1.hyp[45].dn"
+		;
+connectAttr "|Tree|group1|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[46].dn"
+		;
 connectAttr "group1.msg" "hyperLayout1.hyp[47].dn";
 connectAttr "group2.msg" "hyperLayout1.hyp[48].dn";
 connectAttr "group3.msg" "hyperLayout1.hyp[49].dn";
-connectAttr "|group3|pPlane2.msg" "hyperLayout1.hyp[50].dn";
-connectAttr "|group3|pPlane2|pPlaneShape2.msg" "hyperLayout1.hyp[51].dn";
-connectAttr "|group3|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[52].dn";
-connectAttr "|group3|pPlane3.msg" "hyperLayout1.hyp[53].dn";
-connectAttr "|group3|pPlane3|pPlaneShape3.msg" "hyperLayout1.hyp[54].dn";
-connectAttr "|group3|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[55].dn";
-connectAttr "|group3|pPlane4.msg" "hyperLayout1.hyp[56].dn";
-connectAttr "|group3|pPlane4|pPlaneShape4.msg" "hyperLayout1.hyp[57].dn";
-connectAttr "|group3|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[58].dn";
-connectAttr "|group3|pPlane5.msg" "hyperLayout1.hyp[59].dn";
-connectAttr "|group3|pPlane5|pPlaneShape5.msg" "hyperLayout1.hyp[60].dn";
-connectAttr "|group3|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[61].dn";
-connectAttr "|group3|pPlane6.msg" "hyperLayout1.hyp[62].dn";
-connectAttr "|group3|pPlane6|pPlaneShape6.msg" "hyperLayout1.hyp[63].dn";
-connectAttr "|group3|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[64].dn";
-connectAttr "group4.msg" "hyperLayout1.hyp[65].dn";
-connectAttr "|group4|pPlane2.msg" "hyperLayout1.hyp[66].dn";
-connectAttr "|group4|pPlane2|pPlaneShape2.msg" "hyperLayout1.hyp[67].dn";
-connectAttr "|group4|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[68].dn";
-connectAttr "|group4|pPlane3.msg" "hyperLayout1.hyp[69].dn";
-connectAttr "|group4|pPlane3|pPlaneShape3.msg" "hyperLayout1.hyp[70].dn";
-connectAttr "|group4|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[71].dn";
-connectAttr "|group4|pPlane4.msg" "hyperLayout1.hyp[72].dn";
-connectAttr "|group4|pPlane4|pPlaneShape4.msg" "hyperLayout1.hyp[73].dn";
-connectAttr "|group4|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[74].dn";
-connectAttr "|group4|pPlane5.msg" "hyperLayout1.hyp[75].dn";
-connectAttr "|group4|pPlane5|pPlaneShape5.msg" "hyperLayout1.hyp[76].dn";
-connectAttr "|group4|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[77].dn";
-connectAttr "|group4|pPlane6.msg" "hyperLayout1.hyp[78].dn";
-connectAttr "|group4|pPlane6|pPlaneShape6.msg" "hyperLayout1.hyp[79].dn";
-connectAttr "|group4|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[80].dn";
-connectAttr "group5.msg" "hyperLayout1.hyp[81].dn";
-connectAttr "|group5|pPlane2.msg" "hyperLayout1.hyp[82].dn";
-connectAttr "|group5|pPlane2|pPlaneShape2.msg" "hyperLayout1.hyp[83].dn";
-connectAttr "|group5|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[84].dn";
-connectAttr "|group5|pPlane3.msg" "hyperLayout1.hyp[85].dn";
-connectAttr "|group5|pPlane3|pPlaneShape3.msg" "hyperLayout1.hyp[86].dn";
-connectAttr "|group5|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[87].dn";
-connectAttr "|group5|pPlane4.msg" "hyperLayout1.hyp[88].dn";
-connectAttr "|group5|pPlane4|pPlaneShape4.msg" "hyperLayout1.hyp[89].dn";
-connectAttr "|group5|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[90].dn";
-connectAttr "|group5|pPlane5.msg" "hyperLayout1.hyp[91].dn";
-connectAttr "|group5|pPlane5|pPlaneShape5.msg" "hyperLayout1.hyp[92].dn";
-connectAttr "|group5|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[93].dn";
-connectAttr "|group5|pPlane6.msg" "hyperLayout1.hyp[94].dn";
-connectAttr "|group5|pPlane6|pPlaneShape6.msg" "hyperLayout1.hyp[95].dn";
-connectAttr "|group5|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[96].dn";
-connectAttr "group6.msg" "hyperLayout1.hyp[97].dn";
-connectAttr "|group6|pPlane7.msg" "hyperLayout1.hyp[98].dn";
-connectAttr "|group6|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[99].dn";
-connectAttr "|group6|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[100].dn";
-connectAttr "|group6|pPlane8.msg" "hyperLayout1.hyp[101].dn";
-connectAttr "|group6|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[102].dn";
-connectAttr "|group6|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[103].dn";
-connectAttr "|group6|pPlane9.msg" "hyperLayout1.hyp[104].dn";
-connectAttr "|group6|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[105].dn";
-connectAttr "|group6|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[106].dn";
-connectAttr "|group6|pPlane10.msg" "hyperLayout1.hyp[107].dn";
-connectAttr "|group6|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[108].dn";
-connectAttr "|group6|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[109].dn";
-connectAttr "|group6|pPlane11.msg" "hyperLayout1.hyp[110].dn";
-connectAttr "|group6|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[111].dn";
-connectAttr "|group6|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[112].dn";
-connectAttr "group7.msg" "hyperLayout1.hyp[113].dn";
-connectAttr "|group7|pPlane7.msg" "hyperLayout1.hyp[114].dn";
-connectAttr "|group7|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[115].dn";
-connectAttr "|group7|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[116].dn";
-connectAttr "|group7|pPlane8.msg" "hyperLayout1.hyp[117].dn";
-connectAttr "|group7|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[118].dn";
-connectAttr "|group7|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[119].dn";
-connectAttr "|group7|pPlane9.msg" "hyperLayout1.hyp[120].dn";
-connectAttr "|group7|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[121].dn";
-connectAttr "|group7|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[122].dn";
-connectAttr "|group7|pPlane10.msg" "hyperLayout1.hyp[123].dn";
-connectAttr "|group7|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[124].dn";
-connectAttr "|group7|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[125].dn";
-connectAttr "|group7|pPlane11.msg" "hyperLayout1.hyp[126].dn";
-connectAttr "|group7|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[127].dn";
-connectAttr "|group7|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[128].dn";
-connectAttr "group8.msg" "hyperLayout1.hyp[129].dn";
-connectAttr "|group8|pPlane7.msg" "hyperLayout1.hyp[130].dn";
-connectAttr "|group8|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[131].dn";
-connectAttr "|group8|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[132].dn";
-connectAttr "|group8|pPlane8.msg" "hyperLayout1.hyp[133].dn";
-connectAttr "|group8|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[134].dn";
-connectAttr "|group8|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[135].dn";
-connectAttr "|group8|pPlane9.msg" "hyperLayout1.hyp[136].dn";
-connectAttr "|group8|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[137].dn";
-connectAttr "|group8|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[138].dn";
-connectAttr "|group8|pPlane10.msg" "hyperLayout1.hyp[139].dn";
-connectAttr "|group8|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[140].dn";
-connectAttr "|group8|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[141].dn";
-connectAttr "|group8|pPlane11.msg" "hyperLayout1.hyp[142].dn";
-connectAttr "|group8|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[143].dn";
-connectAttr "|group8|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[144].dn";
-connectAttr "group9.msg" "hyperLayout1.hyp[145].dn";
-connectAttr "|group9|pPlane7.msg" "hyperLayout1.hyp[146].dn";
-connectAttr "|group9|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[147].dn";
-connectAttr "|group9|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[148].dn";
-connectAttr "|group9|pPlane8.msg" "hyperLayout1.hyp[149].dn";
-connectAttr "|group9|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[150].dn";
-connectAttr "|group9|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[151].dn";
-connectAttr "|group9|pPlane9.msg" "hyperLayout1.hyp[152].dn";
-connectAttr "|group9|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[153].dn";
-connectAttr "|group9|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[154].dn";
-connectAttr "|group9|pPlane10.msg" "hyperLayout1.hyp[155].dn";
-connectAttr "|group9|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[156].dn";
-connectAttr "|group9|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[157].dn";
-connectAttr "|group9|pPlane11.msg" "hyperLayout1.hyp[158].dn";
-connectAttr "|group9|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[159].dn";
-connectAttr "|group9|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[160].dn";
-connectAttr "group10.msg" "hyperLayout1.hyp[161].dn";
-connectAttr "|group10|pPlane7.msg" "hyperLayout1.hyp[162].dn";
-connectAttr "|group10|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[163].dn";
-connectAttr "|group10|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[164].dn";
-connectAttr "|group10|pPlane8.msg" "hyperLayout1.hyp[165].dn";
-connectAttr "|group10|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[166].dn";
-connectAttr "|group10|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[167].dn";
-connectAttr "|group10|pPlane9.msg" "hyperLayout1.hyp[168].dn";
-connectAttr "|group10|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[169].dn";
-connectAttr "|group10|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[170].dn";
-connectAttr "|group10|pPlane10.msg" "hyperLayout1.hyp[171].dn";
-connectAttr "|group10|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[172].dn";
-connectAttr "|group10|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[173].dn"
+connectAttr "|Tree|group3|pPlane2.msg" "hyperLayout1.hyp[50].dn";
+connectAttr "|Tree|group3|pPlane2|transform95|pPlaneShape2.msg" "hyperLayout1.hyp[51].dn"
 		;
-connectAttr "|group10|pPlane11.msg" "hyperLayout1.hyp[174].dn";
-connectAttr "|group10|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[175].dn";
-connectAttr "|group10|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[176].dn"
+connectAttr "|Tree|group3|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[52].dn"
+		;
+connectAttr "|Tree|group3|pPlane3.msg" "hyperLayout1.hyp[53].dn";
+connectAttr "|Tree|group3|pPlane3|transform94|pPlaneShape3.msg" "hyperLayout1.hyp[54].dn"
+		;
+connectAttr "|Tree|group3|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[55].dn"
+		;
+connectAttr "|Tree|group3|pPlane4.msg" "hyperLayout1.hyp[56].dn";
+connectAttr "|Tree|group3|pPlane4|transform93|pPlaneShape4.msg" "hyperLayout1.hyp[57].dn"
+		;
+connectAttr "|Tree|group3|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[58].dn"
+		;
+connectAttr "|Tree|group3|pPlane5.msg" "hyperLayout1.hyp[59].dn";
+connectAttr "|Tree|group3|pPlane5|transform92|pPlaneShape5.msg" "hyperLayout1.hyp[60].dn"
+		;
+connectAttr "|Tree|group3|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[61].dn"
+		;
+connectAttr "|Tree|group3|pPlane6.msg" "hyperLayout1.hyp[62].dn";
+connectAttr "|Tree|group3|pPlane6|transform91|pPlaneShape6.msg" "hyperLayout1.hyp[63].dn"
+		;
+connectAttr "|Tree|group3|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[64].dn"
+		;
+connectAttr "group4.msg" "hyperLayout1.hyp[65].dn";
+connectAttr "|Tree|group4|pPlane2.msg" "hyperLayout1.hyp[66].dn";
+connectAttr "|Tree|group4|pPlane2|transform90|pPlaneShape2.msg" "hyperLayout1.hyp[67].dn"
+		;
+connectAttr "|Tree|group4|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[68].dn"
+		;
+connectAttr "|Tree|group4|pPlane3.msg" "hyperLayout1.hyp[69].dn";
+connectAttr "|Tree|group4|pPlane3|transform89|pPlaneShape3.msg" "hyperLayout1.hyp[70].dn"
+		;
+connectAttr "|Tree|group4|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[71].dn"
+		;
+connectAttr "|Tree|group4|pPlane4.msg" "hyperLayout1.hyp[72].dn";
+connectAttr "|Tree|group4|pPlane4|transform88|pPlaneShape4.msg" "hyperLayout1.hyp[73].dn"
+		;
+connectAttr "|Tree|group4|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[74].dn"
+		;
+connectAttr "|Tree|group4|pPlane5.msg" "hyperLayout1.hyp[75].dn";
+connectAttr "|Tree|group4|pPlane5|transform87|pPlaneShape5.msg" "hyperLayout1.hyp[76].dn"
+		;
+connectAttr "|Tree|group4|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[77].dn"
+		;
+connectAttr "|Tree|group4|pPlane6.msg" "hyperLayout1.hyp[78].dn";
+connectAttr "|Tree|group4|pPlane6|transform86|pPlaneShape6.msg" "hyperLayout1.hyp[79].dn"
+		;
+connectAttr "|Tree|group4|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[80].dn"
+		;
+connectAttr "group5.msg" "hyperLayout1.hyp[81].dn";
+connectAttr "|Tree|group5|pPlane2.msg" "hyperLayout1.hyp[82].dn";
+connectAttr "|Tree|group5|pPlane2|transform85|pPlaneShape2.msg" "hyperLayout1.hyp[83].dn"
+		;
+connectAttr "|Tree|group5|pPlane2|polySurfaceShape1.msg" "hyperLayout1.hyp[84].dn"
+		;
+connectAttr "|Tree|group5|pPlane3.msg" "hyperLayout1.hyp[85].dn";
+connectAttr "|Tree|group5|pPlane3|transform84|pPlaneShape3.msg" "hyperLayout1.hyp[86].dn"
+		;
+connectAttr "|Tree|group5|pPlane3|polySurfaceShape1.msg" "hyperLayout1.hyp[87].dn"
+		;
+connectAttr "|Tree|group5|pPlane4.msg" "hyperLayout1.hyp[88].dn";
+connectAttr "|Tree|group5|pPlane4|transform83|pPlaneShape4.msg" "hyperLayout1.hyp[89].dn"
+		;
+connectAttr "|Tree|group5|pPlane4|polySurfaceShape1.msg" "hyperLayout1.hyp[90].dn"
+		;
+connectAttr "|Tree|group5|pPlane5.msg" "hyperLayout1.hyp[91].dn";
+connectAttr "|Tree|group5|pPlane5|transform82|pPlaneShape5.msg" "hyperLayout1.hyp[92].dn"
+		;
+connectAttr "|Tree|group5|pPlane5|polySurfaceShape1.msg" "hyperLayout1.hyp[93].dn"
+		;
+connectAttr "|Tree|group5|pPlane6.msg" "hyperLayout1.hyp[94].dn";
+connectAttr "|Tree|group5|pPlane6|transform81|pPlaneShape6.msg" "hyperLayout1.hyp[95].dn"
+		;
+connectAttr "|Tree|group5|pPlane6|polySurfaceShape1.msg" "hyperLayout1.hyp[96].dn"
+		;
+connectAttr "group6.msg" "hyperLayout1.hyp[97].dn";
+connectAttr "|Tree|group6|pPlane7.msg" "hyperLayout1.hyp[98].dn";
+connectAttr "|Tree|group6|pPlane7|transform80|pPlaneShape7.msg" "hyperLayout1.hyp[99].dn"
+		;
+connectAttr "|Tree|group6|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[100].dn"
+		;
+connectAttr "|Tree|group6|pPlane8.msg" "hyperLayout1.hyp[101].dn";
+connectAttr "|Tree|group6|pPlane8|transform79|pPlaneShape8.msg" "hyperLayout1.hyp[102].dn"
+		;
+connectAttr "|Tree|group6|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[103].dn"
+		;
+connectAttr "|Tree|group6|pPlane9.msg" "hyperLayout1.hyp[104].dn";
+connectAttr "|Tree|group6|pPlane9|transform78|pPlaneShape9.msg" "hyperLayout1.hyp[105].dn"
+		;
+connectAttr "|Tree|group6|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[106].dn"
+		;
+connectAttr "|Tree|group6|pPlane10.msg" "hyperLayout1.hyp[107].dn";
+connectAttr "|Tree|group6|pPlane10|transform77|pPlaneShape10.msg" "hyperLayout1.hyp[108].dn"
+		;
+connectAttr "|Tree|group6|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[109].dn"
+		;
+connectAttr "|Tree|group6|pPlane11.msg" "hyperLayout1.hyp[110].dn";
+connectAttr "|Tree|group6|pPlane11|transform76|pPlaneShape11.msg" "hyperLayout1.hyp[111].dn"
+		;
+connectAttr "|Tree|group6|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[112].dn"
+		;
+connectAttr "group7.msg" "hyperLayout1.hyp[113].dn";
+connectAttr "|Tree|group7|pPlane7.msg" "hyperLayout1.hyp[114].dn";
+connectAttr "|Tree|group7|pPlane7|transform75|pPlaneShape7.msg" "hyperLayout1.hyp[115].dn"
+		;
+connectAttr "|Tree|group7|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[116].dn"
+		;
+connectAttr "|Tree|group7|pPlane8.msg" "hyperLayout1.hyp[117].dn";
+connectAttr "|Tree|group7|pPlane8|transform74|pPlaneShape8.msg" "hyperLayout1.hyp[118].dn"
+		;
+connectAttr "|Tree|group7|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[119].dn"
+		;
+connectAttr "|Tree|group7|pPlane9.msg" "hyperLayout1.hyp[120].dn";
+connectAttr "|Tree|group7|pPlane9|transform73|pPlaneShape9.msg" "hyperLayout1.hyp[121].dn"
+		;
+connectAttr "|Tree|group7|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[122].dn"
+		;
+connectAttr "|Tree|group7|pPlane10.msg" "hyperLayout1.hyp[123].dn";
+connectAttr "|Tree|group7|pPlane10|transform72|pPlaneShape10.msg" "hyperLayout1.hyp[124].dn"
+		;
+connectAttr "|Tree|group7|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[125].dn"
+		;
+connectAttr "|Tree|group7|pPlane11.msg" "hyperLayout1.hyp[126].dn";
+connectAttr "|Tree|group7|pPlane11|transform71|pPlaneShape11.msg" "hyperLayout1.hyp[127].dn"
+		;
+connectAttr "|Tree|group7|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[128].dn"
+		;
+connectAttr "group8.msg" "hyperLayout1.hyp[129].dn";
+connectAttr "|Tree|group8|pPlane7.msg" "hyperLayout1.hyp[130].dn";
+connectAttr "|Tree|group8|pPlane7|transform70|pPlaneShape7.msg" "hyperLayout1.hyp[131].dn"
+		;
+connectAttr "|Tree|group8|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[132].dn"
+		;
+connectAttr "|Tree|group8|pPlane8.msg" "hyperLayout1.hyp[133].dn";
+connectAttr "|Tree|group8|pPlane8|transform69|pPlaneShape8.msg" "hyperLayout1.hyp[134].dn"
+		;
+connectAttr "|Tree|group8|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[135].dn"
+		;
+connectAttr "|Tree|group8|pPlane9.msg" "hyperLayout1.hyp[136].dn";
+connectAttr "|Tree|group8|pPlane9|transform68|pPlaneShape9.msg" "hyperLayout1.hyp[137].dn"
+		;
+connectAttr "|Tree|group8|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[138].dn"
+		;
+connectAttr "|Tree|group8|pPlane10.msg" "hyperLayout1.hyp[139].dn";
+connectAttr "|Tree|group8|pPlane10|transform67|pPlaneShape10.msg" "hyperLayout1.hyp[140].dn"
+		;
+connectAttr "|Tree|group8|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[141].dn"
+		;
+connectAttr "|Tree|group8|pPlane11.msg" "hyperLayout1.hyp[142].dn";
+connectAttr "|Tree|group8|pPlane11|transform66|pPlaneShape11.msg" "hyperLayout1.hyp[143].dn"
+		;
+connectAttr "|Tree|group8|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[144].dn"
+		;
+connectAttr "group9.msg" "hyperLayout1.hyp[145].dn";
+connectAttr "|Tree|group9|pPlane7.msg" "hyperLayout1.hyp[146].dn";
+connectAttr "|Tree|group9|pPlane7|transform65|pPlaneShape7.msg" "hyperLayout1.hyp[147].dn"
+		;
+connectAttr "|Tree|group9|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[148].dn"
+		;
+connectAttr "|Tree|group9|pPlane8.msg" "hyperLayout1.hyp[149].dn";
+connectAttr "|Tree|group9|pPlane8|transform64|pPlaneShape8.msg" "hyperLayout1.hyp[150].dn"
+		;
+connectAttr "|Tree|group9|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[151].dn"
+		;
+connectAttr "|Tree|group9|pPlane9.msg" "hyperLayout1.hyp[152].dn";
+connectAttr "|Tree|group9|pPlane9|transform63|pPlaneShape9.msg" "hyperLayout1.hyp[153].dn"
+		;
+connectAttr "|Tree|group9|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[154].dn"
+		;
+connectAttr "|Tree|group9|pPlane10.msg" "hyperLayout1.hyp[155].dn";
+connectAttr "|Tree|group9|pPlane10|transform62|pPlaneShape10.msg" "hyperLayout1.hyp[156].dn"
+		;
+connectAttr "|Tree|group9|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[157].dn"
+		;
+connectAttr "|Tree|group9|pPlane11.msg" "hyperLayout1.hyp[158].dn";
+connectAttr "|Tree|group9|pPlane11|transform61|pPlaneShape11.msg" "hyperLayout1.hyp[159].dn"
+		;
+connectAttr "|Tree|group9|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[160].dn"
+		;
+connectAttr "group10.msg" "hyperLayout1.hyp[161].dn";
+connectAttr "|Tree|group10|pPlane7.msg" "hyperLayout1.hyp[162].dn";
+connectAttr "|Tree|group10|pPlane7|transform60|pPlaneShape7.msg" "hyperLayout1.hyp[163].dn"
+		;
+connectAttr "|Tree|group10|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[164].dn"
+		;
+connectAttr "|Tree|group10|pPlane8.msg" "hyperLayout1.hyp[165].dn";
+connectAttr "|Tree|group10|pPlane8|transform59|pPlaneShape8.msg" "hyperLayout1.hyp[166].dn"
+		;
+connectAttr "|Tree|group10|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[167].dn"
+		;
+connectAttr "|Tree|group10|pPlane9.msg" "hyperLayout1.hyp[168].dn";
+connectAttr "|Tree|group10|pPlane9|transform58|pPlaneShape9.msg" "hyperLayout1.hyp[169].dn"
+		;
+connectAttr "|Tree|group10|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[170].dn"
+		;
+connectAttr "|Tree|group10|pPlane10.msg" "hyperLayout1.hyp[171].dn";
+connectAttr "|Tree|group10|pPlane10|transform57|pPlaneShape10.msg" "hyperLayout1.hyp[172].dn"
+		;
+connectAttr "|Tree|group10|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[173].dn"
+		;
+connectAttr "|Tree|group10|pPlane11.msg" "hyperLayout1.hyp[174].dn";
+connectAttr "|Tree|group10|pPlane11|transform56|pPlaneShape11.msg" "hyperLayout1.hyp[175].dn"
+		;
+connectAttr "|Tree|group10|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[176].dn"
 		;
 connectAttr "group11.msg" "hyperLayout1.hyp[177].dn";
-connectAttr "|group11|pPlane7.msg" "hyperLayout1.hyp[178].dn";
-connectAttr "|group11|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[179].dn";
-connectAttr "|group11|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[180].dn";
-connectAttr "|group11|pPlane8.msg" "hyperLayout1.hyp[181].dn";
-connectAttr "|group11|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[182].dn";
-connectAttr "|group11|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[183].dn";
-connectAttr "|group11|pPlane9.msg" "hyperLayout1.hyp[184].dn";
-connectAttr "|group11|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[185].dn";
-connectAttr "|group11|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[186].dn";
-connectAttr "|group11|pPlane10.msg" "hyperLayout1.hyp[187].dn";
-connectAttr "|group11|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[188].dn";
-connectAttr "|group11|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[189].dn"
+connectAttr "|Tree|group11|pPlane7.msg" "hyperLayout1.hyp[178].dn";
+connectAttr "|Tree|group11|pPlane7|transform55|pPlaneShape7.msg" "hyperLayout1.hyp[179].dn"
 		;
-connectAttr "|group11|pPlane11.msg" "hyperLayout1.hyp[190].dn";
-connectAttr "|group11|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[191].dn";
-connectAttr "|group11|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[192].dn"
+connectAttr "|Tree|group11|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[180].dn"
+		;
+connectAttr "|Tree|group11|pPlane8.msg" "hyperLayout1.hyp[181].dn";
+connectAttr "|Tree|group11|pPlane8|transform54|pPlaneShape8.msg" "hyperLayout1.hyp[182].dn"
+		;
+connectAttr "|Tree|group11|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[183].dn"
+		;
+connectAttr "|Tree|group11|pPlane9.msg" "hyperLayout1.hyp[184].dn";
+connectAttr "|Tree|group11|pPlane9|transform53|pPlaneShape9.msg" "hyperLayout1.hyp[185].dn"
+		;
+connectAttr "|Tree|group11|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[186].dn"
+		;
+connectAttr "|Tree|group11|pPlane10.msg" "hyperLayout1.hyp[187].dn";
+connectAttr "|Tree|group11|pPlane10|transform52|pPlaneShape10.msg" "hyperLayout1.hyp[188].dn"
+		;
+connectAttr "|Tree|group11|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[189].dn"
+		;
+connectAttr "|Tree|group11|pPlane11.msg" "hyperLayout1.hyp[190].dn";
+connectAttr "|Tree|group11|pPlane11|transform51|pPlaneShape11.msg" "hyperLayout1.hyp[191].dn"
+		;
+connectAttr "|Tree|group11|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[192].dn"
 		;
 connectAttr "group12.msg" "hyperLayout1.hyp[193].dn";
-connectAttr "|group12|pPlane7.msg" "hyperLayout1.hyp[194].dn";
-connectAttr "|group12|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[195].dn";
-connectAttr "|group12|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[196].dn";
-connectAttr "|group12|pPlane8.msg" "hyperLayout1.hyp[197].dn";
-connectAttr "|group12|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[198].dn";
-connectAttr "|group12|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[199].dn";
-connectAttr "|group12|pPlane9.msg" "hyperLayout1.hyp[200].dn";
-connectAttr "|group12|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[201].dn";
-connectAttr "|group12|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[202].dn";
-connectAttr "|group12|pPlane10.msg" "hyperLayout1.hyp[203].dn";
-connectAttr "|group12|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[204].dn";
-connectAttr "|group12|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[205].dn"
+connectAttr "|Tree|group12|pPlane7.msg" "hyperLayout1.hyp[194].dn";
+connectAttr "|Tree|group12|pPlane7|transform50|pPlaneShape7.msg" "hyperLayout1.hyp[195].dn"
 		;
-connectAttr "|group12|pPlane11.msg" "hyperLayout1.hyp[206].dn";
-connectAttr "|group12|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[207].dn";
-connectAttr "|group12|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[208].dn"
+connectAttr "|Tree|group12|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[196].dn"
+		;
+connectAttr "|Tree|group12|pPlane8.msg" "hyperLayout1.hyp[197].dn";
+connectAttr "|Tree|group12|pPlane8|transform49|pPlaneShape8.msg" "hyperLayout1.hyp[198].dn"
+		;
+connectAttr "|Tree|group12|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[199].dn"
+		;
+connectAttr "|Tree|group12|pPlane9.msg" "hyperLayout1.hyp[200].dn";
+connectAttr "|Tree|group12|pPlane9|transform48|pPlaneShape9.msg" "hyperLayout1.hyp[201].dn"
+		;
+connectAttr "|Tree|group12|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[202].dn"
+		;
+connectAttr "|Tree|group12|pPlane10.msg" "hyperLayout1.hyp[203].dn";
+connectAttr "|Tree|group12|pPlane10|transform47|pPlaneShape10.msg" "hyperLayout1.hyp[204].dn"
+		;
+connectAttr "|Tree|group12|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[205].dn"
+		;
+connectAttr "|Tree|group12|pPlane11.msg" "hyperLayout1.hyp[206].dn";
+connectAttr "|Tree|group12|pPlane11|transform46|pPlaneShape11.msg" "hyperLayout1.hyp[207].dn"
+		;
+connectAttr "|Tree|group12|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[208].dn"
 		;
 connectAttr "group13.msg" "hyperLayout1.hyp[209].dn";
-connectAttr "|group13|pPlane7.msg" "hyperLayout1.hyp[210].dn";
-connectAttr "|group13|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[211].dn";
-connectAttr "|group13|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[212].dn";
-connectAttr "|group13|pPlane8.msg" "hyperLayout1.hyp[213].dn";
-connectAttr "|group13|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[214].dn";
-connectAttr "|group13|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[215].dn";
-connectAttr "|group13|pPlane9.msg" "hyperLayout1.hyp[216].dn";
-connectAttr "|group13|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[217].dn";
-connectAttr "|group13|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[218].dn";
-connectAttr "|group13|pPlane10.msg" "hyperLayout1.hyp[219].dn";
-connectAttr "|group13|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[220].dn";
-connectAttr "|group13|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[221].dn"
+connectAttr "|Tree|group13|pPlane7.msg" "hyperLayout1.hyp[210].dn";
+connectAttr "|Tree|group13|pPlane7|transform45|pPlaneShape7.msg" "hyperLayout1.hyp[211].dn"
 		;
-connectAttr "|group13|pPlane11.msg" "hyperLayout1.hyp[222].dn";
-connectAttr "|group13|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[223].dn";
-connectAttr "|group13|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[224].dn"
+connectAttr "|Tree|group13|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[212].dn"
+		;
+connectAttr "|Tree|group13|pPlane8.msg" "hyperLayout1.hyp[213].dn";
+connectAttr "|Tree|group13|pPlane8|transform44|pPlaneShape8.msg" "hyperLayout1.hyp[214].dn"
+		;
+connectAttr "|Tree|group13|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[215].dn"
+		;
+connectAttr "|Tree|group13|pPlane9.msg" "hyperLayout1.hyp[216].dn";
+connectAttr "|Tree|group13|pPlane9|transform43|pPlaneShape9.msg" "hyperLayout1.hyp[217].dn"
+		;
+connectAttr "|Tree|group13|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[218].dn"
+		;
+connectAttr "|Tree|group13|pPlane10.msg" "hyperLayout1.hyp[219].dn";
+connectAttr "|Tree|group13|pPlane10|transform42|pPlaneShape10.msg" "hyperLayout1.hyp[220].dn"
+		;
+connectAttr "|Tree|group13|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[221].dn"
+		;
+connectAttr "|Tree|group13|pPlane11.msg" "hyperLayout1.hyp[222].dn";
+connectAttr "|Tree|group13|pPlane11|transform41|pPlaneShape11.msg" "hyperLayout1.hyp[223].dn"
+		;
+connectAttr "|Tree|group13|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[224].dn"
 		;
 connectAttr "group14.msg" "hyperLayout1.hyp[225].dn";
-connectAttr "|group14|pPlane7.msg" "hyperLayout1.hyp[226].dn";
-connectAttr "|group14|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[227].dn";
-connectAttr "|group14|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[228].dn";
-connectAttr "|group14|pPlane8.msg" "hyperLayout1.hyp[229].dn";
-connectAttr "|group14|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[230].dn";
-connectAttr "|group14|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[231].dn";
-connectAttr "|group14|pPlane9.msg" "hyperLayout1.hyp[232].dn";
-connectAttr "|group14|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[233].dn";
-connectAttr "|group14|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[234].dn";
-connectAttr "|group14|pPlane10.msg" "hyperLayout1.hyp[235].dn";
-connectAttr "|group14|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[236].dn";
-connectAttr "|group14|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[237].dn"
+connectAttr "|Tree|group14|pPlane7.msg" "hyperLayout1.hyp[226].dn";
+connectAttr "|Tree|group14|pPlane7|transform40|pPlaneShape7.msg" "hyperLayout1.hyp[227].dn"
 		;
-connectAttr "|group14|pPlane11.msg" "hyperLayout1.hyp[238].dn";
-connectAttr "|group14|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[239].dn";
-connectAttr "|group14|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[240].dn"
+connectAttr "|Tree|group14|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[228].dn"
+		;
+connectAttr "|Tree|group14|pPlane8.msg" "hyperLayout1.hyp[229].dn";
+connectAttr "|Tree|group14|pPlane8|transform39|pPlaneShape8.msg" "hyperLayout1.hyp[230].dn"
+		;
+connectAttr "|Tree|group14|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[231].dn"
+		;
+connectAttr "|Tree|group14|pPlane9.msg" "hyperLayout1.hyp[232].dn";
+connectAttr "|Tree|group14|pPlane9|transform38|pPlaneShape9.msg" "hyperLayout1.hyp[233].dn"
+		;
+connectAttr "|Tree|group14|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[234].dn"
+		;
+connectAttr "|Tree|group14|pPlane10.msg" "hyperLayout1.hyp[235].dn";
+connectAttr "|Tree|group14|pPlane10|transform37|pPlaneShape10.msg" "hyperLayout1.hyp[236].dn"
+		;
+connectAttr "|Tree|group14|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[237].dn"
+		;
+connectAttr "|Tree|group14|pPlane11.msg" "hyperLayout1.hyp[238].dn";
+connectAttr "|Tree|group14|pPlane11|transform36|pPlaneShape11.msg" "hyperLayout1.hyp[239].dn"
+		;
+connectAttr "|Tree|group14|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[240].dn"
 		;
 connectAttr "group15.msg" "hyperLayout1.hyp[241].dn";
-connectAttr "|group15|pPlane7.msg" "hyperLayout1.hyp[242].dn";
-connectAttr "|group15|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[243].dn";
-connectAttr "|group15|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[244].dn";
-connectAttr "|group15|pPlane8.msg" "hyperLayout1.hyp[245].dn";
-connectAttr "|group15|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[246].dn";
-connectAttr "|group15|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[247].dn";
-connectAttr "|group15|pPlane9.msg" "hyperLayout1.hyp[248].dn";
-connectAttr "|group15|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[249].dn";
-connectAttr "|group15|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[250].dn";
-connectAttr "|group15|pPlane10.msg" "hyperLayout1.hyp[251].dn";
-connectAttr "|group15|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[252].dn";
-connectAttr "|group15|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[253].dn"
+connectAttr "|Tree|group15|pPlane7.msg" "hyperLayout1.hyp[242].dn";
+connectAttr "|Tree|group15|pPlane7|transform35|pPlaneShape7.msg" "hyperLayout1.hyp[243].dn"
 		;
-connectAttr "|group15|pPlane11.msg" "hyperLayout1.hyp[254].dn";
-connectAttr "|group15|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[255].dn";
-connectAttr "|group15|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[256].dn"
+connectAttr "|Tree|group15|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[244].dn"
+		;
+connectAttr "|Tree|group15|pPlane8.msg" "hyperLayout1.hyp[245].dn";
+connectAttr "|Tree|group15|pPlane8|transform34|pPlaneShape8.msg" "hyperLayout1.hyp[246].dn"
+		;
+connectAttr "|Tree|group15|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[247].dn"
+		;
+connectAttr "|Tree|group15|pPlane9.msg" "hyperLayout1.hyp[248].dn";
+connectAttr "|Tree|group15|pPlane9|transform33|pPlaneShape9.msg" "hyperLayout1.hyp[249].dn"
+		;
+connectAttr "|Tree|group15|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[250].dn"
+		;
+connectAttr "|Tree|group15|pPlane10.msg" "hyperLayout1.hyp[251].dn";
+connectAttr "|Tree|group15|pPlane10|transform32|pPlaneShape10.msg" "hyperLayout1.hyp[252].dn"
+		;
+connectAttr "|Tree|group15|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[253].dn"
+		;
+connectAttr "|Tree|group15|pPlane11.msg" "hyperLayout1.hyp[254].dn";
+connectAttr "|Tree|group15|pPlane11|transform31|pPlaneShape11.msg" "hyperLayout1.hyp[255].dn"
+		;
+connectAttr "|Tree|group15|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[256].dn"
 		;
 connectAttr "group16.msg" "hyperLayout1.hyp[257].dn";
-connectAttr "|group16|pPlane7.msg" "hyperLayout1.hyp[258].dn";
-connectAttr "|group16|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[259].dn";
-connectAttr "|group16|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[260].dn";
-connectAttr "|group16|pPlane8.msg" "hyperLayout1.hyp[261].dn";
-connectAttr "|group16|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[262].dn";
-connectAttr "|group16|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[263].dn";
-connectAttr "|group16|pPlane9.msg" "hyperLayout1.hyp[264].dn";
-connectAttr "|group16|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[265].dn";
-connectAttr "|group16|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[266].dn";
-connectAttr "|group16|pPlane10.msg" "hyperLayout1.hyp[267].dn";
-connectAttr "|group16|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[268].dn";
-connectAttr "|group16|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[269].dn"
+connectAttr "|Tree|group16|pPlane7.msg" "hyperLayout1.hyp[258].dn";
+connectAttr "|Tree|group16|pPlane7|transform30|pPlaneShape7.msg" "hyperLayout1.hyp[259].dn"
 		;
-connectAttr "|group16|pPlane11.msg" "hyperLayout1.hyp[270].dn";
-connectAttr "|group16|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[271].dn";
-connectAttr "|group16|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[272].dn"
+connectAttr "|Tree|group16|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[260].dn"
+		;
+connectAttr "|Tree|group16|pPlane8.msg" "hyperLayout1.hyp[261].dn";
+connectAttr "|Tree|group16|pPlane8|transform29|pPlaneShape8.msg" "hyperLayout1.hyp[262].dn"
+		;
+connectAttr "|Tree|group16|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[263].dn"
+		;
+connectAttr "|Tree|group16|pPlane9.msg" "hyperLayout1.hyp[264].dn";
+connectAttr "|Tree|group16|pPlane9|transform28|pPlaneShape9.msg" "hyperLayout1.hyp[265].dn"
+		;
+connectAttr "|Tree|group16|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[266].dn"
+		;
+connectAttr "|Tree|group16|pPlane10.msg" "hyperLayout1.hyp[267].dn";
+connectAttr "|Tree|group16|pPlane10|transform27|pPlaneShape10.msg" "hyperLayout1.hyp[268].dn"
+		;
+connectAttr "|Tree|group16|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[269].dn"
+		;
+connectAttr "|Tree|group16|pPlane11.msg" "hyperLayout1.hyp[270].dn";
+connectAttr "|Tree|group16|pPlane11|transform26|pPlaneShape11.msg" "hyperLayout1.hyp[271].dn"
+		;
+connectAttr "|Tree|group16|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[272].dn"
 		;
 connectAttr "group17.msg" "hyperLayout1.hyp[273].dn";
-connectAttr "|group17|pPlane7.msg" "hyperLayout1.hyp[274].dn";
-connectAttr "|group17|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[275].dn";
-connectAttr "|group17|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[276].dn";
-connectAttr "|group17|pPlane8.msg" "hyperLayout1.hyp[277].dn";
-connectAttr "|group17|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[278].dn";
-connectAttr "|group17|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[279].dn";
-connectAttr "|group17|pPlane9.msg" "hyperLayout1.hyp[280].dn";
-connectAttr "|group17|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[281].dn";
-connectAttr "|group17|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[282].dn";
-connectAttr "|group17|pPlane10.msg" "hyperLayout1.hyp[283].dn";
-connectAttr "|group17|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[284].dn";
-connectAttr "|group17|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[285].dn"
+connectAttr "|Tree|group17|pPlane7.msg" "hyperLayout1.hyp[274].dn";
+connectAttr "|Tree|group17|pPlane7|transform25|pPlaneShape7.msg" "hyperLayout1.hyp[275].dn"
 		;
-connectAttr "|group17|pPlane11.msg" "hyperLayout1.hyp[286].dn";
-connectAttr "|group17|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[287].dn";
-connectAttr "|group17|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[288].dn"
+connectAttr "|Tree|group17|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[276].dn"
+		;
+connectAttr "|Tree|group17|pPlane8.msg" "hyperLayout1.hyp[277].dn";
+connectAttr "|Tree|group17|pPlane8|transform24|pPlaneShape8.msg" "hyperLayout1.hyp[278].dn"
+		;
+connectAttr "|Tree|group17|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[279].dn"
+		;
+connectAttr "|Tree|group17|pPlane9.msg" "hyperLayout1.hyp[280].dn";
+connectAttr "|Tree|group17|pPlane9|transform23|pPlaneShape9.msg" "hyperLayout1.hyp[281].dn"
+		;
+connectAttr "|Tree|group17|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[282].dn"
+		;
+connectAttr "|Tree|group17|pPlane10.msg" "hyperLayout1.hyp[283].dn";
+connectAttr "|Tree|group17|pPlane10|transform22|pPlaneShape10.msg" "hyperLayout1.hyp[284].dn"
+		;
+connectAttr "|Tree|group17|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[285].dn"
+		;
+connectAttr "|Tree|group17|pPlane11.msg" "hyperLayout1.hyp[286].dn";
+connectAttr "|Tree|group17|pPlane11|transform21|pPlaneShape11.msg" "hyperLayout1.hyp[287].dn"
+		;
+connectAttr "|Tree|group17|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[288].dn"
 		;
 connectAttr "group18.msg" "hyperLayout1.hyp[289].dn";
-connectAttr "|group18|pPlane7.msg" "hyperLayout1.hyp[290].dn";
-connectAttr "|group18|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[291].dn";
-connectAttr "|group18|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[292].dn";
-connectAttr "|group18|pPlane8.msg" "hyperLayout1.hyp[293].dn";
-connectAttr "|group18|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[294].dn";
-connectAttr "|group18|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[295].dn";
-connectAttr "|group18|pPlane9.msg" "hyperLayout1.hyp[296].dn";
-connectAttr "|group18|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[297].dn";
-connectAttr "|group18|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[298].dn";
-connectAttr "|group18|pPlane10.msg" "hyperLayout1.hyp[299].dn";
-connectAttr "|group18|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[300].dn";
-connectAttr "|group18|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[301].dn"
+connectAttr "|Tree|group18|pPlane7.msg" "hyperLayout1.hyp[290].dn";
+connectAttr "|Tree|group18|pPlane7|transform20|pPlaneShape7.msg" "hyperLayout1.hyp[291].dn"
 		;
-connectAttr "|group18|pPlane11.msg" "hyperLayout1.hyp[302].dn";
-connectAttr "|group18|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[303].dn";
-connectAttr "|group18|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[304].dn"
+connectAttr "|Tree|group18|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[292].dn"
+		;
+connectAttr "|Tree|group18|pPlane8.msg" "hyperLayout1.hyp[293].dn";
+connectAttr "|Tree|group18|pPlane8|transform19|pPlaneShape8.msg" "hyperLayout1.hyp[294].dn"
+		;
+connectAttr "|Tree|group18|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[295].dn"
+		;
+connectAttr "|Tree|group18|pPlane9.msg" "hyperLayout1.hyp[296].dn";
+connectAttr "|Tree|group18|pPlane9|transform18|pPlaneShape9.msg" "hyperLayout1.hyp[297].dn"
+		;
+connectAttr "|Tree|group18|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[298].dn"
+		;
+connectAttr "|Tree|group18|pPlane10.msg" "hyperLayout1.hyp[299].dn";
+connectAttr "|Tree|group18|pPlane10|transform17|pPlaneShape10.msg" "hyperLayout1.hyp[300].dn"
+		;
+connectAttr "|Tree|group18|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[301].dn"
+		;
+connectAttr "|Tree|group18|pPlane11.msg" "hyperLayout1.hyp[302].dn";
+connectAttr "|Tree|group18|pPlane11|transform16|pPlaneShape11.msg" "hyperLayout1.hyp[303].dn"
+		;
+connectAttr "|Tree|group18|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[304].dn"
 		;
 connectAttr "group19.msg" "hyperLayout1.hyp[305].dn";
-connectAttr "|group19|pPlane7.msg" "hyperLayout1.hyp[306].dn";
-connectAttr "|group19|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[307].dn";
-connectAttr "|group19|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[308].dn";
-connectAttr "|group19|pPlane8.msg" "hyperLayout1.hyp[309].dn";
-connectAttr "|group19|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[310].dn";
-connectAttr "|group19|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[311].dn";
-connectAttr "|group19|pPlane9.msg" "hyperLayout1.hyp[312].dn";
-connectAttr "|group19|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[313].dn";
-connectAttr "|group19|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[314].dn";
-connectAttr "|group19|pPlane10.msg" "hyperLayout1.hyp[315].dn";
-connectAttr "|group19|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[316].dn";
-connectAttr "|group19|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[317].dn"
+connectAttr "|Tree|group19|pPlane7.msg" "hyperLayout1.hyp[306].dn";
+connectAttr "|Tree|group19|pPlane7|transform15|pPlaneShape7.msg" "hyperLayout1.hyp[307].dn"
 		;
-connectAttr "|group19|pPlane11.msg" "hyperLayout1.hyp[318].dn";
-connectAttr "|group19|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[319].dn";
-connectAttr "|group19|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[320].dn"
+connectAttr "|Tree|group19|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[308].dn"
+		;
+connectAttr "|Tree|group19|pPlane8.msg" "hyperLayout1.hyp[309].dn";
+connectAttr "|Tree|group19|pPlane8|transform14|pPlaneShape8.msg" "hyperLayout1.hyp[310].dn"
+		;
+connectAttr "|Tree|group19|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[311].dn"
+		;
+connectAttr "|Tree|group19|pPlane9.msg" "hyperLayout1.hyp[312].dn";
+connectAttr "|Tree|group19|pPlane9|transform13|pPlaneShape9.msg" "hyperLayout1.hyp[313].dn"
+		;
+connectAttr "|Tree|group19|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[314].dn"
+		;
+connectAttr "|Tree|group19|pPlane10.msg" "hyperLayout1.hyp[315].dn";
+connectAttr "|Tree|group19|pPlane10|transform12|pPlaneShape10.msg" "hyperLayout1.hyp[316].dn"
+		;
+connectAttr "|Tree|group19|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[317].dn"
+		;
+connectAttr "|Tree|group19|pPlane11.msg" "hyperLayout1.hyp[318].dn";
+connectAttr "|Tree|group19|pPlane11|transform11|pPlaneShape11.msg" "hyperLayout1.hyp[319].dn"
+		;
+connectAttr "|Tree|group19|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[320].dn"
 		;
 connectAttr "group20.msg" "hyperLayout1.hyp[321].dn";
-connectAttr "|group20|pPlane7.msg" "hyperLayout1.hyp[322].dn";
-connectAttr "|group20|pPlane7|pPlaneShape7.msg" "hyperLayout1.hyp[323].dn";
-connectAttr "|group20|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[324].dn";
-connectAttr "|group20|pPlane8.msg" "hyperLayout1.hyp[325].dn";
-connectAttr "|group20|pPlane8|pPlaneShape8.msg" "hyperLayout1.hyp[326].dn";
-connectAttr "|group20|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[327].dn";
-connectAttr "|group20|pPlane9.msg" "hyperLayout1.hyp[328].dn";
-connectAttr "|group20|pPlane9|pPlaneShape9.msg" "hyperLayout1.hyp[329].dn";
-connectAttr "|group20|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[330].dn";
-connectAttr "|group20|pPlane10.msg" "hyperLayout1.hyp[331].dn";
-connectAttr "|group20|pPlane10|pPlaneShape10.msg" "hyperLayout1.hyp[332].dn";
-connectAttr "|group20|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[333].dn"
+connectAttr "|Tree|group20|pPlane7.msg" "hyperLayout1.hyp[322].dn";
+connectAttr "|Tree|group20|pPlane7|transform10|pPlaneShape7.msg" "hyperLayout1.hyp[323].dn"
 		;
-connectAttr "|group20|pPlane11.msg" "hyperLayout1.hyp[334].dn";
-connectAttr "|group20|pPlane11|pPlaneShape11.msg" "hyperLayout1.hyp[335].dn";
-connectAttr "|group20|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[336].dn"
+connectAttr "|Tree|group20|pPlane7|polySurfaceShape1.msg" "hyperLayout1.hyp[324].dn"
+		;
+connectAttr "|Tree|group20|pPlane8.msg" "hyperLayout1.hyp[325].dn";
+connectAttr "|Tree|group20|pPlane8|transform9|pPlaneShape8.msg" "hyperLayout1.hyp[326].dn"
+		;
+connectAttr "|Tree|group20|pPlane8|polySurfaceShape1.msg" "hyperLayout1.hyp[327].dn"
+		;
+connectAttr "|Tree|group20|pPlane9.msg" "hyperLayout1.hyp[328].dn";
+connectAttr "|Tree|group20|pPlane9|transform8|pPlaneShape9.msg" "hyperLayout1.hyp[329].dn"
+		;
+connectAttr "|Tree|group20|pPlane9|polySurfaceShape1.msg" "hyperLayout1.hyp[330].dn"
+		;
+connectAttr "|Tree|group20|pPlane10.msg" "hyperLayout1.hyp[331].dn";
+connectAttr "|Tree|group20|pPlane10|transform7|pPlaneShape10.msg" "hyperLayout1.hyp[332].dn"
+		;
+connectAttr "|Tree|group20|pPlane10|polySurfaceShape1.msg" "hyperLayout1.hyp[333].dn"
+		;
+connectAttr "|Tree|group20|pPlane11.msg" "hyperLayout1.hyp[334].dn";
+connectAttr "|Tree|group20|pPlane11|transform6|pPlaneShape11.msg" "hyperLayout1.hyp[335].dn"
+		;
+connectAttr "|Tree|group20|pPlane11|polySurfaceShape1.msg" "hyperLayout1.hyp[336].dn"
 		;
 connectAttr "lambert3.msg" "hyperLayout1.hyp[337].dn";
 connectAttr "lambert3SG.msg" "hyperLayout1.hyp[338].dn";
@@ -10247,6 +11118,434 @@ connectAttr "file3.msg" "hyperLayout1.hyp[339].dn";
 connectAttr "place2dTexture3.msg" "hyperLayout1.hyp[340].dn";
 connectAttr "polyTweakUV1.msg" "hyperLayout1.hyp[341].dn";
 connectAttr "deleteComponent1.og" "polyTweakUV2.ip";
+connectAttr "TrunkShape.o" "polyUnite1.ip[0]";
+connectAttr "|Tree|group1|pPlane7|transform105|pPlaneShape7.o" "polyUnite1.ip[1]"
+		;
+connectAttr "|Tree|group1|pPlane8|transform104|pPlaneShape8.o" "polyUnite1.ip[2]"
+		;
+connectAttr "|Tree|group1|pPlane9|transform103|pPlaneShape9.o" "polyUnite1.ip[3]"
+		;
+connectAttr "|Tree|group1|pPlane10|transform102|pPlaneShape10.o" "polyUnite1.ip[4]"
+		;
+connectAttr "|Tree|group1|pPlane11|transform101|pPlaneShape11.o" "polyUnite1.ip[5]"
+		;
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.o" "polyUnite1.ip[6]"
+		;
+connectAttr "|Tree|group2|pPlane3|transform99|pPlaneShape3.o" "polyUnite1.ip[7]"
+		;
+connectAttr "|Tree|group2|pPlane4|transform98|pPlaneShape4.o" "polyUnite1.ip[8]"
+		;
+connectAttr "|Tree|group2|pPlane5|transform97|pPlaneShape5.o" "polyUnite1.ip[9]"
+		;
+connectAttr "|Tree|group2|pPlane6|transform96|pPlaneShape6.o" "polyUnite1.ip[10]"
+		;
+connectAttr "|Tree|group3|pPlane2|transform95|pPlaneShape2.o" "polyUnite1.ip[11]"
+		;
+connectAttr "|Tree|group3|pPlane3|transform94|pPlaneShape3.o" "polyUnite1.ip[12]"
+		;
+connectAttr "|Tree|group3|pPlane4|transform93|pPlaneShape4.o" "polyUnite1.ip[13]"
+		;
+connectAttr "|Tree|group3|pPlane5|transform92|pPlaneShape5.o" "polyUnite1.ip[14]"
+		;
+connectAttr "|Tree|group3|pPlane6|transform91|pPlaneShape6.o" "polyUnite1.ip[15]"
+		;
+connectAttr "|Tree|group4|pPlane2|transform90|pPlaneShape2.o" "polyUnite1.ip[16]"
+		;
+connectAttr "|Tree|group4|pPlane3|transform89|pPlaneShape3.o" "polyUnite1.ip[17]"
+		;
+connectAttr "|Tree|group4|pPlane4|transform88|pPlaneShape4.o" "polyUnite1.ip[18]"
+		;
+connectAttr "|Tree|group4|pPlane5|transform87|pPlaneShape5.o" "polyUnite1.ip[19]"
+		;
+connectAttr "|Tree|group4|pPlane6|transform86|pPlaneShape6.o" "polyUnite1.ip[20]"
+		;
+connectAttr "|Tree|group5|pPlane2|transform85|pPlaneShape2.o" "polyUnite1.ip[21]"
+		;
+connectAttr "|Tree|group5|pPlane3|transform84|pPlaneShape3.o" "polyUnite1.ip[22]"
+		;
+connectAttr "|Tree|group5|pPlane4|transform83|pPlaneShape4.o" "polyUnite1.ip[23]"
+		;
+connectAttr "|Tree|group5|pPlane5|transform82|pPlaneShape5.o" "polyUnite1.ip[24]"
+		;
+connectAttr "|Tree|group5|pPlane6|transform81|pPlaneShape6.o" "polyUnite1.ip[25]"
+		;
+connectAttr "|Tree|group6|pPlane7|transform80|pPlaneShape7.o" "polyUnite1.ip[26]"
+		;
+connectAttr "|Tree|group6|pPlane8|transform79|pPlaneShape8.o" "polyUnite1.ip[27]"
+		;
+connectAttr "|Tree|group6|pPlane9|transform78|pPlaneShape9.o" "polyUnite1.ip[28]"
+		;
+connectAttr "|Tree|group6|pPlane10|transform77|pPlaneShape10.o" "polyUnite1.ip[29]"
+		;
+connectAttr "|Tree|group6|pPlane11|transform76|pPlaneShape11.o" "polyUnite1.ip[30]"
+		;
+connectAttr "|Tree|group7|pPlane7|transform75|pPlaneShape7.o" "polyUnite1.ip[31]"
+		;
+connectAttr "|Tree|group7|pPlane8|transform74|pPlaneShape8.o" "polyUnite1.ip[32]"
+		;
+connectAttr "|Tree|group7|pPlane9|transform73|pPlaneShape9.o" "polyUnite1.ip[33]"
+		;
+connectAttr "|Tree|group7|pPlane10|transform72|pPlaneShape10.o" "polyUnite1.ip[34]"
+		;
+connectAttr "|Tree|group7|pPlane11|transform71|pPlaneShape11.o" "polyUnite1.ip[35]"
+		;
+connectAttr "|Tree|group8|pPlane7|transform70|pPlaneShape7.o" "polyUnite1.ip[36]"
+		;
+connectAttr "|Tree|group8|pPlane8|transform69|pPlaneShape8.o" "polyUnite1.ip[37]"
+		;
+connectAttr "|Tree|group8|pPlane9|transform68|pPlaneShape9.o" "polyUnite1.ip[38]"
+		;
+connectAttr "|Tree|group8|pPlane10|transform67|pPlaneShape10.o" "polyUnite1.ip[39]"
+		;
+connectAttr "|Tree|group8|pPlane11|transform66|pPlaneShape11.o" "polyUnite1.ip[40]"
+		;
+connectAttr "|Tree|group9|pPlane7|transform65|pPlaneShape7.o" "polyUnite1.ip[41]"
+		;
+connectAttr "|Tree|group9|pPlane8|transform64|pPlaneShape8.o" "polyUnite1.ip[42]"
+		;
+connectAttr "|Tree|group9|pPlane9|transform63|pPlaneShape9.o" "polyUnite1.ip[43]"
+		;
+connectAttr "|Tree|group9|pPlane10|transform62|pPlaneShape10.o" "polyUnite1.ip[44]"
+		;
+connectAttr "|Tree|group9|pPlane11|transform61|pPlaneShape11.o" "polyUnite1.ip[45]"
+		;
+connectAttr "|Tree|group10|pPlane7|transform60|pPlaneShape7.o" "polyUnite1.ip[46]"
+		;
+connectAttr "|Tree|group10|pPlane8|transform59|pPlaneShape8.o" "polyUnite1.ip[47]"
+		;
+connectAttr "|Tree|group10|pPlane9|transform58|pPlaneShape9.o" "polyUnite1.ip[48]"
+		;
+connectAttr "|Tree|group10|pPlane10|transform57|pPlaneShape10.o" "polyUnite1.ip[49]"
+		;
+connectAttr "|Tree|group10|pPlane11|transform56|pPlaneShape11.o" "polyUnite1.ip[50]"
+		;
+connectAttr "|Tree|group11|pPlane7|transform55|pPlaneShape7.o" "polyUnite1.ip[51]"
+		;
+connectAttr "|Tree|group11|pPlane8|transform54|pPlaneShape8.o" "polyUnite1.ip[52]"
+		;
+connectAttr "|Tree|group11|pPlane9|transform53|pPlaneShape9.o" "polyUnite1.ip[53]"
+		;
+connectAttr "|Tree|group11|pPlane10|transform52|pPlaneShape10.o" "polyUnite1.ip[54]"
+		;
+connectAttr "|Tree|group11|pPlane11|transform51|pPlaneShape11.o" "polyUnite1.ip[55]"
+		;
+connectAttr "|Tree|group12|pPlane7|transform50|pPlaneShape7.o" "polyUnite1.ip[56]"
+		;
+connectAttr "|Tree|group12|pPlane8|transform49|pPlaneShape8.o" "polyUnite1.ip[57]"
+		;
+connectAttr "|Tree|group12|pPlane9|transform48|pPlaneShape9.o" "polyUnite1.ip[58]"
+		;
+connectAttr "|Tree|group12|pPlane10|transform47|pPlaneShape10.o" "polyUnite1.ip[59]"
+		;
+connectAttr "|Tree|group12|pPlane11|transform46|pPlaneShape11.o" "polyUnite1.ip[60]"
+		;
+connectAttr "|Tree|group13|pPlane7|transform45|pPlaneShape7.o" "polyUnite1.ip[61]"
+		;
+connectAttr "|Tree|group13|pPlane8|transform44|pPlaneShape8.o" "polyUnite1.ip[62]"
+		;
+connectAttr "|Tree|group13|pPlane9|transform43|pPlaneShape9.o" "polyUnite1.ip[63]"
+		;
+connectAttr "|Tree|group13|pPlane10|transform42|pPlaneShape10.o" "polyUnite1.ip[64]"
+		;
+connectAttr "|Tree|group13|pPlane11|transform41|pPlaneShape11.o" "polyUnite1.ip[65]"
+		;
+connectAttr "|Tree|group14|pPlane7|transform40|pPlaneShape7.o" "polyUnite1.ip[66]"
+		;
+connectAttr "|Tree|group14|pPlane8|transform39|pPlaneShape8.o" "polyUnite1.ip[67]"
+		;
+connectAttr "|Tree|group14|pPlane9|transform38|pPlaneShape9.o" "polyUnite1.ip[68]"
+		;
+connectAttr "|Tree|group14|pPlane10|transform37|pPlaneShape10.o" "polyUnite1.ip[69]"
+		;
+connectAttr "|Tree|group14|pPlane11|transform36|pPlaneShape11.o" "polyUnite1.ip[70]"
+		;
+connectAttr "|Tree|group15|pPlane7|transform35|pPlaneShape7.o" "polyUnite1.ip[71]"
+		;
+connectAttr "|Tree|group15|pPlane8|transform34|pPlaneShape8.o" "polyUnite1.ip[72]"
+		;
+connectAttr "|Tree|group15|pPlane9|transform33|pPlaneShape9.o" "polyUnite1.ip[73]"
+		;
+connectAttr "|Tree|group15|pPlane10|transform32|pPlaneShape10.o" "polyUnite1.ip[74]"
+		;
+connectAttr "|Tree|group15|pPlane11|transform31|pPlaneShape11.o" "polyUnite1.ip[75]"
+		;
+connectAttr "|Tree|group16|pPlane7|transform30|pPlaneShape7.o" "polyUnite1.ip[76]"
+		;
+connectAttr "|Tree|group16|pPlane8|transform29|pPlaneShape8.o" "polyUnite1.ip[77]"
+		;
+connectAttr "|Tree|group16|pPlane9|transform28|pPlaneShape9.o" "polyUnite1.ip[78]"
+		;
+connectAttr "|Tree|group16|pPlane10|transform27|pPlaneShape10.o" "polyUnite1.ip[79]"
+		;
+connectAttr "|Tree|group16|pPlane11|transform26|pPlaneShape11.o" "polyUnite1.ip[80]"
+		;
+connectAttr "|Tree|group17|pPlane7|transform25|pPlaneShape7.o" "polyUnite1.ip[81]"
+		;
+connectAttr "|Tree|group17|pPlane8|transform24|pPlaneShape8.o" "polyUnite1.ip[82]"
+		;
+connectAttr "|Tree|group17|pPlane9|transform23|pPlaneShape9.o" "polyUnite1.ip[83]"
+		;
+connectAttr "|Tree|group17|pPlane10|transform22|pPlaneShape10.o" "polyUnite1.ip[84]"
+		;
+connectAttr "|Tree|group17|pPlane11|transform21|pPlaneShape11.o" "polyUnite1.ip[85]"
+		;
+connectAttr "|Tree|group18|pPlane7|transform20|pPlaneShape7.o" "polyUnite1.ip[86]"
+		;
+connectAttr "|Tree|group18|pPlane8|transform19|pPlaneShape8.o" "polyUnite1.ip[87]"
+		;
+connectAttr "|Tree|group18|pPlane9|transform18|pPlaneShape9.o" "polyUnite1.ip[88]"
+		;
+connectAttr "|Tree|group18|pPlane10|transform17|pPlaneShape10.o" "polyUnite1.ip[89]"
+		;
+connectAttr "|Tree|group18|pPlane11|transform16|pPlaneShape11.o" "polyUnite1.ip[90]"
+		;
+connectAttr "|Tree|group19|pPlane7|transform15|pPlaneShape7.o" "polyUnite1.ip[91]"
+		;
+connectAttr "|Tree|group19|pPlane8|transform14|pPlaneShape8.o" "polyUnite1.ip[92]"
+		;
+connectAttr "|Tree|group19|pPlane9|transform13|pPlaneShape9.o" "polyUnite1.ip[93]"
+		;
+connectAttr "|Tree|group19|pPlane10|transform12|pPlaneShape10.o" "polyUnite1.ip[94]"
+		;
+connectAttr "|Tree|group19|pPlane11|transform11|pPlaneShape11.o" "polyUnite1.ip[95]"
+		;
+connectAttr "|Tree|group20|pPlane7|transform10|pPlaneShape7.o" "polyUnite1.ip[96]"
+		;
+connectAttr "|Tree|group20|pPlane8|transform9|pPlaneShape8.o" "polyUnite1.ip[97]"
+		;
+connectAttr "|Tree|group20|pPlane9|transform8|pPlaneShape9.o" "polyUnite1.ip[98]"
+		;
+connectAttr "|Tree|group20|pPlane10|transform7|pPlaneShape10.o" "polyUnite1.ip[99]"
+		;
+connectAttr "|Tree|group20|pPlane11|transform6|pPlaneShape11.o" "polyUnite1.ip[100]"
+		;
+connectAttr "|Tree|group21|pPlane7|transform5|pPlaneShape7.o" "polyUnite1.ip[101]"
+		;
+connectAttr "|Tree|group21|pPlane8|transform4|pPlaneShape8.o" "polyUnite1.ip[102]"
+		;
+connectAttr "|Tree|group21|pPlane9|transform3|pPlaneShape9.o" "polyUnite1.ip[103]"
+		;
+connectAttr "|Tree|group21|pPlane10|transform2|pPlaneShape10.o" "polyUnite1.ip[104]"
+		;
+connectAttr "|Tree|group21|pPlane11|transform1|pPlaneShape11.o" "polyUnite1.ip[105]"
+		;
+connectAttr "TrunkShape.wm" "polyUnite1.im[0]";
+connectAttr "|Tree|group1|pPlane7|transform105|pPlaneShape7.wm" "polyUnite1.im[1]"
+		;
+connectAttr "|Tree|group1|pPlane8|transform104|pPlaneShape8.wm" "polyUnite1.im[2]"
+		;
+connectAttr "|Tree|group1|pPlane9|transform103|pPlaneShape9.wm" "polyUnite1.im[3]"
+		;
+connectAttr "|Tree|group1|pPlane10|transform102|pPlaneShape10.wm" "polyUnite1.im[4]"
+		;
+connectAttr "|Tree|group1|pPlane11|transform101|pPlaneShape11.wm" "polyUnite1.im[5]"
+		;
+connectAttr "|Tree|group2|pPlane2|transform100|pPlaneShape2.wm" "polyUnite1.im[6]"
+		;
+connectAttr "|Tree|group2|pPlane3|transform99|pPlaneShape3.wm" "polyUnite1.im[7]"
+		;
+connectAttr "|Tree|group2|pPlane4|transform98|pPlaneShape4.wm" "polyUnite1.im[8]"
+		;
+connectAttr "|Tree|group2|pPlane5|transform97|pPlaneShape5.wm" "polyUnite1.im[9]"
+		;
+connectAttr "|Tree|group2|pPlane6|transform96|pPlaneShape6.wm" "polyUnite1.im[10]"
+		;
+connectAttr "|Tree|group3|pPlane2|transform95|pPlaneShape2.wm" "polyUnite1.im[11]"
+		;
+connectAttr "|Tree|group3|pPlane3|transform94|pPlaneShape3.wm" "polyUnite1.im[12]"
+		;
+connectAttr "|Tree|group3|pPlane4|transform93|pPlaneShape4.wm" "polyUnite1.im[13]"
+		;
+connectAttr "|Tree|group3|pPlane5|transform92|pPlaneShape5.wm" "polyUnite1.im[14]"
+		;
+connectAttr "|Tree|group3|pPlane6|transform91|pPlaneShape6.wm" "polyUnite1.im[15]"
+		;
+connectAttr "|Tree|group4|pPlane2|transform90|pPlaneShape2.wm" "polyUnite1.im[16]"
+		;
+connectAttr "|Tree|group4|pPlane3|transform89|pPlaneShape3.wm" "polyUnite1.im[17]"
+		;
+connectAttr "|Tree|group4|pPlane4|transform88|pPlaneShape4.wm" "polyUnite1.im[18]"
+		;
+connectAttr "|Tree|group4|pPlane5|transform87|pPlaneShape5.wm" "polyUnite1.im[19]"
+		;
+connectAttr "|Tree|group4|pPlane6|transform86|pPlaneShape6.wm" "polyUnite1.im[20]"
+		;
+connectAttr "|Tree|group5|pPlane2|transform85|pPlaneShape2.wm" "polyUnite1.im[21]"
+		;
+connectAttr "|Tree|group5|pPlane3|transform84|pPlaneShape3.wm" "polyUnite1.im[22]"
+		;
+connectAttr "|Tree|group5|pPlane4|transform83|pPlaneShape4.wm" "polyUnite1.im[23]"
+		;
+connectAttr "|Tree|group5|pPlane5|transform82|pPlaneShape5.wm" "polyUnite1.im[24]"
+		;
+connectAttr "|Tree|group5|pPlane6|transform81|pPlaneShape6.wm" "polyUnite1.im[25]"
+		;
+connectAttr "|Tree|group6|pPlane7|transform80|pPlaneShape7.wm" "polyUnite1.im[26]"
+		;
+connectAttr "|Tree|group6|pPlane8|transform79|pPlaneShape8.wm" "polyUnite1.im[27]"
+		;
+connectAttr "|Tree|group6|pPlane9|transform78|pPlaneShape9.wm" "polyUnite1.im[28]"
+		;
+connectAttr "|Tree|group6|pPlane10|transform77|pPlaneShape10.wm" "polyUnite1.im[29]"
+		;
+connectAttr "|Tree|group6|pPlane11|transform76|pPlaneShape11.wm" "polyUnite1.im[30]"
+		;
+connectAttr "|Tree|group7|pPlane7|transform75|pPlaneShape7.wm" "polyUnite1.im[31]"
+		;
+connectAttr "|Tree|group7|pPlane8|transform74|pPlaneShape8.wm" "polyUnite1.im[32]"
+		;
+connectAttr "|Tree|group7|pPlane9|transform73|pPlaneShape9.wm" "polyUnite1.im[33]"
+		;
+connectAttr "|Tree|group7|pPlane10|transform72|pPlaneShape10.wm" "polyUnite1.im[34]"
+		;
+connectAttr "|Tree|group7|pPlane11|transform71|pPlaneShape11.wm" "polyUnite1.im[35]"
+		;
+connectAttr "|Tree|group8|pPlane7|transform70|pPlaneShape7.wm" "polyUnite1.im[36]"
+		;
+connectAttr "|Tree|group8|pPlane8|transform69|pPlaneShape8.wm" "polyUnite1.im[37]"
+		;
+connectAttr "|Tree|group8|pPlane9|transform68|pPlaneShape9.wm" "polyUnite1.im[38]"
+		;
+connectAttr "|Tree|group8|pPlane10|transform67|pPlaneShape10.wm" "polyUnite1.im[39]"
+		;
+connectAttr "|Tree|group8|pPlane11|transform66|pPlaneShape11.wm" "polyUnite1.im[40]"
+		;
+connectAttr "|Tree|group9|pPlane7|transform65|pPlaneShape7.wm" "polyUnite1.im[41]"
+		;
+connectAttr "|Tree|group9|pPlane8|transform64|pPlaneShape8.wm" "polyUnite1.im[42]"
+		;
+connectAttr "|Tree|group9|pPlane9|transform63|pPlaneShape9.wm" "polyUnite1.im[43]"
+		;
+connectAttr "|Tree|group9|pPlane10|transform62|pPlaneShape10.wm" "polyUnite1.im[44]"
+		;
+connectAttr "|Tree|group9|pPlane11|transform61|pPlaneShape11.wm" "polyUnite1.im[45]"
+		;
+connectAttr "|Tree|group10|pPlane7|transform60|pPlaneShape7.wm" "polyUnite1.im[46]"
+		;
+connectAttr "|Tree|group10|pPlane8|transform59|pPlaneShape8.wm" "polyUnite1.im[47]"
+		;
+connectAttr "|Tree|group10|pPlane9|transform58|pPlaneShape9.wm" "polyUnite1.im[48]"
+		;
+connectAttr "|Tree|group10|pPlane10|transform57|pPlaneShape10.wm" "polyUnite1.im[49]"
+		;
+connectAttr "|Tree|group10|pPlane11|transform56|pPlaneShape11.wm" "polyUnite1.im[50]"
+		;
+connectAttr "|Tree|group11|pPlane7|transform55|pPlaneShape7.wm" "polyUnite1.im[51]"
+		;
+connectAttr "|Tree|group11|pPlane8|transform54|pPlaneShape8.wm" "polyUnite1.im[52]"
+		;
+connectAttr "|Tree|group11|pPlane9|transform53|pPlaneShape9.wm" "polyUnite1.im[53]"
+		;
+connectAttr "|Tree|group11|pPlane10|transform52|pPlaneShape10.wm" "polyUnite1.im[54]"
+		;
+connectAttr "|Tree|group11|pPlane11|transform51|pPlaneShape11.wm" "polyUnite1.im[55]"
+		;
+connectAttr "|Tree|group12|pPlane7|transform50|pPlaneShape7.wm" "polyUnite1.im[56]"
+		;
+connectAttr "|Tree|group12|pPlane8|transform49|pPlaneShape8.wm" "polyUnite1.im[57]"
+		;
+connectAttr "|Tree|group12|pPlane9|transform48|pPlaneShape9.wm" "polyUnite1.im[58]"
+		;
+connectAttr "|Tree|group12|pPlane10|transform47|pPlaneShape10.wm" "polyUnite1.im[59]"
+		;
+connectAttr "|Tree|group12|pPlane11|transform46|pPlaneShape11.wm" "polyUnite1.im[60]"
+		;
+connectAttr "|Tree|group13|pPlane7|transform45|pPlaneShape7.wm" "polyUnite1.im[61]"
+		;
+connectAttr "|Tree|group13|pPlane8|transform44|pPlaneShape8.wm" "polyUnite1.im[62]"
+		;
+connectAttr "|Tree|group13|pPlane9|transform43|pPlaneShape9.wm" "polyUnite1.im[63]"
+		;
+connectAttr "|Tree|group13|pPlane10|transform42|pPlaneShape10.wm" "polyUnite1.im[64]"
+		;
+connectAttr "|Tree|group13|pPlane11|transform41|pPlaneShape11.wm" "polyUnite1.im[65]"
+		;
+connectAttr "|Tree|group14|pPlane7|transform40|pPlaneShape7.wm" "polyUnite1.im[66]"
+		;
+connectAttr "|Tree|group14|pPlane8|transform39|pPlaneShape8.wm" "polyUnite1.im[67]"
+		;
+connectAttr "|Tree|group14|pPlane9|transform38|pPlaneShape9.wm" "polyUnite1.im[68]"
+		;
+connectAttr "|Tree|group14|pPlane10|transform37|pPlaneShape10.wm" "polyUnite1.im[69]"
+		;
+connectAttr "|Tree|group14|pPlane11|transform36|pPlaneShape11.wm" "polyUnite1.im[70]"
+		;
+connectAttr "|Tree|group15|pPlane7|transform35|pPlaneShape7.wm" "polyUnite1.im[71]"
+		;
+connectAttr "|Tree|group15|pPlane8|transform34|pPlaneShape8.wm" "polyUnite1.im[72]"
+		;
+connectAttr "|Tree|group15|pPlane9|transform33|pPlaneShape9.wm" "polyUnite1.im[73]"
+		;
+connectAttr "|Tree|group15|pPlane10|transform32|pPlaneShape10.wm" "polyUnite1.im[74]"
+		;
+connectAttr "|Tree|group15|pPlane11|transform31|pPlaneShape11.wm" "polyUnite1.im[75]"
+		;
+connectAttr "|Tree|group16|pPlane7|transform30|pPlaneShape7.wm" "polyUnite1.im[76]"
+		;
+connectAttr "|Tree|group16|pPlane8|transform29|pPlaneShape8.wm" "polyUnite1.im[77]"
+		;
+connectAttr "|Tree|group16|pPlane9|transform28|pPlaneShape9.wm" "polyUnite1.im[78]"
+		;
+connectAttr "|Tree|group16|pPlane10|transform27|pPlaneShape10.wm" "polyUnite1.im[79]"
+		;
+connectAttr "|Tree|group16|pPlane11|transform26|pPlaneShape11.wm" "polyUnite1.im[80]"
+		;
+connectAttr "|Tree|group17|pPlane7|transform25|pPlaneShape7.wm" "polyUnite1.im[81]"
+		;
+connectAttr "|Tree|group17|pPlane8|transform24|pPlaneShape8.wm" "polyUnite1.im[82]"
+		;
+connectAttr "|Tree|group17|pPlane9|transform23|pPlaneShape9.wm" "polyUnite1.im[83]"
+		;
+connectAttr "|Tree|group17|pPlane10|transform22|pPlaneShape10.wm" "polyUnite1.im[84]"
+		;
+connectAttr "|Tree|group17|pPlane11|transform21|pPlaneShape11.wm" "polyUnite1.im[85]"
+		;
+connectAttr "|Tree|group18|pPlane7|transform20|pPlaneShape7.wm" "polyUnite1.im[86]"
+		;
+connectAttr "|Tree|group18|pPlane8|transform19|pPlaneShape8.wm" "polyUnite1.im[87]"
+		;
+connectAttr "|Tree|group18|pPlane9|transform18|pPlaneShape9.wm" "polyUnite1.im[88]"
+		;
+connectAttr "|Tree|group18|pPlane10|transform17|pPlaneShape10.wm" "polyUnite1.im[89]"
+		;
+connectAttr "|Tree|group18|pPlane11|transform16|pPlaneShape11.wm" "polyUnite1.im[90]"
+		;
+connectAttr "|Tree|group19|pPlane7|transform15|pPlaneShape7.wm" "polyUnite1.im[91]"
+		;
+connectAttr "|Tree|group19|pPlane8|transform14|pPlaneShape8.wm" "polyUnite1.im[92]"
+		;
+connectAttr "|Tree|group19|pPlane9|transform13|pPlaneShape9.wm" "polyUnite1.im[93]"
+		;
+connectAttr "|Tree|group19|pPlane10|transform12|pPlaneShape10.wm" "polyUnite1.im[94]"
+		;
+connectAttr "|Tree|group19|pPlane11|transform11|pPlaneShape11.wm" "polyUnite1.im[95]"
+		;
+connectAttr "|Tree|group20|pPlane7|transform10|pPlaneShape7.wm" "polyUnite1.im[96]"
+		;
+connectAttr "|Tree|group20|pPlane8|transform9|pPlaneShape8.wm" "polyUnite1.im[97]"
+		;
+connectAttr "|Tree|group20|pPlane9|transform8|pPlaneShape9.wm" "polyUnite1.im[98]"
+		;
+connectAttr "|Tree|group20|pPlane10|transform7|pPlaneShape10.wm" "polyUnite1.im[99]"
+		;
+connectAttr "|Tree|group20|pPlane11|transform6|pPlaneShape11.wm" "polyUnite1.im[100]"
+		;
+connectAttr "|Tree|group21|pPlane7|transform5|pPlaneShape7.wm" "polyUnite1.im[101]"
+		;
+connectAttr "|Tree|group21|pPlane8|transform4|pPlaneShape8.wm" "polyUnite1.im[102]"
+		;
+connectAttr "|Tree|group21|pPlane9|transform3|pPlaneShape9.wm" "polyUnite1.im[103]"
+		;
+connectAttr "|Tree|group21|pPlane10|transform2|pPlaneShape10.wm" "polyUnite1.im[104]"
+		;
+connectAttr "|Tree|group21|pPlane11|transform1|pPlaneShape11.wm" "polyUnite1.im[105]"
+		;
+connectAttr "polyTweakUV1.out" "groupParts3.ig";
+connectAttr "groupId114.id" "groupParts3.gi";
+connectAttr "polyUnite1.out" "groupParts4.ig";
+connectAttr "groupId116.id" "groupParts4.gi";
+connectAttr "groupParts4.og" "groupParts5.ig";
+connectAttr "groupId117.id" "groupParts5.gi";
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert3SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert2.msg" ":defaultShaderList1.s" -na;
@@ -10259,4 +11558,4 @@ connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr ":perspShape.msg" ":defaultRenderGlobals.sc";
-// End of Tree.ma
+// End of Small tree 2.ma
