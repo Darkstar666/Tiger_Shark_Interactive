@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Final JPan Gate.ma
-//Last modified: Wed, Oct 30, 2013 11:05:55 AM
+//Last modified: Wed, Oct 30, 2013 11:55:30 AM
 //Codeset: 1252
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -12,14 +12,14 @@ fileInfo "osv" "Microsoft Windows 7 Business Edition, 64-bit Windows 7 Service P
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 5.5755675051801061 9.914300993379495 21.10267685674787 ;
-	setAttr ".r" -type "double3" -16.800000000001113 14.800000000000434 8.2242390879021539e-016 ;
+	setAttr ".t" -type "double3" -15.559473503579913 37.513281215330124 -49.049674523463096 ;
+	setAttr ".r" -type "double3" -33.600000000065592 197.6000000000227 0 ;
 	setAttr ".rp" -type "double3" 0 4.4408920985006262e-016 1.7763568394002505e-015 ;
 	setAttr ".rpt" -type "double3" 2.2146061569621023e-017 1.1890635055330982e-015 -2.0936890725999503e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 22.799929101753651;
+	setAttr ".coi" 61.780641115905425;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -70,12 +70,24 @@ createNode transform -n "Final_JPan_Gateway";
 	setAttr ".s" -type "double3" 0.4 0.4 0.4 ;
 createNode transform -n "Scroll_2" -p "Final_JPan_Gateway";
 	setAttr ".t" -type "double3" 0 23.75 -1.2 ;
-	setAttr ".r" -type "double3" 10 180 0 ;
-createNode transform -n "Paper" -p "Scroll_2";
+	setAttr ".r" -type "double3" 9.9999999999999893 180 0 ;
+	setAttr ".s" -type "double3" 1 0.99999999999999989 1 ;
+createNode transform -n "Scroll___Ying_Yang:Paper" -p "Scroll_2";
 	setAttr ".r" -type "double3" 90 0 0 ;
 	setAttr ".s" -type "double3" 2 1 1 ;
-createNode mesh -n "PaperShape" -p "|Final_JPan_Gateway|Scroll_2|Paper";
+createNode mesh -n "Scroll___Ying_Yang:PaperShape" -p "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper";
 	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.5 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode mesh -n "Scroll___Ying_Yang:polySurfaceShape1" -p "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.49999999441206455 0.5000000074505806 ;
@@ -104,11 +116,11 @@ createNode mesh -n "PaperShape" -p "|Final_JPan_Gateway|Scroll_2|Paper";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Scroll_Container" -p "Scroll_2";
+createNode transform -n "Scroll___Ying_Yang:Scroll_Container" -p "Scroll_2";
 	setAttr ".t" -type "double3" 0 3 0 ;
 	setAttr ".r" -type "double3" 0 0 90 ;
 	setAttr ".s" -type "double3" 2 2 2 ;
-createNode mesh -n "Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_2|Scroll_Container";
+createNode mesh -n "Scroll___Ying_Yang:Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[36:47]" "f[60:71]" "f[144:155]";
@@ -559,11 +571,11 @@ createNode mesh -n "Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_2|Scro
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Rope_1" -p "Scroll_2";
+createNode transform -n "Scroll___Ying_Yang:Rope_1" -p "Scroll_2";
 	setAttr ".t" -type "double3" 4 -0.25 0 ;
 	setAttr ".r" -type "double3" 180 0 0 ;
 	setAttr ".s" -type "double3" 2 1 2 ;
-createNode mesh -n "Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_2|Rope_1";
+createNode mesh -n "Scroll___Ying_Yang:Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[0:11]" "f[60:71]" "f[84:659]";
@@ -2796,11 +2808,11 @@ createNode mesh -n "Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_2|Rope_1";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Rope_2" -p "Scroll_2";
+createNode transform -n "Scroll___Ying_Yang:Rope_2" -p "Scroll_2";
 	setAttr ".t" -type "double3" -4 -0.25 0 ;
 	setAttr ".r" -type "double3" 180 180 0 ;
 	setAttr ".s" -type "double3" 2 1 2 ;
-createNode mesh -n "Rope_Shape2" -p "|Final_JPan_Gateway|Scroll_2|Rope_2";
+createNode mesh -n "Scroll___Ying_Yang:Rope_Shape2" -p "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[0:11]" "f[60:71]" "f[84:659]";
@@ -5036,11 +5048,58 @@ createNode mesh -n "Rope_Shape2" -p "|Final_JPan_Gateway|Scroll_2|Rope_2";
 createNode transform -n "Scroll_1" -p "Final_JPan_Gateway";
 	setAttr ".t" -type "double3" 0 23.75 1.2 ;
 	setAttr ".r" -type "double3" 10 0 0 ;
-createNode transform -n "Paper" -p "Scroll_1";
-	setAttr ".r" -type "double3" 90 0 0 ;
-	setAttr ".s" -type "double3" 2 1 1 ;
-createNode mesh -n "PaperShape" -p "|Final_JPan_Gateway|Scroll_1|Paper";
+	setAttr ".s" -type "double3" 1 0.99999999999999978 0.99999999999999978 ;
+createNode transform -n "Scroll___Ying_Yang:Paper" -p "Scroll_1";
+	setAttr ".r" -type "double3" 90 6.9101097178300028e-015 0 ;
+	setAttr ".s" -type "double3" 2 1.0000000000000004 1.0000000000000002 ;
+createNode mesh -n "Scroll___Ying_Yang:PaperShape" -p "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper";
 	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.5 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 16 ".uvst[0].uvsp[0:15]" -type "float2" 0 0 1 0 0 0.14434779
+		 1 0.14434779 0 0.85565221 1 0.85565221 0 1 1 1 0.025797069 0 0.025797069 0.14434779
+		 0.025797069 0.85565221 0.025797069 1 0.97420287 1 0.97420287 0.85565221 0.97420287
+		 0.14434779 0.97420287 0;
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 16 ".vt[0:15]"  -2 -6.6613381e-016 3 2 -6.6613381e-016 3
+		 -2 -1.1010547e-015 2.27963638 2 -1.1010547e-015 2.27963638 -2 2.2511156e-015 -2.4590497
+		 2 2.2511156e-015 -2.4590497 -2 6.6613381e-016 -3 2 6.6613381e-016 -3 -1.58786845 -6.6613381e-016 3
+		 -1.58786845 -1.1010547e-015 2.27963638 -1.58786845 2.2511156e-015 -2.4590497 -1.58786845 6.6613381e-016 -3
+		 1.58786845 6.6613381e-016 -3 1.58786845 2.2511156e-015 -2.4590497 1.58786845 -1.1010547e-015 2.27963638
+		 1.58786845 -6.6613381e-016 3;
+	setAttr -s 24 ".ed[0:23]"  0 8 0 0 2 0 2 9 1 2 4 0 4 10 1 4 6 0 6 11 0
+		 8 15 0 1 3 0 3 5 0 5 7 0 9 14 1 8 9 1 10 13 1 9 10 1 11 12 0 10 11 1 12 7 0 13 5 1
+		 12 13 1 14 3 1 13 14 1 15 1 0 14 15 1;
+	setAttr -s 9 -ch 36 ".fc[0:8]" -type "polyFaces" 
+		f 4 23 22 8 -21
+		mu 0 4 14 15 1 3
+		f 4 12 -3 -2 0
+		mu 0 4 8 9 2 0
+		f 4 21 20 9 -19
+		mu 0 4 13 14 3 5
+		f 4 14 -5 -4 2
+		mu 0 4 9 10 4 2
+		f 4 19 18 10 -18
+		mu 0 4 12 13 5 7
+		f 4 16 -7 -6 4
+		mu 0 4 10 11 6 4
+		f 4 -16 -17 13 -20
+		mu 0 4 12 11 10 13
+		f 4 -14 -15 11 -22
+		mu 0 4 13 10 9 14
+		f 4 -12 -13 7 -24
+		mu 0 4 14 9 8 15;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode mesh -n "Scroll___Ying_Yang:polySurfaceShape1" -p "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.49999999441206455 0.5000000074505806 ;
@@ -5069,11 +5128,11 @@ createNode mesh -n "PaperShape" -p "|Final_JPan_Gateway|Scroll_1|Paper";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Scroll_Container" -p "Scroll_1";
+createNode transform -n "Scroll___Ying_Yang:Scroll_Container" -p "Scroll_1";
 	setAttr ".t" -type "double3" 0 3 0 ;
 	setAttr ".r" -type "double3" 0 0 90 ;
 	setAttr ".s" -type "double3" 2 2 2 ;
-createNode mesh -n "Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_1|Scroll_Container";
+createNode mesh -n "Scroll___Ying_Yang:Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[36:47]" "f[60:71]" "f[144:155]";
@@ -5524,11 +5583,11 @@ createNode mesh -n "Scroll_ContainerShape" -p "|Final_JPan_Gateway|Scroll_1|Scro
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Rope_1" -p "Scroll_1";
+createNode transform -n "Scroll___Ying_Yang:Rope_1" -p "Scroll_1";
 	setAttr ".t" -type "double3" 4 -0.25 0 ;
 	setAttr ".r" -type "double3" 180 0 0 ;
 	setAttr ".s" -type "double3" 2 1 2 ;
-createNode mesh -n "Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_1|Rope_1";
+createNode mesh -n "Scroll___Ying_Yang:Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[0:11]" "f[60:71]" "f[84:659]";
@@ -7761,11 +7820,11 @@ createNode mesh -n "Rope_Shape1" -p "|Final_JPan_Gateway|Scroll_1|Rope_1";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Rope_2" -p "Scroll_1";
+createNode transform -n "Scroll___Ying_Yang:Rope_2" -p "Scroll_1";
 	setAttr ".t" -type "double3" -4 -0.25 0 ;
 	setAttr ".r" -type "double3" 180 180 0 ;
 	setAttr ".s" -type "double3" 2 1 2 ;
-createNode mesh -n "Rope_Shape2" -p "|Final_JPan_Gateway|Scroll_1|Rope_2";
+createNode mesh -n "Scroll___Ying_Yang:Rope_Shape2" -p "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2";
 	setAttr -k off ".v";
 	setAttr -s 2 ".iog[0].og";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 3 "f[0:11]" "f[60:71]" "f[84:659]";
@@ -22011,8 +22070,8 @@ createNode mesh -n "Cap_Shape5" -p "Cap_5";
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	setAttr -s 18 ".lnk";
-	setAttr -s 18 ".slnk";
+	setAttr -s 23 ".lnk";
+	setAttr -s 23 ".slnk";
 createNode displayLayerManager -n "layerManager";
 createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
@@ -22724,22 +22783,20 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;\n\t\t\tif (`objExists nodeEditorPanel1Info`) nodeEditor -e -restoreInfo nodeEditorPanel1Info $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -ignoreAssets 1\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n"
 		+ "                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -keyReleaseCommand \"nodeEdKeyReleaseCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -island 0\n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -syncedSelection 1\n                -extendToShapes 1\n                $editorName;\n\t\t\tif (`objExists nodeEditorPanel1Info`) nodeEditor -e -restoreInfo nodeEditorPanel1Info $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"createNodePanel\" -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels `;\n"
 		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Texture Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"polyTexturePlacementPanel\" -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Texture Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"renderWindowPanel\" -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels `;\n"
-		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\tif ($useSceneConfig) {\n\t\tscriptedPanel -e -to $panelName;\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"blendShapePanel\" (localizedPanelLabel(\"Blend Shape\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n"
-		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n"
+		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"blendShapePanel\" (localizedPanelLabel(\"Blend Shape\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n"
 		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"componentEditorPanel\" -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynPaintScriptedPanelType\" -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels `;\n"
 		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n"
-		+ "\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"vertical2\\\" -ps 1 20 100 -ps 2 80 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Outliner\")) \n\t\t\t\t\t\"outlinerPanel\"\n\t\t\t\t\t\"$panelName = `outlinerPanel -unParent -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -docTag \\\"isolOutln_fromSeln\\\" \\n    -showShapes 0\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 0\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"outlinerPanel -edit -l (localizedPanelLabel(\\\"Outliner\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\noutlinerEditor -e \\n    -docTag \\\"isolOutln_fromSeln\\\" \\n    -showShapes 0\\n    -showReferenceNodes 0\\n    -showReferenceMembers 0\\n    -showAttributes 0\\n    -showConnected 0\\n    -showAnimCurvesOnly 0\\n    -showMuteInfo 0\\n    -organizeByLayer 1\\n    -showAnimLayerWeight 1\\n    -autoExpandLayers 1\\n    -autoExpand 0\\n    -showDagOnly 1\\n    -showAssets 1\\n    -showContainedOnly 1\\n    -showPublishedAsConnected 0\\n    -showContainerContents 1\\n    -ignoreDagHierarchy 0\\n    -expandConnections 0\\n    -showUpstreamCurves 1\\n    -showUnitlessCurves 1\\n    -showCompounds 1\\n    -showLeafs 1\\n    -showNumericAttrsOnly 0\\n    -highlightActive 1\\n    -autoSelectNewObjects 0\\n    -doNotSelectNewObjects 0\\n    -dropIsParent 1\\n    -transmitFilters 0\\n    -setFilter \\\"defaultSetFilter\\\" \\n    -showSetMembers 1\\n    -allowMultiSelection 1\\n    -alwaysToggleSelect 0\\n    -directSelect 0\\n    -displayMode \\\"DAG\\\" \\n    -expandObjects 0\\n    -setsIgnoreFilters 1\\n    -containersIgnoreFilters 0\\n    -editAttrName 0\\n    -showAttrValues 0\\n    -highlightSecondary 0\\n    -showUVAttrsOnly 0\\n    -showTextureNodesOnly 0\\n    -attrAlphaOrder \\\"default\\\" \\n    -animLayerFilterOptions \\\"allAffecting\\\" \\n    -sortOrder \\\"none\\\" \\n    -longNames 0\\n    -niceNames 1\\n    -showNamespace 1\\n    -showPinIcons 0\\n    -mapMotionTrails 0\\n    $editorName\"\n"
-		+ "\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"left3\\\" -ps 1 47 100 -ps 2 53 100 -ps 3 47 0 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Hypershade\")) \n\t\t\t\t\t\"scriptedPanel\"\n\t\t\t\t\t\"$panelName = `scriptedPanel -unParent  -type \\\"hyperShadePanel\\\" -l (localizedPanelLabel(\\\"Hypershade\\\")) -mbv $menusOkayInPanels `\"\n\t\t\t\t\t\"scriptedPanel -edit -l (localizedPanelLabel(\\\"Hypershade\\\")) -mbv $menusOkayInPanels  $panelName\"\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"base_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName\"\n"
+		+ "\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Node Editor\")) \n\t\t\t\t\t\"scriptedPanel\"\n\t\t\t\t\t\"$panelName = `scriptedPanel -unParent  -type \\\"nodeEditorPanel\\\" -l (localizedPanelLabel(\\\"Node Editor\\\")) -mbv $menusOkayInPanels `;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"NodeEditorEd\\\");\\n            nodeEditor -e \\n                -allAttributes 0\\n                -allNodes 0\\n                -autoSizeNodes 1\\n                -createNodeCommand \\\"nodeEdCreateNodeCommand\\\" \\n                -defaultPinnedState 0\\n                -ignoreAssets 1\\n                -additiveGraphingMode 0\\n                -settingsChangedCallback \\\"nodeEdSyncControls\\\" \\n                -traversalDepthLimit -1\\n                -keyPressCommand \\\"nodeEdKeyPressCommand\\\" \\n                -keyReleaseCommand \\\"nodeEdKeyReleaseCommand\\\" \\n                -nodeTitleMode \\\"name\\\" \\n                -gridSnap 0\\n                -gridVisibility 1\\n                -popupMenuScript \\\"nodeEdBuildPanelMenus\\\" \\n                -island 0\\n                -showNamespace 1\\n                -showShapes 1\\n                -showSGShapes 0\\n                -showTransforms 1\\n                -syncedSelection 1\\n                -extendToShapes 1\\n                $editorName;\\n\\t\\t\\tif (`objExists nodeEditorPanel1Info`) nodeEditor -e -restoreInfo nodeEditorPanel1Info $editorName\"\n"
+		+ "\t\t\t\t\t\"scriptedPanel -edit -l (localizedPanelLabel(\\\"Node Editor\\\")) -mbv $menusOkayInPanels  $panelName;\\n\\n\\t\\t\\t$editorName = ($panelName+\\\"NodeEditorEd\\\");\\n            nodeEditor -e \\n                -allAttributes 0\\n                -allNodes 0\\n                -autoSizeNodes 1\\n                -createNodeCommand \\\"nodeEdCreateNodeCommand\\\" \\n                -defaultPinnedState 0\\n                -ignoreAssets 1\\n                -additiveGraphingMode 0\\n                -settingsChangedCallback \\\"nodeEdSyncControls\\\" \\n                -traversalDepthLimit -1\\n                -keyPressCommand \\\"nodeEdKeyPressCommand\\\" \\n                -keyReleaseCommand \\\"nodeEdKeyReleaseCommand\\\" \\n                -nodeTitleMode \\\"name\\\" \\n                -gridSnap 0\\n                -gridVisibility 1\\n                -popupMenuScript \\\"nodeEdBuildPanelMenus\\\" \\n                -island 0\\n                -showNamespace 1\\n                -showShapes 1\\n                -showSGShapes 0\\n                -showTransforms 1\\n                -syncedSelection 1\\n                -extendToShapes 1\\n                $editorName;\\n\\t\\t\\tif (`objExists nodeEditorPanel1Info`) nodeEditor -e -restoreInfo nodeEditorPanel1Info $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 1 -aet 48 ";
 	setAttr ".st" 6;
-createNode place2dTexture -n "place2dTexture1";
-createNode place2dTexture -n "place2dTexture2";
 createNode lambert -n "Black_Trim";
 	setAttr ".c" -type "float3" 0.15000001 0.15000001 0.15000001 ;
 createNode shadingEngine -n "lambert6SG";
@@ -23174,95 +23231,41 @@ createNode groupParts -n "groupParts14";
 	setAttr ".ic" -type "componentList" 97 "f[40:99]" "f[120:179]" "f[431]" "f[433]" "f[435]" "f[437]" "f[439]" "f[441]" "f[443]" "f[445]" "f[447]" "f[449]" "f[451]" "f[453]" "f[455]" "f[457]" "f[459]" "f[461]" "f[463]" "f[465]" "f[467]" "f[469:470]" "f[472]" "f[474]" "f[476]" "f[478]" "f[480]" "f[482]" "f[484]" "f[486]" "f[488]" "f[490]" "f[492]" "f[494]" "f[496]" "f[498]" "f[500]" "f[502]" "f[504]" "f[506]" "f[508]" "f[511]" "f[513]" "f[515]" "f[517]" "f[519]" "f[521]" "f[523]" "f[525]" "f[527]" "f[529]" "f[531]" "f[533]" "f[535]" "f[537]" "f[588]" "f[590]" "f[592]" "f[594]" "f[596]" "f[598]" "f[600]" "f[602]" "f[604]" "f[606]" "f[608]" "f[610]" "f[612]" "f[614]" "f[616]" "f[618]" "f[620]" "f[622]" "f[624]" "f[626]" "f[628]" "f[630]" "f[632]" "f[634]" "f[636]" "f[638]" "f[640]" "f[642]" "f[644]" "f[646]" "f[648]" "f[650]" "f[652]" "f[654]" "f[656]" "f[658]" "f[660]" "f[662]" "f[664]" "f[666]" "f[668]" "f[670]";
 createNode hyperGraphInfo -n "nodeEditorPanel1Info";
 createNode hyperView -n "hyperView1";
-	setAttr ".vl" -type "double2" -1407.1428571428573 1012.0763783510371 ;
-	setAttr ".vh" -type "double2" 840.4761904761906 1319.0349736252622 ;
+	setAttr ".vl" -type "double2" -1407.1428571428571 1513.1217972753407 ;
+	setAttr ".vh" -type "double2" 537.69372578427749 1778.729221347332 ;
 	setAttr ".dag" no;
 createNode hyperLayout -n "hyperLayout1";
 	setAttr ".ihi" 0;
 	setAttr -s 28 ".hyp";
-	setAttr ".hyp[0].x" -419.65231323242187;
-	setAttr ".hyp[0].y" 395.24325561523437;
-	setAttr ".hyp[0].nvs" 1920;
-	setAttr ".hyp[1].x" 3.8787717819213867;
-	setAttr ".hyp[1].y" 394.22201538085937;
+	setAttr ".hyp[0].x" -412.59060668945312;
+	setAttr ".hyp[0].y" 548.08148193359375;
+	setAttr ".hyp[0].nvs" 1928;
 	setAttr ".hyp[1].nvs" 1920;
-	setAttr ".hyp[2].x" 0.28224515914916992;
-	setAttr ".hyp[2].y" 550.32391357421875;
 	setAttr ".hyp[2].nvs" 1920;
-	setAttr ".hyp[3].x" -413.79513549804687;
-	setAttr ".hyp[3].y" 548.0340576171875;
 	setAttr ".hyp[3].nvs" 1928;
-	setAttr ".hyp[4].x" 13.390820503234863;
-	setAttr ".hyp[4].y" 730.46063232421875;
 	setAttr ".hyp[4].nvs" 1920;
-	setAttr ".hyp[5].x" -420.01632690429687;
-	setAttr ".hyp[5].y" 244.83560180664062;
 	setAttr ".hyp[5].nvs" 1920;
-	setAttr ".hyp[6].x" 2.5640804767608643;
-	setAttr ".hyp[6].y" 248.23782348632812;
 	setAttr ".hyp[6].nvs" 1920;
-	setAttr ".hyp[7].x" -415.8671875;
-	setAttr ".hyp[7].y" -29.417478561401367;
 	setAttr ".hyp[7].nvs" 1920;
-	setAttr ".hyp[8].x" 7.7320818901062012;
-	setAttr ".hyp[8].y" -42.886177062988281;
 	setAttr ".hyp[8].nvs" 1920;
-	setAttr ".hyp[9].x" -416.07144165039062;
-	setAttr ".hyp[9].y" -337.37734985351563;
 	setAttr ".hyp[9].nvs" 1920;
-	setAttr ".hyp[10].x" -3.799217700958252;
-	setAttr ".hyp[10].y" -343.9425048828125;
 	setAttr ".hyp[10].nvs" 1920;
-	setAttr ".hyp[11].x" -421.81954956054687;
-	setAttr ".hyp[11].y" 100.61876678466797;
 	setAttr ".hyp[11].nvs" 1920;
-	setAttr ".hyp[12].x" 4.3649067878723145;
-	setAttr ".hyp[12].y" 106.36689758300781;
 	setAttr ".hyp[12].nvs" 1920;
-	setAttr ".hyp[13].x" -417.26190185546875;
-	setAttr ".hyp[13].y" -494.04763793945312;
 	setAttr ".hyp[13].nvs" 1920;
-	setAttr ".hyp[14].x" -2.8129949569702148;
-	setAttr ".hyp[14].y" -492.244384765625;
 	setAttr ".hyp[14].nvs" 1920;
-	setAttr ".hyp[15].x" -413.69049072265625;
-	setAttr ".hyp[15].y" -188.73703002929687;
 	setAttr ".hyp[15].nvs" 1920;
-	setAttr ".hyp[16].x" 2.3574166297912598;
-	setAttr ".hyp[16].y" -194.85862731933594;
 	setAttr ".hyp[16].nvs" 1920;
-	setAttr ".hyp[17].x" -416.47122192382812;
-	setAttr ".hyp[17].y" 714.5118408203125;
 	setAttr ".hyp[17].nvs" 1920;
-	setAttr ".hyp[18].x" -102.1160888671875;
-	setAttr ".hyp[18].y" -121.45761108398437;
 	setAttr ".hyp[18].nvs" 1920;
-	setAttr ".hyp[19].x" -299.25894165039062;
-	setAttr ".hyp[19].y" 619.46258544921875;
 	setAttr ".hyp[19].nvs" 1920;
-	setAttr ".hyp[20].x" -299.25894165039062;
-	setAttr ".hyp[20].y" 316.26416015625;
 	setAttr ".hyp[20].nvs" 1920;
-	setAttr ".hyp[21].x" -299.25894165039062;
-	setAttr ".hyp[21].y" -117.30846405029297;
 	setAttr ".hyp[21].nvs" 1920;
-	setAttr ".hyp[22].x" -299.25894165039062;
-	setAttr ".hyp[22].y" -265.94879150390625;
 	setAttr ".hyp[22].nvs" 1920;
-	setAttr ".hyp[23].x" -299.25894165039062;
-	setAttr ".hyp[23].y" -422.61904907226562;
 	setAttr ".hyp[23].nvs" 1920;
-	setAttr ".hyp[24].x" -299.25894165039062;
-	setAttr ".hyp[24].y" -568.38690185546875;
 	setAttr ".hyp[24].nvs" 1920;
-	setAttr ".hyp[25].x" -299.25894165039062;
-	setAttr ".hyp[25].y" 466.67184448242187;
 	setAttr ".hyp[25].nvs" 1920;
-	setAttr ".hyp[26].x" -299.25894165039062;
-	setAttr ".hyp[26].y" 172.04733276367187;
 	setAttr ".hyp[26].nvs" 1920;
-	setAttr ".hyp[27].x" -671.3690185546875;
-	setAttr ".hyp[27].y" 790.80084228515625;
 	setAttr ".hyp[27].nvs" 1920;
 	setAttr ".anf" yes;
 createNode polySplitRing -n "polySplitRing50";
@@ -23462,9 +23465,7 @@ createNode shadingEngine -n "Hanging_Lantern:blinn1SG";
 	setAttr -s 6 ".dsm";
 	setAttr ".ro" yes;
 createNode materialInfo -n "Hanging_Lantern:materialInfo6";
-createNode place2dTexture -n "Hanging_Lantern:place2dTexture1";
 createNode lambert -n "Hanging_Lantern:lambert6";
-createNode place2dTexture -n "Hanging_Lantern:place2dTexture2";
 createNode groupId -n "groupId45";
 	setAttr ".ihi" 0;
 createNode groupId -n "groupId46";
@@ -23491,40 +23492,6 @@ createNode shadingEngine -n "Tassels:lambert3SG";
 	setAttr -s 22 ".dsm";
 	setAttr ".ro" yes;
 createNode materialInfo -n "Tassels:materialInfo2";
-createNode lambert -n "Ying_Yang_Scrools:JPan_Gate:Tiger_Shark_Logo";
-createNode shadingEngine -n "Ying_Yang_Scrools:JPan_Gate:lambert3SG";
-	setAttr ".ihi" 0;
-	setAttr -s 2 ".dsm";
-	setAttr ".ro" yes;
-createNode materialInfo -n "Ying_Yang_Scrools:JPan_Gate:materialInfo2";
-createNode file -n "Ying_Yang_Scrools:JPan_Gate:file1";
-	setAttr ".ftn" -type "string" "C:/Users/student/Desktop/Reilly McVay/Tiger Shark Interactive Images/YinYang.png";
-createNode place2dTexture -n "Ying_Yang_Scrools:JPan_Gate:place2dTexture1";
-createNode place2dTexture -n "Ying_Yang_Scrools:JPan_Gate:place2dTexture2";
-createNode lambert -n "Ying_Yang_Scrools:JPan_Gate:Rope";
-	setAttr ".c" -type "float3" 0.82599998 0.82599998 0.403914 ;
-createNode shadingEngine -n "Ying_Yang_Scrools:JPan_Gate:lambert5SG";
-	setAttr ".ihi" 0;
-	setAttr -s 8 ".dsm";
-	setAttr ".ro" yes;
-	setAttr -s 8 ".gn";
-createNode materialInfo -n "Ying_Yang_Scrools:JPan_Gate:materialInfo4";
-createNode lambert -n "Ying_Yang_Scrools:JPan_Gate:Black_Trim";
-	setAttr ".c" -type "float3" 0.15000001 0.15000001 0.15000001 ;
-createNode shadingEngine -n "Ying_Yang_Scrools:JPan_Gate:lambert6SG";
-	setAttr ".ihi" 0;
-	setAttr -s 4 ".dsm";
-	setAttr ".ro" yes;
-	setAttr -s 4 ".gn";
-createNode materialInfo -n "Ying_Yang_Scrools:JPan_Gate:materialInfo5";
-createNode lambert -n "Ying_Yang_Scrools:JPan_Gate:Gold_Trim";
-	setAttr ".c" -type "float3" 1 1 0 ;
-createNode shadingEngine -n "Ying_Yang_Scrools:JPan_Gate:lambert7SG";
-	setAttr ".ihi" 0;
-	setAttr -s 6 ".dsm";
-	setAttr ".ro" yes;
-	setAttr -s 6 ".gn";
-createNode materialInfo -n "Ying_Yang_Scrools:JPan_Gate:materialInfo6";
 createNode hyperGraphInfo -n "Ying_Yang_Scrools:JPan_Gate:nodeEditorPanel1Info";
 createNode hyperView -n "Ying_Yang_Scrools:JPan_Gate:hyperView1";
 	setAttr ".vl" -type "double2" -257.14285714285717 130.95238095238096 ;
@@ -23565,49 +23532,185 @@ createNode hyperLayout -n "Ying_Yang_Scrools:hyperLayout1";
 	setAttr ".hyp[2].nvs" 1920;
 	setAttr ".hyp[3].nvs" 1920;
 	setAttr ".anf" yes;
-createNode groupId -n "groupId51";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId52";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId53";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId56";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId54";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId55";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId59";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId58";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId57";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId60";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId61";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId62";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId63";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId64";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId65";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId66";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId67";
-	setAttr ".ihi" 0;
-createNode groupId -n "groupId68";
-	setAttr ".ihi" 0;
 createNode file -n "Hanging_Lantern:file1";
 	setAttr ".ftn" -type "string" "C:/Users/student/Desktop/Reilly McVay/Tiger Shark Interactive Images/Aged Metal.png";
+createNode place2dTexture -n "place2dTexture2";
+createNode place2dTexture -n "place2dTexture1";
+createNode place2dTexture -n "Hanging_Lantern:place2dTexture2";
+createNode place2dTexture -n "Hanging_Lantern:place2dTexture1";
+createNode materialInfo -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo2";
+createNode shadingEngine -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode lambert -n "Scroll___Ying_Yang:Tiger_Shark_Logo";
+createNode file -n "Scroll___Ying_Yang:TSI";
+	setAttr ".ftn" -type "string" "C:/Users/student/Desktop/Reilly McVay/Reilly's Final Pieces/Reilly's TSI Images/Tiger Shark Interactive Logo.png";
+createNode place2dTexture -n "Scroll___Ying_Yang:place2dTexture3";
+createNode groupId -n "Scroll___Ying_Yang:groupId51";
+	setAttr ".ihi" 0;
+createNode shadingEngine -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG";
+	setAttr ".ihi" 0;
+	setAttr -s 4 ".dsm";
+	setAttr ".ro" yes;
+	setAttr -s 4 ".gn";
+createNode materialInfo -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo5";
+createNode lambert -n "Scroll___Ying_Yang:Black_Trim";
+	setAttr ".c" -type "float3" 0.15000001 0.15000001 0.15000001 ;
+createNode groupId -n "Scroll___Ying_Yang:groupId52";
+	setAttr ".ihi" 0;
+createNode shadingEngine -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG";
+	setAttr ".ihi" 0;
+	setAttr -s 6 ".dsm";
+	setAttr ".ro" yes;
+	setAttr -s 6 ".gn";
+createNode materialInfo -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo6";
+createNode lambert -n "Scroll___Ying_Yang:Gold_Trim";
+	setAttr ".c" -type "float3" 1 1 0 ;
+createNode groupId -n "Scroll___Ying_Yang:groupId53";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId54";
+	setAttr ".ihi" 0;
+createNode shadingEngine -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG";
+	setAttr ".ihi" 0;
+	setAttr -s 8 ".dsm";
+	setAttr ".ro" yes;
+	setAttr -s 8 ".gn";
+createNode materialInfo -n "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo4";
+createNode lambert -n "Scroll___Ying_Yang:Scroll_Rope";
+	setAttr ".c" -type "float3" 0.82599998 0.82599998 0.403914 ;
+createNode groupId -n "Scroll___Ying_Yang:groupId55";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId56";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId57";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId58";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId59";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId60";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId61";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId62";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId63";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId64";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId65";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId66";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId67";
+	setAttr ".ihi" 0;
+createNode groupId -n "Scroll___Ying_Yang:groupId68";
+	setAttr ".ihi" 0;
+createNode lambert -n "Scroll___Ying_Yang:Ying_Yang_Symbol";
+createNode shadingEngine -n "Scroll___Ying_Yang:lambert2SG";
+	setAttr ".ihi" 0;
+	setAttr -s 2 ".dsm";
+	setAttr ".ro" yes;
+createNode materialInfo -n "Scroll___Ying_Yang:materialInfo1";
+createNode place2dTexture -n "Scroll___Ying_Yang:place2dTexture1";
+createNode file -n "Scroll___Ying_Yang:Ying_Yang";
+	setAttr ".ftn" -type "string" "C:/Users/student/Desktop/Reilly McVay/Reilly's Final Pieces/Reilly's TSI Images/YinYang.png";
+createNode place2dTexture -n "Scroll___Ying_Yang:place2dTexture2";
+createNode polySubdFace -n "Scroll___Ying_Yang:polySubdFace1";
+	setAttr ".ics" -type "componentList" 1 "f[*]";
+createNode polyDuplicateEdge -n "Scroll___Ying_Yang:polyDuplicateEdge1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 6 "e[14]" "e[16]" "e[21]" "e[23]" "e[28]" "e[30]";
+	setAttr ".of" 0.79393422603607178;
+createNode deleteComponent -n "Scroll___Ying_Yang:deleteComponent1";
+	setAttr ".dc" -type "componentList" 9 "e[14:17]" "e[21:24]" "e[28:31]" "e[33]" "e[37]" "e[41]" "e[46]" "e[50]" "e[54]";
+createNode polyTweakUV -n "Scroll___Ying_Yang:polyTweakUV1";
+	setAttr ".uopa" yes;
+	setAttr -s 14 ".uvtk";
+	setAttr ".uvtk[0]" -type "float2" -0.050000001 0 ;
+	setAttr ".uvtk[1]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[2]" -type "float2" -0.050000012 0 ;
+	setAttr ".uvtk[3]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[4]" -type "float2" -0.050000012 0 ;
+	setAttr ".uvtk[5]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[6]" -type "float2" -0.050000001 0 ;
+	setAttr ".uvtk[7]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[9]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[11]" -type "float2" -0.050000004 0 ;
+	setAttr ".uvtk[12]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[14]" -type "float2" -0.050000012 0 ;
+	setAttr ".uvtk[15]" -type "float2" 0.050000012 0 ;
+	setAttr ".uvtk[17]" -type "float2" -0.050000004 0 ;
+createNode deleteComponent -n "Scroll___Ying_Yang:deleteComponent2";
+	setAttr ".dc" -type "componentList" 7 "vtx[8:17]" "vtx[19]" "vtx[21]" "vtx[23]" "vtx[26]" "vtx[28]" "vtx[30]";
+createNode polyTweakUV -n "Scroll___Ying_Yang:polyTweakUV2";
+	setAttr ".uopa" yes;
+	setAttr -s 16 ".uvtk[0:15]" -type "float2" 0 -0.15000001 0 -0.15000001
+		 0 -0.079947203 0 -0.079947203 0 0.079947233 0 0.079947233 0 0.14999998 0 0.14999998
+		 -0.11693253 -0.15000001 -0.11693254 -0.079947203 -0.11693254 0.079947233 -0.11693253
+		 0.14999998 0.11693245 0.14999998 0.11693245 0.079947233 0.11693245 -0.079947203 0.11693245
+		 -0.15000001;
+createNode hyperGraphInfo -n "Scroll___Ying_Yang:nodeEditorPanel1Info";
+createNode hyperView -n "Scroll___Ying_Yang:hyperView1";
+	setAttr ".vl" -type "double2" -847.02380952380952 -496.42857142857127 ;
+	setAttr ".vh" -type "double2" 722.02380952380952 498.8095238095238 ;
+	setAttr ".dag" no;
+createNode hyperLayout -n "Scroll___Ying_Yang:hyperLayout1";
+	setAttr ".ihi" 0;
+	setAttr -s 17 ".hyp";
+	setAttr ".hyp[0].x" -194.64285278320312;
+	setAttr ".hyp[0].y" 272.61904907226563;
+	setAttr ".hyp[0].nvs" 1920;
+	setAttr ".hyp[1].x" -194.64285278320312;
+	setAttr ".hyp[1].y" 194.04762268066406;
+	setAttr ".hyp[1].nvs" 1920;
+	setAttr ".hyp[2].x" -194.64285278320312;
+	setAttr ".hyp[2].y" 194.04762268066406;
+	setAttr ".hyp[2].nvs" 1920;
+	setAttr ".hyp[3].x" -194.64285278320312;
+	setAttr ".hyp[3].y" 194.04762268066406;
+	setAttr ".hyp[3].nvs" 1920;
+	setAttr ".hyp[4].x" -194.64285278320312;
+	setAttr ".hyp[4].y" 194.04762268066406;
+	setAttr ".hyp[4].nvs" 1920;
+	setAttr ".hyp[5].x" -194.64285278320312;
+	setAttr ".hyp[5].y" 194.04762268066406;
+	setAttr ".hyp[5].nvs" 1920;
+	setAttr ".hyp[6].x" 2.5;
+	setAttr ".hyp[6].y" 250;
+	setAttr ".hyp[6].nvs" 1920;
+	setAttr ".hyp[7].x" -194.64285278320312;
+	setAttr ".hyp[7].y" 194.04762268066406;
+	setAttr ".hyp[7].nvs" 1920;
+	setAttr ".hyp[8].x" -194.64285278320312;
+	setAttr ".hyp[8].y" 194.04762268066406;
+	setAttr ".hyp[8].nvs" 1920;
+	setAttr ".hyp[9].x" -194.64285278320312;
+	setAttr ".hyp[9].y" 194.04762268066406;
+	setAttr ".hyp[9].nvs" 1920;
+	setAttr ".hyp[10].x" -194.64285278320312;
+	setAttr ".hyp[10].y" 194.04762268066406;
+	setAttr ".hyp[10].nvs" 1920;
+	setAttr ".hyp[11].x" -194.64285278320312;
+	setAttr ".hyp[11].y" 194.04762268066406;
+	setAttr ".hyp[11].nvs" 1920;
+	setAttr ".hyp[12].x" -194.64285278320312;
+	setAttr ".hyp[12].y" 194.04762268066406;
+	setAttr ".hyp[12].nvs" 1920;
+	setAttr ".hyp[13].x" 199.64285278320312;
+	setAttr ".hyp[13].y" 209.5238037109375;
+	setAttr ".hyp[13].nvs" 1920;
+	setAttr ".hyp[14].x" -194.64285278320312;
+	setAttr ".hyp[14].y" 194.04762268066406;
+	setAttr ".hyp[14].nvs" 1920;
+	setAttr ".hyp[15].nvs" 1920;
+	setAttr ".hyp[16].nvs" 1920;
+	setAttr ".anf" yes;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
 select -ne :renderPartition;
-	setAttr -s 18 ".st";
+	setAttr -s 19 ".st";
 select -ne :initialShadingGroup;
 	setAttr -s 2 ".dsm";
 	setAttr ".ro" yes;
@@ -23615,13 +23718,13 @@ select -ne :initialShadingGroup;
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
 select -ne :defaultShaderList1;
-	setAttr -s 18 ".s";
+	setAttr -s 19 ".s";
 select -ne :defaultTextureList1;
-	setAttr -s 2 ".tx";
+	setAttr -s 3 ".tx";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
-	setAttr -s 6 ".u";
+	setAttr -s 7 ".u";
 select -ne :defaultRenderingList1;
 select -ne :renderGlobalsList1;
 select -ne :defaultResolution;
@@ -23636,65 +23739,69 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "groupId60.id" "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:polyTweakUV2.out" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:PaperShape.i"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert6SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:polyTweakUV2.uvtk[0]" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:PaperShape.uvst[0].uvtw"
 		;
-connectAttr "groupId61.id" "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId60.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0].gco"
 		;
-connectAttr "groupId62.id" "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.ciog.cog[3].cgid"
+connectAttr "Scroll___Ying_Yang:groupId61.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1].gid"
 		;
-connectAttr "groupId63.id" "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1].gco"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:groupId62.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.ciog.cog[3].cgid"
 		;
-connectAttr "groupId64.id" "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId63.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0].gco"
 		;
-connectAttr "groupId65.id" "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.ciog.cog[3].cgid"
+connectAttr "Scroll___Ying_Yang:groupId64.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1].gid"
 		;
-connectAttr "groupId66.id" "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1].gco"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:groupId65.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.ciog.cog[3].cgid"
 		;
-connectAttr "groupId67.id" "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId66.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0].gco"
 		;
-connectAttr "groupId68.id" "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.ciog.cog[4].cgid"
+connectAttr "Scroll___Ying_Yang:groupId67.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1].gid"
 		;
-connectAttr "groupId51.id" "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1].gco"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert6SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:groupId68.id" "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.ciog.cog[4].cgid"
 		;
-connectAttr "groupId52.id" "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId51.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0].gco"
 		;
-connectAttr "groupId53.id" "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.ciog.cog[2].cgid"
+connectAttr "Scroll___Ying_Yang:groupId52.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1].gid"
 		;
-connectAttr "groupId54.id" "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1].gco"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:groupId53.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.ciog.cog[2].cgid"
 		;
-connectAttr "groupId55.id" "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId54.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0].gco"
 		;
-connectAttr "groupId56.id" "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.ciog.cog[2].cgid"
+connectAttr "Scroll___Ying_Yang:groupId55.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1].gid"
 		;
-connectAttr "groupId57.id" "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[0].gid"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1].gco"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[0].gco"
+connectAttr "Scroll___Ying_Yang:groupId56.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.ciog.cog[2].cgid"
 		;
-connectAttr "groupId58.id" "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[1].gid"
+connectAttr "Scroll___Ying_Yang:groupId57.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0].gid"
 		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[1].gco"
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0].gco"
 		;
-connectAttr "groupId59.id" "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.ciog.cog[3].cgid"
+connectAttr "Scroll___Ying_Yang:groupId58.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1].gid"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.mwc" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1].gco"
+		;
+connectAttr "Scroll___Ying_Yang:groupId59.id" "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.ciog.cog[3].cgid"
 		;
 connectAttr "groupId45.id" "|Final_JPan_Gateway|Hanging_Lantern2|Rope1|Lantern|pSphere1|pSphereShape1.iog.og[0].gid"
 		;
@@ -23767,10 +23874,11 @@ relationship "link" ":lightLinker1" "Hanging_Lantern:lambert5SG.message" ":defau
 relationship "link" ":lightLinker1" "Hanging_Lantern:blinn1SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "Tassels:lambert2SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "Tassels:lambert3SG.message" ":defaultLightSet.message";
-relationship "link" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert3SG.message" ":defaultLightSet.message";
-relationship "link" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.message" ":defaultLightSet.message";
-relationship "link" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.message" ":defaultLightSet.message";
-relationship "link" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "Scroll___Ying_Yang:lambert2SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
@@ -23785,10 +23893,11 @@ relationship "shadowLink" ":lightLinker1" "Hanging_Lantern:lambert5SG.message" "
 relationship "shadowLink" ":lightLinker1" "Hanging_Lantern:blinn1SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "Tassels:lambert2SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "Tassels:lambert3SG.message" ":defaultLightSet.message";
-relationship "shadowLink" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert3SG.message" ":defaultLightSet.message";
-relationship "shadowLink" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.message" ":defaultLightSet.message";
-relationship "shadowLink" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.message" ":defaultLightSet.message";
-relationship "shadowLink" ":lightLinker1" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "Scroll___Ying_Yang:lambert2SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "polyTweak1.out" "polyExtrudeFace1.ip";
@@ -23916,39 +24025,7 @@ connectAttr "groupParts13.og" "groupParts14.ig";
 connectAttr "groupId35.id" "groupParts14.gi";
 connectAttr "hyperView1.msg" "nodeEditorPanel1Info.b[0]";
 connectAttr "hyperLayout1.msg" "hyperView1.hl";
-connectAttr "JPan_Roofing.msg" "hyperLayout1.hyp[0].dn";
-connectAttr "lambert9SG.msg" "hyperLayout1.hyp[1].dn";
-connectAttr "polySplitRing50.msg" "hyperLayout1.hyp[2].dn";
-connectAttr "polyTweak9.msg" "hyperLayout1.hyp[3].dn";
-connectAttr "polySplitRing51.msg" "hyperLayout1.hyp[4].dn";
-connectAttr "Secondary_Pillar_2.msg" "hyperLayout1.hyp[5].dn";
-connectAttr "Secondary_Pillar_Shape2.msg" "hyperLayout1.hyp[6].dn";
-connectAttr "Secondary_Pillar_3.msg" "hyperLayout1.hyp[7].dn";
-connectAttr "Secondary_Pillar_Shape3.msg" "hyperLayout1.hyp[8].dn";
-connectAttr "Secondary_Pillar_4.msg" "hyperLayout1.hyp[9].dn";
-connectAttr "Secondary_Pillar_Shape4.msg" "hyperLayout1.hyp[10].dn";
-connectAttr "Secondary_Pillar_Top_2.msg" "hyperLayout1.hyp[11].dn";
-connectAttr "Secondary_Pillar_Top_Shape2.msg" "hyperLayout1.hyp[12].dn";
-connectAttr "Secondary_Pillar_Top_4.msg" "hyperLayout1.hyp[13].dn";
-connectAttr "Secondary_Pillar_Top_Shape4.msg" "hyperLayout1.hyp[14].dn";
-connectAttr "Secondary_Pillar_Top_3.msg" "hyperLayout1.hyp[15].dn";
-connectAttr "Secondary_Pillar_Top_Shape3.msg" "hyperLayout1.hyp[16].dn";
-connectAttr "JPan_Gateway.msg" "hyperLayout1.hyp[17].dn";
-connectAttr "Scroll_2.msg" "hyperLayout1.hyp[18].dn";
-connectAttr "|Final_JPan_Gateway|Scroll_2|Paper.msg" "hyperLayout1.hyp[19].dn";
-connectAttr "|Final_JPan_Gateway|Scroll_2|Paper|PaperShape.msg" "hyperLayout1.hyp[20].dn"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll_Container.msg" "hyperLayout1.hyp[21].dn"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.msg" "hyperLayout1.hyp[22].dn"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_1.msg" "hyperLayout1.hyp[23].dn";
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.msg" "hyperLayout1.hyp[24].dn"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_2.msg" "hyperLayout1.hyp[25].dn";
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.msg" "hyperLayout1.hyp[26].dn"
-		;
-connectAttr "Hanging_Lantern:file1.msg" "hyperLayout1.hyp[27].dn";
+connectAttr "polyTweak9.msg" "hyperLayout1.hyp[0].dn";
 connectAttr "polyTweak9.out" "polySplitRing50.ip";
 connectAttr "Secondary_Pillar_Shape1.wm" "polySplitRing50.mp";
 connectAttr "polyCylinder6.out" "polyTweak9.ip";
@@ -24102,128 +24179,6 @@ connectAttr "|Final_JPan_Gateway|Tassle_5|pCube5|pCubeShape5.iog" "Tassels:lambe
 		 -na;
 connectAttr "Tassels:lambert3SG.msg" "Tassels:materialInfo2.sg";
 connectAttr "Tassels:Paper.msg" "Tassels:materialInfo2.m";
-connectAttr "Ying_Yang_Scrools:JPan_Gate:file1.oc" "Ying_Yang_Scrools:JPan_Gate:Tiger_Shark_Logo.c"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Tiger_Shark_Logo.oc" "Ying_Yang_Scrools:JPan_Gate:lambert3SG.ss"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Paper|PaperShape.iog" "Ying_Yang_Scrools:JPan_Gate:lambert3SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Paper|PaperShape.iog" "Ying_Yang_Scrools:JPan_Gate:lambert3SG.dsm"
-		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert3SG.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo2.sg"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Tiger_Shark_Logo.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo2.m"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:file1.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo2.t"
-		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.c" "Ying_Yang_Scrools:JPan_Gate:file1.c"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.tf" "Ying_Yang_Scrools:JPan_Gate:file1.tf"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.rf" "Ying_Yang_Scrools:JPan_Gate:file1.rf"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.mu" "Ying_Yang_Scrools:JPan_Gate:file1.mu"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.mv" "Ying_Yang_Scrools:JPan_Gate:file1.mv"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.s" "Ying_Yang_Scrools:JPan_Gate:file1.s"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.wu" "Ying_Yang_Scrools:JPan_Gate:file1.wu"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.wv" "Ying_Yang_Scrools:JPan_Gate:file1.wv"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.re" "Ying_Yang_Scrools:JPan_Gate:file1.re"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.of" "Ying_Yang_Scrools:JPan_Gate:file1.of"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.r" "Ying_Yang_Scrools:JPan_Gate:file1.ro"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.n" "Ying_Yang_Scrools:JPan_Gate:file1.n"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.vt1" "Ying_Yang_Scrools:JPan_Gate:file1.vt1"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.vt2" "Ying_Yang_Scrools:JPan_Gate:file1.vt2"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.vt3" "Ying_Yang_Scrools:JPan_Gate:file1.vt3"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.vc1" "Ying_Yang_Scrools:JPan_Gate:file1.vc1"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.o" "Ying_Yang_Scrools:JPan_Gate:file1.uv"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.ofs" "Ying_Yang_Scrools:JPan_Gate:file1.fs"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Rope.oc" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.ss"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.ciog.cog[2]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.ciog.cog[3]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.ciog.cog[3]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.ciog.cog[4]" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
-		 -na;
-connectAttr "groupId54.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId56.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId57.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId59.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId63.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId65.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId66.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "groupId68.msg" "Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo4.sg"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Rope.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo4.m"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Black_Trim.oc" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.ss"
-		;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.ciog.cog[2]" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[0]" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.ciog.cog[3]" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
-		 -na;
-connectAttr "groupId51.msg" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn" -na;
-connectAttr "groupId53.msg" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn" -na;
-connectAttr "groupId60.msg" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn" -na;
-connectAttr "groupId62.msg" "Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert6SG.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo5.sg"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Black_Trim.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo5.m"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Gold_Trim.oc" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.ss"
-		;
-connectAttr "groupId52.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "groupId55.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "groupId58.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "groupId61.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "groupId64.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "groupId67.msg" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn" -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll_Container|Scroll_ContainerShape.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_1|Rope_Shape1.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_1|Rope_2|Rope_Shape2.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll_Container|Scroll_ContainerShape.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_1|Rope_Shape1.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "|Final_JPan_Gateway|Scroll_2|Rope_2|Rope_Shape2.iog.og[1]" "Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
-		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo6.sg"
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Gold_Trim.msg" "Ying_Yang_Scrools:JPan_Gate:materialInfo6.m"
-		;
 connectAttr "Ying_Yang_Scrools:JPan_Gate:hyperView1.msg" "Ying_Yang_Scrools:JPan_Gate:nodeEditorPanel1Info.b[0]"
 		;
 connectAttr "Ying_Yang_Scrools:JPan_Gate:hyperLayout1.msg" "Ying_Yang_Scrools:JPan_Gate:hyperView1.hl"
@@ -24250,6 +24205,228 @@ connectAttr "Hanging_Lantern:place2dTexture2.vt3" "Hanging_Lantern:file1.vt3";
 connectAttr "Hanging_Lantern:place2dTexture2.vc1" "Hanging_Lantern:file1.vc1";
 connectAttr "Hanging_Lantern:place2dTexture2.o" "Hanging_Lantern:file1.uv";
 connectAttr "Hanging_Lantern:place2dTexture2.ofs" "Hanging_Lantern:file1.fs";
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo2.sg"
+		;
+connectAttr "Scroll___Ying_Yang:Tiger_Shark_Logo.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo2.m"
+		;
+connectAttr "Scroll___Ying_Yang:TSI.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo2.t"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Tiger_Shark_Logo.oc" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG.ss"
+		;
+connectAttr "Scroll___Ying_Yang:TSI.oc" "Scroll___Ying_Yang:Tiger_Shark_Logo.c";
+connectAttr "Scroll___Ying_Yang:TSI.ot" "Scroll___Ying_Yang:Tiger_Shark_Logo.it"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture3.c" "Scroll___Ying_Yang:TSI.c";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.tf" "Scroll___Ying_Yang:TSI.tf";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.rf" "Scroll___Ying_Yang:TSI.rf";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.mu" "Scroll___Ying_Yang:TSI.mu";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.mv" "Scroll___Ying_Yang:TSI.mv";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.s" "Scroll___Ying_Yang:TSI.s";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.wu" "Scroll___Ying_Yang:TSI.wu";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.wv" "Scroll___Ying_Yang:TSI.wv";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.re" "Scroll___Ying_Yang:TSI.re";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.of" "Scroll___Ying_Yang:TSI.of";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.r" "Scroll___Ying_Yang:TSI.ro";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.n" "Scroll___Ying_Yang:TSI.n";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.vt1" "Scroll___Ying_Yang:TSI.vt1"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture3.vt2" "Scroll___Ying_Yang:TSI.vt2"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture3.vt3" "Scroll___Ying_Yang:TSI.vt3"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture3.vc1" "Scroll___Ying_Yang:TSI.vc1"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture3.o" "Scroll___Ying_Yang:TSI.uv";
+connectAttr "Scroll___Ying_Yang:place2dTexture3.ofs" "Scroll___Ying_Yang:TSI.fs"
+		;
+connectAttr "Scroll___Ying_Yang:Black_Trim.oc" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.ss"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.ciog.cog[2]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.ciog.cog[3]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.dsm"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId51.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId53.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId60.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId62.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo5.sg"
+		;
+connectAttr "Scroll___Ying_Yang:Black_Trim.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo5.m"
+		;
+connectAttr "Scroll___Ying_Yang:Gold_Trim.oc" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.ss"
+		;
+connectAttr "Scroll___Ying_Yang:groupId52.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId55.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId58.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId61.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId64.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId67.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.gn"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Scroll_Container|Scroll___Ying_Yang:Scroll_ContainerShape.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[1]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.dsm"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo6.sg"
+		;
+connectAttr "Scroll___Ying_Yang:Gold_Trim.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo6.m"
+		;
+connectAttr "Scroll___Ying_Yang:Scroll_Rope.oc" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.ss"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.ciog.cog[2]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.ciog.cog[3]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_1|Scroll___Ying_Yang:Rope_Shape1.ciog.cog[3]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.iog.og[0]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Rope_2|Scroll___Ying_Yang:Rope_Shape2.ciog.cog[4]" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.dsm"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId54.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId56.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId57.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId59.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId63.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId65.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId66.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:groupId68.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.gn"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo4.sg"
+		;
+connectAttr "Scroll___Ying_Yang:Scroll_Rope.msg" "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:materialInfo4.m"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang.oc" "Scroll___Ying_Yang:Ying_Yang_Symbol.c"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang.ot" "Scroll___Ying_Yang:Ying_Yang_Symbol.it"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Symbol.oc" "Scroll___Ying_Yang:lambert2SG.ss"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:PaperShape.iog" "Scroll___Ying_Yang:lambert2SG.dsm"
+		 -na;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:PaperShape.iog" "Scroll___Ying_Yang:lambert2SG.dsm"
+		 -na;
+connectAttr "Scroll___Ying_Yang:lambert2SG.msg" "Scroll___Ying_Yang:materialInfo1.sg"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Symbol.msg" "Scroll___Ying_Yang:materialInfo1.m"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang.msg" "Scroll___Ying_Yang:materialInfo1.t"
+		 -na;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.c" "Scroll___Ying_Yang:Ying_Yang.c"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.tf" "Scroll___Ying_Yang:Ying_Yang.tf"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.rf" "Scroll___Ying_Yang:Ying_Yang.rf"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.mu" "Scroll___Ying_Yang:Ying_Yang.mu"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.mv" "Scroll___Ying_Yang:Ying_Yang.mv"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.s" "Scroll___Ying_Yang:Ying_Yang.s"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.wu" "Scroll___Ying_Yang:Ying_Yang.wu"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.wv" "Scroll___Ying_Yang:Ying_Yang.wv"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.re" "Scroll___Ying_Yang:Ying_Yang.re"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.of" "Scroll___Ying_Yang:Ying_Yang.of"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.r" "Scroll___Ying_Yang:Ying_Yang.ro"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.n" "Scroll___Ying_Yang:Ying_Yang.n"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.vt1" "Scroll___Ying_Yang:Ying_Yang.vt1"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.vt2" "Scroll___Ying_Yang:Ying_Yang.vt2"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.vt3" "Scroll___Ying_Yang:Ying_Yang.vt3"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.vc1" "Scroll___Ying_Yang:Ying_Yang.vc1"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.o" "Scroll___Ying_Yang:Ying_Yang.uv"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.ofs" "Scroll___Ying_Yang:Ying_Yang.fs"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:polySurfaceShape1.o" "Scroll___Ying_Yang:polySubdFace1.ip"
+		;
+connectAttr "Scroll___Ying_Yang:polySubdFace1.out" "Scroll___Ying_Yang:polyDuplicateEdge1.ip"
+		;
+connectAttr "Scroll___Ying_Yang:polyDuplicateEdge1.out" "Scroll___Ying_Yang:deleteComponent1.ig"
+		;
+connectAttr "Scroll___Ying_Yang:deleteComponent1.og" "Scroll___Ying_Yang:polyTweakUV1.ip"
+		;
+connectAttr "Scroll___Ying_Yang:polyTweakUV1.out" "Scroll___Ying_Yang:deleteComponent2.ig"
+		;
+connectAttr "Scroll___Ying_Yang:deleteComponent2.og" "Scroll___Ying_Yang:polyTweakUV2.ip"
+		;
+connectAttr "Scroll___Ying_Yang:hyperView1.msg" "Scroll___Ying_Yang:nodeEditorPanel1Info.b[0]"
+		;
+connectAttr "Scroll___Ying_Yang:hyperLayout1.msg" "Scroll___Ying_Yang:hyperView1.hl"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Symbol.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[0].dn"
+		;
+connectAttr "Scroll___Ying_Yang:lambert2SG.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[1].dn"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[2].dn"
+		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[3].dn"
+		;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[4].dn"
+		;
+connectAttr "Scroll___Ying_Yang:polySubdFace1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[5].dn"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_2|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:polySurfaceShape1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[6].dn"
+		;
+connectAttr "Scroll___Ying_Yang:polyDuplicateEdge1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[7].dn"
+		;
+connectAttr "Scroll___Ying_Yang:deleteComponent1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[8].dn"
+		;
+connectAttr "Scroll___Ying_Yang:polyTweakUV1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[9].dn"
+		;
+connectAttr "Scroll___Ying_Yang:deleteComponent2.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[10].dn"
+		;
+connectAttr "Scroll___Ying_Yang:polyTweakUV2.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[11].dn"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[12].dn"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:PaperShape.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[13].dn"
+		;
+connectAttr "|Final_JPan_Gateway|Scroll_1|Scroll___Ying_Yang:Paper|Scroll___Ying_Yang:polySurfaceShape1.msg" "Scroll___Ying_Yang:hyperLayout1.hyp[14].dn"
+		;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert6SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert8SG.pa" ":renderPartition.st" -na;
@@ -24262,14 +24439,15 @@ connectAttr "Hanging_Lantern:lambert5SG.pa" ":renderPartition.st" -na;
 connectAttr "Hanging_Lantern:blinn1SG.pa" ":renderPartition.st" -na;
 connectAttr "Tassels:lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "Tassels:lambert3SG.pa" ":renderPartition.st" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert3SG.pa" ":renderPartition.st" -na
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert5SG.pa" ":renderPartition.st" -na
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert6SG.pa" ":renderPartition.st" -na
-		;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:lambert7SG.pa" ":renderPartition.st" -na
-		;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert3SG.pa" ":renderPartition.st"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert5SG.pa" ":renderPartition.st"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert6SG.pa" ":renderPartition.st"
+		 -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Scrools:JPan_Gate:lambert7SG.pa" ":renderPartition.st"
+		 -na;
+connectAttr "Scroll___Ying_Yang:lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "|Final_JPan_Gateway|Hanging_Lantern2|Rope1|Lantern|pSphere1|pSphereShape1.ciog.cog[1]" ":initialShadingGroup.dsm"
 		 -na;
 connectAttr "|Final_JPan_Gateway|Hanging_Lantern1|Rope1|Lantern|pSphere1|pSphereShape1.ciog.cog[2]" ":initialShadingGroup.dsm"
@@ -24288,25 +24466,27 @@ connectAttr "Hanging_Lantern:Lantern_Rope.msg" ":defaultShaderList1.s" -na;
 connectAttr "Hanging_Lantern:lambert6.msg" ":defaultShaderList1.s" -na;
 connectAttr "Tassels:Tassle_Rope.msg" ":defaultShaderList1.s" -na;
 connectAttr "Tassels:Paper.msg" ":defaultShaderList1.s" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Tiger_Shark_Logo.msg" ":defaultShaderList1.s"
-		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Rope.msg" ":defaultShaderList1.s" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Black_Trim.msg" ":defaultShaderList1.s"
-		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:Gold_Trim.msg" ":defaultShaderList1.s" 
-		-na;
-connectAttr "Hanging_Lantern:file1.msg" ":defaultTextureList1.tx" -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:file1.msg" ":defaultTextureList1.tx" -na
+connectAttr "Scroll___Ying_Yang:Tiger_Shark_Logo.msg" ":defaultShaderList1.s" -na
 		;
+connectAttr "Scroll___Ying_Yang:Scroll_Rope.msg" ":defaultShaderList1.s" -na;
+connectAttr "Scroll___Ying_Yang:Black_Trim.msg" ":defaultShaderList1.s" -na;
+connectAttr "Scroll___Ying_Yang:Gold_Trim.msg" ":defaultShaderList1.s" -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang_Symbol.msg" ":defaultShaderList1.s" -na
+		;
+connectAttr "Hanging_Lantern:file1.msg" ":defaultTextureList1.tx" -na;
+connectAttr "Scroll___Ying_Yang:TSI.msg" ":defaultTextureList1.tx" -na;
+connectAttr "Scroll___Ying_Yang:Ying_Yang.msg" ":defaultTextureList1.tx" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "Hanging_Lantern:place2dTexture1.msg" ":defaultRenderUtilityList1.u"
 		 -na;
 connectAttr "Hanging_Lantern:place2dTexture2.msg" ":defaultRenderUtilityList1.u"
 		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture1.msg" ":defaultRenderUtilityList1.u"
+connectAttr "Scroll___Ying_Yang:place2dTexture3.msg" ":defaultRenderUtilityList1.u"
 		 -na;
-connectAttr "Ying_Yang_Scrools:JPan_Gate:place2dTexture2.msg" ":defaultRenderUtilityList1.u"
+connectAttr "Scroll___Ying_Yang:place2dTexture1.msg" ":defaultRenderUtilityList1.u"
+		 -na;
+connectAttr "Scroll___Ying_Yang:place2dTexture2.msg" ":defaultRenderUtilityList1.u"
 		 -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 // End of Final JPan Gate.ma
